@@ -192,6 +192,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 
 		$settings = $this->process_errors( $settings );
 		$settings = $this->adjust_styles( $settings );
+		$settings = array_merge( $this->get_connection_section_header(), $settings );
 
 		return apply_filters( 'woocommerce_get_settings_' . $this->id, $settings, $GLOBALS['current_section'] );
 	}
@@ -581,5 +582,57 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		}
 
 		return $settings;
+	}
+
+	/**
+	 * Returns whether we're connected to CTCT or not.
+	 *
+	 * @TODO Implement this.
+	 *
+	 * @since 2019-03-15
+	 * @author Zach Owen <zach@webdevstudios>
+	 * @return bool
+	 */
+	private function is_connected() : bool {
+		return false;
+	}
+
+	/**
+	 * Get the connection section.
+	 *
+	 * @since 2019-03-15
+	 * @author Zach Owen <zach@webdevstudios>
+	 * @return array
+	 */
+	private function get_connection_section_header() : array {
+		if ( $this->is_connected() ) {
+			// @TODO implement.
+			return $this->get_disconnect_section();
+		}
+
+		return $this->get_connect_section();
+	}
+
+	/**
+	 * get_connect_section
+	 *
+	 * @return array
+	 */
+	private function get_connect_section() : array {
+		return [
+			[
+				'title' => __( 'Connect with Constant Contact', 'cc-woo' ),
+				'type'  => 'title',
+				'desc'  => 'Once connected, you will be able to sync your WooCommerce store and customer information with Constant Contact.',
+				'id'    => 'cc_woo_connect_with_ctct_section',
+			],
+			[
+				'type' => 'cc_connect_button',
+			],
+			[
+				'type' => 'sectionend',
+				'id' => 'cc_woo_connect_with_ctct_section',
+			]
+		];
 	}
 }
