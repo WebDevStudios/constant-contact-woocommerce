@@ -139,7 +139,6 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		add_filter( "woocommerce_settings-{$this->id}", [ $this, 'add_rest_fields' ] );
 		add_filter( 'woocommerce_admin_settings_sanitize_option_cc_woo_store_information_phone_number',
 			[ $this, 'sanitize_phone_number' ] );
-		add_filter( "woocommerce_get_settings_{$this->id}", [ $this, 'maybe_add_connect_button' ] );
 		add_filter( 'woocommerce_settings_start', [ $this, 'validate_option_values' ], 10, 3 );
 
 		add_action( "woocommerce_sections_{$this->id}", [ $this, 'output_sections' ] );
@@ -417,28 +416,6 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		}
 
 		return $value;
-	}
-
-	/**
-	 * Displays the Connect with Constant Contact button if we're good to go.
-	 *
-	 * @since  2019-03-08
-	 * @author Zach Owen <zach@webdevstudios>
-	 *
-	 * @param array $settings The current settings array.
-	 *
-	 * @return array
-	 */
-	public function maybe_add_connect_button( $settings ) {
-		if ( ! $this->meets_connect_requirements() ) {
-			return $settings;
-		}
-
-		$settings[] = [
-			'type' => 'cc_connect_button',
-		];
-
-		return $settings;
 	}
 
 	/**
