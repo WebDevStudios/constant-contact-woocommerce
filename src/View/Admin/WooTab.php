@@ -148,8 +148,8 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		add_action( 'woocommerce_admin_field_cc_connect_button', [ $this, 'add_cc_connect_button' ] );
 		add_action( 'woocommerce_admin_field_cc_disconnect_button', [ $this, 'add_cc_disconnect_button' ] );
 		add_action( 'woocommerce_admin_field_cc_has_setup', [ $this, 'add_cc_has_setup' ] );
-
-		add_filter( 'pre_option_cc_woo_store_information_currency', 'get_woocommerce_currency' );
+		add_filter( 'pre_option_' . self::CURRENCY_FIELD, 'get_woocommerce_currency' );
+		add_filter( 'pre_option_' . self::COUNTRY_CODE_FIELD, [ $this, 'get_woo_country' ] );
 		add_filter( 'pre_update_option_cc_woo_customer_data_opt_in_consent',
 			[ $this, 'maybe_prevent_opt_in_consent' ] );
 	}
@@ -253,6 +253,8 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * @return array
 	 */
 	private function get_store_information_settings() {
+		$readonly_from_general_settings = __( 'This field is read from your General settings.', 'cc-woo' );
+
 		return [
 			[
 				'title' => __( 'Store Information', 'cc-woo' ),
@@ -297,9 +299,18 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				],
 			],
 			[
+				'title'             => __( 'Contact E-mail Address', 'cc-woo' ),
+				'id'                => self::EMAIL_FIELD,
+				'desc'              => '',
+				'type'              => 'email',
+				'custom_attributes' => [
+					'required' => 'required',
+				],
+			],
+			[
 				'title'             => __( 'Currency', 'cc-woo' ),
 				'id'                => self::CURRENCY_FIELD,
-				'desc'              => __( 'This field is read from your General settings.', 'cc-woo' ),
+				'desc'              => $readonly_from_general_settings,
 				'type'              => 'text',
 				'custom_attributes' => [
 					'readonly' => 'readonly',
@@ -309,19 +320,11 @@ class WooTab extends WC_Settings_Page implements Hookable {
 			[
 				'title'             => __( 'Country Code', 'cc-woo' ),
 				'id'                => self::COUNTRY_CODE_FIELD,
+				'desc'              => $readonly_from_general_settings,
 				'type'              => 'text',
 				'custom_attributes' => [
-					'size'     => 6,
-					'required' => 'required',
-				],
-			],
-			[
-				'title'             => __( 'Contact E-mail Address', 'cc-woo' ),
-				'id'                => self::EMAIL_FIELD,
-				'desc'              => '',
-				'type'              => 'email',
-				'custom_attributes' => [
-					'required' => 'required',
+					'readonly' => 'readonly',
+					'size'     => 4,
 				],
 			],
 			[
@@ -670,5 +673,16 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				'id' => 'cc_woo_connect_with_ctct_section',
 			]
 		];
+	}
+
+	/**
+	 * Get the Country code from the WooCommerce settings.
+	 *
+	 * @since 2019-03-15
+	 * @author Zach Owen <zach@webdevstudios>
+	 * @return string
+	 */
+	public function get_woo_country() : string {
+		return wc_get_base_location()['country'] ?? '';
 	}
 }
