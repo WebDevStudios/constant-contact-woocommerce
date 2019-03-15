@@ -146,6 +146,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		add_action( "woocommerce_settings_save_{$this->id}", [ $this, 'save' ] );
 		add_action( "woocommerce_settings_save_{$this->id}", [ $this, 'update_setup_option' ] );
 		add_action( 'woocommerce_admin_field_cc_connect_button', [ $this, 'add_cc_connect_button' ] );
+		add_action( 'woocommerce_admin_field_cc_disconnect_button', [ $this, 'add_cc_disconnect_button' ] );
 		add_action( 'woocommerce_admin_field_cc_has_setup', [ $this, 'add_cc_has_setup' ] );
 
 		add_filter( 'pre_option_cc_woo_store_information_currency', 'get_woocommerce_currency' );
@@ -429,6 +430,19 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		?>
 		<button class="button button-primary" type="submit" name="cc_woo_action" value="connect">
 			Connect with Constant Contact
+		</button>
+		<?php
+	}
+
+	/**
+	 *
+	 * @since  2019-03-15
+	 * @author Zach Owen <zach@webdevstudios>
+	 */
+	public function add_cc_disconnect_button() {
+		?>
+		<button class="button button-primary" type="submit" name="cc_woo_action" value="disconnect">
+			Disconnect
 		</button>
 		<?php
 	}
