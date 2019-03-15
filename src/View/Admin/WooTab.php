@@ -606,11 +606,33 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 */
 	private function get_connection_section_header() : array {
 		if ( $this->is_connected() ) {
-			// @TODO implement.
 			return $this->get_disconnect_section();
 		}
 
 		return $this->get_connect_section();
+	}
+
+	/**
+	 * get_disconnect_section
+	 *
+	 * @return array
+	 */
+	private function get_disconnect_section() : array {
+		return [
+			[
+				'title' => __( 'Disconnect from Constant Contact', 'cc-woo' ),
+				'type'  => 'title',
+				'desc'  => 'Once disconnected, something will happen',
+				'id'    => 'cc_woo_disconnect_from_ctct_section',
+			],
+			[
+				'type' => 'cc_disconnect_button',
+			],
+			[
+				'type' => 'sectionend',
+				'id'   => 'cc_woo_disconnect_from_ctct_section',
+			],
+		];
 	}
 
 	/**
