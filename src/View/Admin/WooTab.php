@@ -635,21 +635,12 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * @return array
 	 */
 	private function get_disconnect_section() : array {
-		return [
-			[
-				'title' => __( 'Disconnect from Constant Contact', 'cc-woo' ),
-				'type'  => 'title',
-				'desc'  => 'Once disconnected, something will happen',
-				'id'    => 'cc_woo_disconnect_from_ctct_section',
-			],
-			[
-				'type' => 'cc_disconnect_button',
-			],
-			[
-				'type' => 'sectionend',
-				'id'   => 'cc_woo_disconnect_from_ctct_section',
-			],
-		];
+		return $this->get_button_section(
+			__( 'Disconnect from Constant Contact', 'cc-woo' ),
+			__( 'Once disconnected, something will happen', 'cc-woo' ),
+			'cc_woo_disconnect_from_ctct_section',
+			'cc_disconnect_button'
+		);
 	}
 
 	/**
@@ -658,21 +649,12 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * @return array
 	 */
 	private function get_connect_section() : array {
-		return [
-			[
-				'title' => __( 'Connect with Constant Contact', 'cc-woo' ),
-				'type'  => 'title',
-				'desc'  => 'Once connected, you will be able to sync your WooCommerce store and customer information with Constant Contact.',
-				'id'    => 'cc_woo_connect_with_ctct_section',
-			],
-			[
-				'type' => 'cc_connect_button',
-			],
-			[
-				'type' => 'sectionend',
-				'id' => 'cc_woo_connect_with_ctct_section',
-			]
-		];
+		return $this->get_button_section(
+			__( 'Connect with Constant Contact', 'cc-woo' ),
+			__( 'Once connected, you will be able to sync your WooCommerce store and customer information with Constant Contact.', 'cc-woo' ),
+			'cc_woo_connect_with_ctct_section',
+			'cc_connect_button'
+		);
 	}
 
 	/**
@@ -684,5 +666,32 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 */
 	public function get_woo_country() : string {
 		return wc_get_base_location()['country'] ?? '';
+	}
+
+	/**
+	 * get_button_section
+	 *
+	 * @param string $title
+	 * @param string $description
+	 * @param string $section_id
+	 * @param string $button
+	 * @return array
+	 */
+	private function get_button_section( string $title, string $description, string $section_id, string $button ) : array {
+		return [
+			[
+				'title' => $title,
+				'type'  => 'title',
+				'desc'  => $description,
+				'id'    => $section_id,
+			],
+			[
+				'type' => $button,
+			],
+			[
+				'type' => 'sectionend',
+				'id'   => $section_id,
+			],
+		];
 	}
 }
