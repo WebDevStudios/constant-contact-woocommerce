@@ -87,7 +87,6 @@ class CampaignId implements Hookable {
 	 * @return string
 	 */
 	private function get_stored_campaign_id() {
-
 		return isset( $_COOKIE['ctct_woo_campaign_id'] )
 			? $_COOKIE['ctct_woo_campaign_id']
 			: '';
