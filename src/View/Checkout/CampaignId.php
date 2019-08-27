@@ -30,15 +30,6 @@ class CampaignId implements Hookable {
 	const CUSTOMER_CAMPAIGN_ID_KEY = 'campaign_activity_id';
 
 	/**
-	 * NewsletterPreferenceCheckbox constructor.
-	 *
-	 * @author Michael Beckwith <michael@webdevstudios.com>
-	 * @since  2019-03-18
-	 */
-	public function __construct() {
-	}
-
-	/**
 	 * Register actions and filters with WordPress.
 	 *
 	 * @author Michael Beckwith <michael@webdevstudios.com>
