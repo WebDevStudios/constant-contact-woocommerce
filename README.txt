@@ -33,3 +33,8 @@ With Constant Contact you can:
 --- Prospects: Have not made a purchase yet
 - Send automated welcome emails and behavior based trigger emails
 - Find new customers with Facebook and Instagram ads
+
+== Changelog ==
+
+= 1.1.0 =
+* Added: Support for sending campaign IDs as part of customer purchased orders.
