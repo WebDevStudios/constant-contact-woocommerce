@@ -25,7 +25,7 @@ class CampaignId implements Hookable {
 	 * This constant will be used both in usermeta (for users) and postmeta (for orders).
 	 *
 	 * @var string
-	 * @since 2019-03-18
+	 * @since 2019-08-22
 	 */
 	const CUSTOMER_CAMPAIGN_ID_KEY = 'campaign_activity_id';
 
@@ -46,7 +46,7 @@ class CampaignId implements Hookable {
 	 * @param int $order_id The order ID.
 	 *
 	 * @author Michael Beckwith <michael@webdevstudios.com>
-	 * @since  2019-03-18
+	 * @since  2019-08-22
 	 * @return void
 	 */
 	public function save_user_campaign_id_to_order( $order_id ) {
@@ -83,7 +83,7 @@ class CampaignId implements Hookable {
 	 * Get the submitted customer newsletter preference.
 	 *
 	 * @author Michael Beckwith <michael@webdevstudios.com>
-	 * @since  2019-03-18
+	 * @since  2019-08-22
 	 * @return string
 	 */
 	private function get_stored_campaign_id() {
