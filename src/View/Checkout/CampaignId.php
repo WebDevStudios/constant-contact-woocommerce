@@ -69,14 +69,11 @@ class CampaignId implements Hookable {
 	 * @return void
 	 */
 	public function save_campaign_id() {
-		// @codingStandardsIgnoreStart - Sanitized after the early return check.
-		if ( empty( $_GET ) || ! isset( $_GET['source'] ) ) {
-			return;
-		}
-		// @codingStandardsIgnoreEnd
-
 		$campaign_id = filter_input( INPUT_GET, 'source', FILTER_SANITIZE_STRING );
-		setcookie( 'ctct_woo_campaign_id', $campaign_id, 0, '/' );
+
+		if ( ! empty( $campaign_id ) ) {
+			setcookie( 'ctct_woo_campaign_id', $campaign_id, 0, '/' );
+		}
 	}
 
 	/**
