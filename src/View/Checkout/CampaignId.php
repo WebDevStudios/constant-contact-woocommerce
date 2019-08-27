@@ -20,7 +20,6 @@ use WebDevStudios\OopsWP\Utility\Hookable;
  * @since   2019-08-22
  */
 class CampaignId implements Hookable {
-
 	/**
 	 * The name of the meta field for the customer's preference.
 	 * This constant will be used both in usermeta (for users) and postmeta (for orders).
