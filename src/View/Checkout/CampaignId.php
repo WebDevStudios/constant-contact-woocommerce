@@ -36,7 +36,7 @@ class CampaignId implements Hookable {
 	 * @since  2019-08-22
 	 */
 	public function register_hooks() {
-		add_action( 'init', [ $this, 'save_campaign_id' ] );
+		add_action( 'init', [ $this, 'save_campaign_id' ], 11 );
 		add_action( 'woocommerce_checkout_update_order_meta', [ $this, 'save_user_campaign_id_to_order' ] );
 	}
 
