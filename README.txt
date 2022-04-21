@@ -12,9 +12,9 @@ Add products to your emails and sync your contacts.
 
 == Description ==
 
-Constant Contact is built to simplify the complex and confusing task of marketing your idea, even if you’re a beginner. And our award-winning team of marketing advisors is there for every customer, every step of the way, offering live, real-time marketing advice on the phone or online anytime you get stuck. Whether it’s creating great-looking email marketing campaigns, building an awesome website with ease, creating a beautiful logo for your brand, running Google Ads to get more website traffic, or finding new customers on social media, we’ve got all the tools, features, and expert guidance you need to help you succeed - all in one place.
+Constant Contact is built to simplify the complex and confusing task of marketing your idea, even if you're a beginner. And our award-winning team of marketing advisors is there for every customer, every step of the way, offering live, real-time marketing advice on the phone or online anytime you get stuck. Whether it's creating great-looking email marketing campaigns, building an awesome website with ease, creating a beautiful logo for your brand, running Google Ads to get more website traffic, or finding new customers on social media, we've got all the tools, features, and expert guidance you need to help you succeed - all in one place.
 
-**Unleash the power of your business — and drive more revenue — by integrating Constant Contact with WooCommerce today.**
+**Unleash the power of your business - and drive more revenue - by integrating Constant Contact with WooCommerce today.**
 
 https://youtu.be/YXWxySMcCsE
 
@@ -22,7 +22,7 @@ With Constant Contact you can:
 
 * Easily connect WooCommerce to your Constant Contact account and sync contacts automatically.
 * Drag and drop a product(s) from your WooCommerce catalog and insert into your email in seconds.
-* Target the right customer/prospect with the right message with pre-defined segments based on your customers’ purchasing behavior:
+* Target the right customer/prospect with the right message with pre-defined segments based on your customers' purchasing behavior:
 
  * All WooCommerce contacts who opt in to receive email emarketing
  * Recent Customers: Purchased within 30 days
@@ -93,7 +93,7 @@ Customers
 = 1.2.0 =
 
 * New - Introduced the "abandoned carts" feature, where abandoned carts are captured and stored in the database for further action.
-* New — Introduced new authenticated REST API endpoints that list abandoned carts.
+* New - Introduced new authenticated REST API endpoints that list abandoned carts.
 
 = 1.1.0 =
 
