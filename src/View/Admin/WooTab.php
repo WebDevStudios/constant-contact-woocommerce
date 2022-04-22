@@ -376,6 +376,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		?>
 		<a
 			class="button button-primary"
+			target="_blank"
 			href="<?php echo esc_url( $url ); ?>"
 		>
 			<?php esc_html_e( 'Constant Contact Dashboard', 'cc-woo' ); ?>
