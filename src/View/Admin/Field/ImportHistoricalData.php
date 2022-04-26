@@ -37,7 +37,7 @@ class ImportHistoricalData {
 			'desc'              => $this->get_description(),
 			'type'              => 'select',
 			'id'                => self::OPTION_FIELD_NAME,
-			'default'           => '',
+			'default'           => 'true',
 			'custom_attributes' => $this->get_custom_attributes(),
 			'options'           => [
 				''      => '----',
