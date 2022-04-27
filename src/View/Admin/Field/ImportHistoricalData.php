@@ -40,7 +40,6 @@ class ImportHistoricalData {
 			'default'           => 'true',
 			'custom_attributes' => $this->get_custom_attributes(),
 			'options'           => [
-				''      => '----',
 				'false' => esc_html__( 'No', 'cc-woo' ),
 				'true'  => esc_html__( 'Yes', 'cc-woo' ),
 			],
