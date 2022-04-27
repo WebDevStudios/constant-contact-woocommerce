@@ -64,6 +64,11 @@ Customers
 
 == Changelog ==
 
+= 1.4.1 =
+
+* Updated - Set default value for importing contacts to 'true'.
+* Fix - Fixed broken form field layout on 'Import your contacts' tab.
+
 = 1.4.0 =
 
 * New - Add Checkbox Filter Location setting
