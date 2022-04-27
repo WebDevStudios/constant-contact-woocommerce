@@ -178,9 +178,6 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		add_filter( 'woocommerce_settings_start', [ $this, 'validate_option_values' ], 10, 3 );
 		add_action( "woocommerce_settings_save_{$this->id}", [ $this, 'save' ] );
 		add_action( "woocommerce_settings_save_{$this->id}", [ $this, 'update_setup_option' ] );
-
-		// Custom field for labels.
-		add_action( 'woocommerce_admin_field_cc_woo_anti_spam_notice', [ $this, 'display_anti_spam_notice' ] );
 	}
 
 	/**
@@ -508,37 +505,33 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * @return array
 	 */
 	private function get_customer_data_settings() {
+
+		$historical_import_field = new \WebDevStudios\CCForWoo\View\Admin\Field\ImportHistoricalData();
+
 		$settings = [
 			[
 				'title' => esc_html__( 'Import your contacts', 'cc-woo' ),
 				'id'    => 'cc_woo_customer_data_settings',
 				'type'  => 'title',
+				'desc'  => wp_kses(
+					sprintf(
+						__( "Start marketing to your customers right away by importing all your contacts now.\n\nDo you want to import your current contacts? By selecting yes below, you agree you have permission to market to your current contacts. \n\nSee more on Constant Contact's <a href='%s' target='_blank'>anti-spam policy</a>.", 'cc-woo' ),
+						esc_url( 'https://www.constantcontact.com/legal/anti-spam' )
+					),
+					[
+						'a' => [
+							'href' => [],
+							'target' => [],
+						],
+					]
+				)
 			],
-			[
-				'title' => '',
-				'id'    => 'cc_woo_customer_data_message',
-				'type'  => 'title',
-				'desc'  => esc_html__( "Start marketing to your customers right away by importing all your contacts now.\n\nDo you want to import your current contacts? By selecting yes below, you agree you have permission to market to your current contacts.", 'cc-woo' ),
-			],
-		];
-
-		$historical_import_field = new \WebDevStudios\CCForWoo\View\Admin\Field\ImportHistoricalData();
-
-		$settings[] = array_merge(
-			$settings,
 			$historical_import_field->get_form_field(),
 			[
-				[
-					'title' => '',
-					'type'  => 'cc_woo_anti_spam_notice',
-					'id'    => 'anti-spam-notice',
-				],
-				[
-					'type' => 'sectionend',
-					'id'   => 'cc_woo_customer_data_settings',
-				],
-			]
-		);
+				'type' => 'sectionend',
+				'id'   => 'cc_woo_customer_data_settings',
+			],
+		];
 
 		return $settings;
 	}
@@ -830,28 +823,6 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 */
 	public function get_woo_country() : string {
 		return wc_get_base_location()['country'] ?? '';
-	}
-
-	/**
-	 * Display a link to the anti-spam policy.
-	 *
-	 * @since 2019-05-17
-	 * @author Zach Owen <zach@webdevstudios>
-	 */
-	public function display_anti_spam_notice() {
-?>
-<tr>
-	<td colspan="2">
-		<?php
-		echo sprintf(
-			// phpcs:ignore -- output is escaped properly with esc_url.
-			__( 'See more on Constant Contact\'s <a href="%s" target="_blank">anti-spam policy</a>.', 'cc-woo' ),
-			esc_url( 'https://www.constantcontact.com/legal/anti-spam' )
-		);
-		?>
-	</td>
-</tr>
-<?php
 	}
 
 	/**
