@@ -64,6 +64,10 @@ Customers
 
 == Changelog ==
 
+= 1.4.1 =
+
+* Updated - Constant Contact Dashboard button now opens Dashboard in a new tab.
+
 = 1.4.0 =
 
 * New - Add Checkbox Filter Location setting
