@@ -2,8 +2,8 @@
 Contributors: constantcontact, webdevstudios, znowebdev, jmichaelward, ggwicz, ravedev
 Tags: Constant Contact, WooCommerce, eCommerce, email marketing, marketing automation, email, form, forms, marketing, mobile, opt-in, plugin, signup, subscribe, subscription, widget
 Requires at least: 5.2.2
-Tested up to: 5.9
-Stable tag: 1.4.0
+Tested up to: 6.0
+Stable tag: 1.4.1
 Requires PHP: 7.2
 License: GPLv3
 
