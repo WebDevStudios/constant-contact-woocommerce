@@ -1,66 +1,83 @@
 === Constant Contact + WooCommerce ===
 Contributors: constantcontact, webdevstudios, znowebdev, jmichaelward, ggwicz, ravedev
-Tags: capture, contacts, constant contact, constant contact form, constant contact newsletter, constant contact official, contact forms, email, form, forms, marketing, mobile, newsletter, opt-in, plugin, signup, subscribe, subscription, widget
+Tags: Constant Contact, WooCommerce, eCommerce, email marketing, marketing automation, email, form, forms, marketing, mobile, opt-in, plugin, signup, subscribe, subscription, widget
 Requires at least: 5.2.2
 Tested up to: 5.9
 Stable tag: 1.4.0
 Requires PHP: 7.2
 License: GPLv3
+
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Add products to your emails and sync your contacts.
 
 == Description ==
 
-Constant Contact is built to simplify the complex and confusing task of marketing your idea, even if you’re a beginner. And our award-winning team of marketing advisors is there for every customer, every step of the way, offering live, real-time marketing advice on the phone or online anytime you get stuck. Whether it’s creating great-looking email marketing campaigns, building an awesome website with ease, creating a beautiful logo for your brand, running Google Ads to get more website traffic, or finding new customers on social media, we’ve got all the tools, features, and expert guidance you need to help you succeed - all in one place.
-
 **Unleash the power of your business — and drive more revenue — by integrating Constant Contact with WooCommerce today.**
 
-https://youtu.be/YXWxySMcCsE
+Constant Contact is built to simplify the complex and confusing task of marketing your idea, even if you're a beginner. And our award-winning team of marketing advisors is there for every customer, every step of the way, offering live, real-time marketing advice on the phone or online anytime you get stuck.
 
-With Constant Contact you can:
+https://www.youtube.com/watch?v=ZH9G4yhAngk
+
+**With Constant Contact you can:**
 
 * Easily connect WooCommerce to your Constant Contact account and sync contacts automatically.
-* Drag and drop a product(s) from your WooCommerce catalog and insert into your email in seconds.
-* Target the right customer/prospect with the right message with pre-defined segments based on your customers’ purchasing behavior:
 
- * All WooCommerce contacts who opt in to receive email emarketing
- * Recent Customers: Purchased within 30 days
- * First-time Customers: Purchased once
- * Repeat Customers: Made more than one purchase
- * Lapsed Customers: Have not made a purchase in more than 120 days
- * Prospects: Have not made a purchase yet
+* Drag and drop a product(s) from your WooCommerce catalog and insert them into your email in seconds.
+
+* Target the right customer/prospect with the right message with predefined segments based on your customers’ purchasing behavior:
+
+
+* All WooCommerce contacts who opt in to receive email e-marketing
+
+* Recent Customers: Purchased within 30 days
+
+* First-time Customers: Purchased once
+
+* Repeat Customers: Made more than one purchase
+
+* Lapsed Customers: Have not made a purchase in more than 120 days
+
+* Prospects: Have not made a purchase yet
+
 * Bring customers back to your online store with automated, targeted emails.
+
 * Find new customers with our social marketing and advertising tools to expand your reach.
+
 * Automatically send a customized branded abandoned cart email to customers who left items in their cart and track resulting revenue.
 
 == Screenshots ==
+
 
 1. Drag the WooCommerce action block directly into your email.
 2. Edit the details of your product.
 3. Pre-filtered segmented lists.
 4. Syncing status for contacts.
 
-== Frequently Asked Questions ==
-
 #### Overall WooCommerce and Constant Contact Guide
-[https://knowledgebase.constantcontact.com/guides/KnowledgeBase/34383-Guide-Constant-Contact-and-WooCommerce?q=woocommerce*&lang=en_US](https://knowledgebase.constantcontact.com/guides/KnowledgeBase/34383-Guide-Constant-Contact-and-WooCommerce?q=woocommerce*&lang=en_US)
+Our WooCommerce integration is designed to help make your email marketing even easier. You can automatically sync your WooCommerce contacts right into your Constant Contact account, promote your products and services in emails, and recover lost revenue with automated abandoned cart emails!
+[Get started with our guide.](https://knowledgebase.constantcontact.com/guides/KnowledgeBase/34383-Guide-Constant-Contact-and-WooCommerce?q=woocommerce*&lang=en_US)
+
+#### Unable to connect WooCommerce to Constant Contact
+A benefit of using WordPress is that it's Open Source Software (OSS), meaning its developers are free to modify and enhance the source code. Because this includes WordPress plugins, plugins can sometimes interact with each other in unexpected ways. If you're having trouble connecting WooCommerce to your Constant Contact account, it's likely an interaction between plugins in your WordPress account causing the issue.
+[Fortunately, there are steps you can take to resolve this.](https://knowledgebase.constantcontact.com/articles/KnowledgeBase/34401-Unable-to-Connect-WooCommerce-to-Constant-Contact?q=woocommerce&pnx=1&lang=en_US)
 
 #### How to Sync Contacts between WooCommerce and Constant Contact
-[https://knowledgebase.constantcontact.com/articles/KnowledgeBase/33143-Sync-Contacts-Between-Your-WooCommerce-Store-and-Constant-Contact?q=woocommerce*&lang=en_US](https://knowledgebase.constantcontact.com/articles/KnowledgeBase/33143-Sync-Contacts-Between-Your-WooCommerce-Store-and-Constant-Contact?q=woocommerce*&lang=en_US)
+If you use the WooCommerce Plugin within Wordpress, you can now take advantage of Constant Contact's integration with WooCommerce. By connecting your store and syncing contacts automatically, you can be sure that your contact list is always up-to-date in Constant Contact. [Follow along with our step-by-step guide or video tutorial.](https://knowledgebase.constantcontact.com/articles/KnowledgeBase/33143-Sync-Contacts-Between-Your-WooCommerce-Store-and-Constant-Contact?q=woocommerce*&lang=en_US)
 
 #### How to use the Product Block to insert WooCommerce Products to an Email
-[https://knowledgebase.constantcontact.com/articles/KnowledgeBase/33144-Add-Products-from-a-WooCommerce-Store-to-an-Email?q=woocommerce*&lang=en_US](https://knowledgebase.constantcontact.com/articles/KnowledgeBase/33144-Add-Products-from-a-WooCommerce-Store-to-an-Email?q=woocommerce*&lang=en_US)
+If you sell products through a WooCommerce store, you can promote your goods to your contacts by dragging a WooCommerce action block directly into your Constant Contact email template. Once your WooCommence account is synced with Constant Contact, insert the block into your email template, and choose an item to display within your email.
+**Important:** If you're creating an email with the Cross Device Email Editor, there are some additional steps to take.[See the details on how to use the WooCommerce action block in the Constant Contact Knowledge base.](https://knowledgebase.constantcontact.com/articles/KnowledgeBase/33144-Add-Products-from-a-WooCommerce-Store-to-an-Email?q=woocommerce*&lang=en_US)
 
 #### How to Create an Automated Abandoned Cart Reminder Email for WooCommerce
-Customers
-[https://knowledgebase.constantcontact.com/articles/KnowledgeBase/36890-Create-an-Automated-Abandoned-Cart-Reminder-Email-for-WooCommerce-Customers?q=woocommerce*&lang=en_US](https://knowledgebase.constantcontact.com/articles/KnowledgeBase/36890-Create-an-Automated-Abandoned-Cart-Reminder-Email-for-WooCommerce-Customers?q=woocommerce*&lang=en_US)
-
-#### VIDEO Tutorial: Create an Automated WooCommerce Abandoned Cart Email
-[https://knowledgebase.constantcontact.com/tutorials/KnowledgeBase/37409-Tutorial-Create-an-Automated-WooCommerce-Abandoned-Cart-Email?q=woocommerce*&lang=en_US](https://knowledgebase.constantcontact.com/tutorials/KnowledgeBase/37409-Tutorial-Create-an-Automated-WooCommerce-Abandoned-Cart-Email?q=woocommerce*&lang=en_US)
+If you have a WooCommerce store, you've probably had people who added items to their shopping cart but didn't complete the purchase. Some of these customers may have changed their minds about making their purchase, but others may not have intended to abandon their cart. Setting up an automated Abandoned Cart Reminder Email re-engages those customers who left the purchase flow, and encourages them to follow-through.
+[See our step-by-step guide to learn how to create an automated abandoned cart reminder email for WooCommerce customers.]
+(https://knowledgebase.constantcontact.com/articles/KnowledgeBase/36890-Create-an-Automated-Abandoned-Cart-Reminder-Email-for-WooCommerce-Customers?q=woocommerce*&lang=en_US)
+We also have a video tutorial [to illustrate these steps ](https://knowledgebase.constantcontact.com/tutorials/KnowledgeBase/37409-Tutorial-Create-an-Automated-WooCommerce-Abandoned-Cart-Email?q=woocommerce*&lang=en_US)
 
 #### View WooCommerce Sales and Recovered Revenue Reporting
-[https://knowledgebase.constantcontact.com/articles/KnowledgeBase/36892-View-Recovered-Revenue-from-the-WooCommerce-Abandoned-Cart-Reminder-Email?q=woocommerce*&lang=en_US](https://knowledgebase.constantcontact.com/articles/KnowledgeBase/36892-View-Recovered-Revenue-from-the-WooCommerce-Abandoned-Cart-Reminder-Email?q=woocommerce*&lang=en_US)
+You've connected your WooCommerce store to Constant Contact, promoted your WooCommerce store products in your emails, and activated the abandoned cart reminder email. But how do you know how well it's working? By checking the reporting, you can see the number of WooCommerce orders and the total sales associated with your email campaigns. You can also see how many times the abandoned cart reminder email has been sent over the past 90 days, and how much revenue was generated because of it.
+[Learn more with our step-by-step revenue reporting guide.](https://knowledgebase.constantcontact.com/articles/KnowledgeBase/36892-View-Recovered-Revenue-from-the-WooCommerce-Abandoned-Cart-Reminder-Email?q=woocommerce*&lang=en_US)
 
 == Changelog ==
 
@@ -106,3 +123,19 @@ Customers
 * New - Added Campaign ID data inclusion for purchased orders originating from your mailing campaigns.
 * Fix - Fixed compatibility issue with phone numbers and PHP 7.3
 * Tweak - Updated wording in our WooCommerce tab.
+
+== Installation ==
+
+Integrating Constant Contact with your WooCommerce store is a simple process:
+
+* Install and activate the Constant Contact + WooCommerce plugin.
+
+* At the top of your screen, click the button that says “Connect Your account”, or create an account if you don’t already have one.
+
+* You will then be directed to the Constant Contact website where you will be prompted to sign in/create an account.
+
+* Upon sign in/account creation, your Constant Contact +WooCommerce plugin will be connected to your Constant Contact account. Finally, you will be redirected back to your WordPress dashboard where you will see a message confirming the connection has been successful.
+
+* You will now need to enter some additional information surround the importing of contacts. You can do this by clicking on the Constant Contact option that is listed under WooCommerce in your left sidebar on your dashboard.
+
+For detailed instructions on integrating Constant Contact and WooCommerce please visit our [Knowledge Base](https://knowledgebase.constantcontact.com/ToolkitPKBFAQs?q=woocommerce&pnx=1&lang=en_US) where you can find Help By *Topic, Video Tutorials,* and *Quick Start Guides.*
