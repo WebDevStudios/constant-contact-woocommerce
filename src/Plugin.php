@@ -93,6 +93,25 @@ final class Plugin extends ServiceRegistrar {
 	 */
 	public function __construct( string $plugin_file ) {
 		$this->plugin_file = $plugin_file;
+		add_action( 'admin_notices', [ $this, 'add_ssl_notice' ] );
+	}
+
+	/**
+	 * Returns a notice if SSL is not active.
+	 *
+	 * @since ??
+	 * @author Biplav Subedi <biplav.subedi@webdevstudios.com>
+	 */
+	public function add_ssl_notice() {
+		$connected = get_option( 'cc_woo_import_connection_established' );
+
+		if ( ! $connected && 'on' !== $_SERVER['HTTPS'] ) {
+			$message = __( 'Your site does not appear to be using a secure connection (SSL). You might face issues when connecting to your account. Please add HTTPS to your site to make sure you have no issues connecting.', 'cc-woo' );
+			new Notice(
+				new NoticeMessage( $message, 'error', true )
+			);
+		}
+		
 	}
 
 	/**
@@ -159,6 +178,8 @@ final class Plugin extends ServiceRegistrar {
 		} catch ( Exception $e ) {
 			$this->deactivate( $e->getMessage() );
 		}
+
+
 	}
 
 	/**
