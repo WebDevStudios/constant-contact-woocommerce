@@ -411,7 +411,34 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		</a>
 		<?php
 	}
-
+	public function connect_title() {
+		
+		return [
+			[
+				'title' => $title,
+				'type'  => 'title',
+				'id'    => 'cc_woo_store_marketing_title_settings',
+				'desc'  => $desc
+			],
+			[
+				'title' => esc_html__( 'Import your contacts', 'cc-woo' ),
+				'id'    => 'cc_woo_customer_data_settings',
+				'type'  => 'title',
+				'desc'  => wp_kses(
+					sprintf(
+						__( "Start marketing to your customers right away by importing all your contacts now.\n\nDo you want to import your current contacts? By selecting yes below, you agree you have permission to market to your current contacts.", 'cc-woo' ),
+						esc_url( 'https://www.constantcontact.com/legal/anti-spam' )
+					),
+					[
+						'a' => [
+							'href' => [],
+							'target' => [],
+						],
+					]
+				)
+			],
+		];
+	}
 	/**
 	 * Gets the settings for the Store Information section.
 	 *
@@ -422,14 +449,17 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	private function get_store_information_settings() {
 		$readonly_from_general_settings = esc_html__( 'This field is read from your General settings.', 'cc-woo' );
 		$historical_import_field        = new \WebDevStudios\CCForWoo\View\Admin\Field\ImportHistoricalData();
-
+		$connected                      = get_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY );
+		$title                          = $connected ? __( 'Connected to Constant Contact', 'cc-woo' )  : __( 'Connect to Constant Contact', 'cc-woo' );
+		$desc                           = $connected ? ''  : __( 'Enter this information in order to connect your Constant Contact account.', 'cc-woo' );
 		
 		return [
+			
 			[
-				'title' => esc_html__( 'Connect to Constant Contact', 'cc-woo' ),
+				'title' => $title,
 				'type'  => 'title',
 				'id'    => 'cc_woo_store_marketing_title_settings',
-				'desc'  => 'Enter this information in order to connect your Constant Contact account.'
+				'desc'  => $desc
 			],
 			[
 				'title' => esc_html__( 'Import your contacts', 'cc-woo' ),
