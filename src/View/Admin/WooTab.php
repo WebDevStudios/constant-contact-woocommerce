@@ -421,8 +421,38 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 */
 	private function get_store_information_settings() {
 		$readonly_from_general_settings = esc_html__( 'This field is read from your General settings.', 'cc-woo' );
+		$historical_import_field        = new \WebDevStudios\CCForWoo\View\Admin\Field\ImportHistoricalData();
 
+		
 		return [
+			[
+				'title' => esc_html__( 'Connect to Constant Contact', 'cc-woo' ),
+				'type'  => 'title',
+				'id'    => 'cc_woo_store_marketing_title_settings',
+				'desc'  => 'Enter this information in order to connect your Constant Contact account.'
+			],
+			[
+				'title' => esc_html__( 'Import your contacts', 'cc-woo' ),
+				'id'    => 'cc_woo_customer_data_settings',
+				'type'  => 'title',
+				'desc'  => wp_kses(
+					sprintf(
+						__( "Start marketing to your customers right away by importing all your contacts now.\n\nDo you want to import your current contacts? By selecting yes below, you agree you have permission to market to your current contacts.", 'cc-woo' ),
+						esc_url( 'https://www.constantcontact.com/legal/anti-spam' )
+					),
+					[
+						'a' => [
+							'href' => [],
+							'target' => [],
+						],
+					]
+				)
+			],
+			$historical_import_field->get_form_field(),
+			[
+				'type' => 'sectionend',
+				'id'   => 'cc_woo_customer_data_settings',
+			],
 			[
 				'title' => esc_html__( 'Marketing', 'cc-woo' ),
 				'type'  => 'title',
@@ -438,6 +468,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 					'false' => esc_html__( 'No - do not check this box by default', 'cc-woo' ),
 					'true'  => esc_html__( 'Yes - check this box by default', 'cc-woo' ),
 				],
+				
 			],
 			[
 				'title'   => esc_html__( 'Checkbox Filter Location', 'cc-woo' ),
@@ -739,12 +770,12 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		if ( ! empty( get_option( $field['id'] ) ) ) {
 			return;
 		}
+		$is_required = isset( $field['custom_attributes']['required'] ) ?  $field['custom_attributes']['required'] : false;
 
-		$this->errors[ $field['id'] ] = sprintf(
+		$this->errors[ $field['id'] ] = $is_required ? sprintf(
 			/* Translators: Placeholder is the field's title. */
 			esc_html__( 'The "%s" field is required to connect to Constant Contact.', 'cc-woo' ),
-			$field['title']
-		);
+			$field['title'] ): '';
 	}
 
 	/**

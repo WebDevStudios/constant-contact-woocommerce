@@ -78,7 +78,7 @@ class ImportHistoricalData {
 	 * @return bool
 	 */
 	protected function is_required() : bool {
-		return true;
+		return false;
 	}
 
 	/**
