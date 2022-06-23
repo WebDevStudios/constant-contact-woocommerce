@@ -1,0 +1,37 @@
+.cc-woo-welcome-wrap {
+    padding: 80px 0px;
+    background-color: #ffff;
+}
+
+.cc-woo-welcome-wrap .container {
+    width: 40%;
+    min-height: 500px;
+    text-align: center;
+    margin: 80px auto auto;
+}
+
+a.cc-woo-btn.btn-primary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 14px;
+    margin: 20px auto;
+    width: 97px;
+    height: 36px;
+    background: #1565C0;
+    border-radius: 4px;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.2s ease-in all;
+    border: 1px solid #1565C0;
+}
+
+a.cc-woo-btn.btn-primary:hover {
+    box-shadow: 0 0 8px 4px rgb(70 150 240 / 25%) inset, 0 0 8px 4px rgb(70 150 240 / 25%);
+    border: 1px solid rgba(70,150,240,1);
+    color: rgba(255,255,255,1);
+}
+
+a.cc-woo-back {
+    text-decoration: none;
+}

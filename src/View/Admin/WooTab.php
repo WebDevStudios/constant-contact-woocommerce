@@ -63,6 +63,13 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	const CURRENCY_FIELD = 'cc_woo_store_information_currency';
 
 	/**
+	 * Is store details is enabled.
+	 *
+	 * @since 2022-07-19
+	 */
+	const SAVE_STORE_DETAILS = 'cc_woo_save_store_details';
+
+	/**
 	 * Store country code field.
 	 *
 	 * @since 2019-03-12
@@ -153,6 +160,9 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 */
 	public function register_hooks() {
 		add_filter( 'woocommerce_settings_tabs_array', [ $this, 'add_settings_page' ], 99 );
+		add_action( "woocommerce_settings_cc_woo_store_information_settings_data", [ $this, 'add_optional_fields_wrapper' ] );
+		add_action( "woocommerce_settings_cc_woo_store_information_settings_data_end", [ $this, 'add_optional_fields_wrapper_end' ] );
+
 		add_action( "woocommerce_settings_{$this->id}", [ $this, 'output' ] );
 
 		// Output settings sections.
@@ -171,7 +181,8 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		add_filter( 'pre_option_' . self::COUNTRY_CODE_FIELD, [ $this, 'get_woo_country' ] );
 		add_filter( 'woocommerce_admin_settings_sanitize_option_' . self::PHONE_NUMBER_FIELD, [ $this, 'sanitize_phone_number' ] );
 		add_filter( "woocommerce_get_settings_{$this->id}", [ $this, 'maybe_add_connection_button' ] );
-		add_action( 'woocommerce_admin_field_cc_connection_button', [ $this, 'add_cc_connection_button' ] );
+		// add_action( 'woocommerce_admin_field_cc_connection_button', [ $this, 'add_cc_connection_button' ] );
+		add_action( 'woocommerce_admin_field_cc_connection_button', [ $this, 'add_go_back_button' ] );
 		add_action( 'woocommerce_admin_field_cc_cta_button', [ $this, 'render_cta_button' ] );
 
 		// Save actions.
@@ -189,12 +200,32 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 */
 	public function get_sections() {
 		$sections = [
-			''                                      => esc_html__( 'Store Information', 'cc-woo' ),
-			$this->import_existing_customer_section => esc_html__( 'Import your contacts', 'cc-woo' ),
+			''  => esc_html__( 'Store Information', 'cc-woo' ),
 		];
 
 		/* This filter is documented in WooCommerce */
 		return apply_filters( 'woocommerce_get_sections_' . $this->id, $sections ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Third-party hook usage.
+	}
+	/**
+	 * Add a custom wrapper for fields.
+	 *
+	 * @since  2022-06-23
+	 * @author Biplav Subedi <biplav.subedi@webdevstudios>
+	 * @return string
+	 */
+	public function add_optional_fields_wrapper() {
+		echo "<tbody id='cc-optional-fields'>";
+	}
+
+	/**
+	 * Add a custom wrapper for fields end.
+	 *
+	 * @since  2022-06-23
+	 * @author Biplav Subedi <biplav.subedi@webdevstudios>
+	 * @return string
+	 */
+	public function add_optional_fields_wrapper_end() {
+		echo "</tbody>";
 	}
 
 	/**
@@ -260,11 +291,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		switch ( $GLOBALS['current_section'] ?? '' ) {
 			case '':
 			default:
-				$settings = $this->get_store_information_settings();
-				break;
-
-			case $this->import_existing_customer_section:
-				$settings = $this->get_customer_data_settings();
+				$settings = $this->get_welcome_screen();
 				break;
 		}
 
@@ -393,80 +420,9 @@ class WooTab extends WC_Settings_Page implements Hookable {
 
 		return [
 			[
-				'title' => esc_html__( 'Store Information', 'cc-woo' ),
+				'title' => esc_html__( 'Marketing', 'cc-woo' ),
 				'type'  => 'title',
-				'desc'  => esc_html__( 'All fields are required.', 'cc-woo' ),
-				'id'    => 'cc_woo_store_information_settings',
-			],
-			[
-				'title'             => esc_html__( 'First Name', 'cc-woo' ),
-				'desc'              => '',
-				'id'                => self::FIRST_NAME_FIELD,
-				'type'              => 'text',
-				'custom_attributes' => [
-					'required'  => 'required',
-					'maxlength' => 255,
-				],
-			],
-			[
-				'title'             => esc_html__( 'Last Name', 'cc-woo' ),
-				'desc'              => '',
-				'id'                => self::LAST_NAME_FIELD,
-				'type'              => 'text',
-				'custom_attributes' => [
-					'required'  => 'required',
-					'maxlength' => 255,
-				],
-			],
-			[
-				'title'             => esc_html__( 'Phone Number', 'cc-woo' ),
-				'id'                => self::PHONE_NUMBER_FIELD,
-				'desc'              => '',
-				'type'              => 'text',
-				'custom_attributes' => [
-					'required'  => 'required',
-					'maxlength' => 255,
-				],
-			],
-			[
-				'title'             => esc_html__( 'Store Name', 'cc-woo' ),
-				'id'                => self::STORE_NAME_FIELD,
-				'desc'              => '',
-				'type'              => 'text',
-				'custom_attributes' => [
-					'required'  => 'required',
-					'maxlength' => 255,
-				],
-			],
-			[
-				'title'             => esc_html__( 'Contact E-mail Address', 'cc-woo' ),
-				'id'                => self::EMAIL_FIELD,
-				'desc'              => '',
-				'type'              => 'email',
-				'custom_attributes' => [
-					'required'  => 'required',
-					'maxlength' => 255,
-				],
-			],
-			[
-				'title'             => esc_html__( 'Currency', 'cc-woo' ),
-				'id'                => self::CURRENCY_FIELD,
-				'desc'              => $readonly_from_general_settings,
-				'type'              => 'text',
-				'custom_attributes' => [
-					'readonly' => 'readonly',
-					'size'     => 4,
-				],
-			],
-			[
-				'title'             => esc_html__( 'Country Code', 'cc-woo' ),
-				'id'                => self::COUNTRY_CODE_FIELD,
-				'desc'              => $readonly_from_general_settings,
-				'type'              => 'text',
-				'custom_attributes' => [
-					'readonly' => 'readonly',
-					'size'     => 4,
-				],
+				'id'    => 'cc_woo_store_marketing_title_settings',
 			],
 			[
 				'title'   => esc_html__( 'Marketing Opt-in', 'cc-woo' ),
@@ -492,48 +448,127 @@ class WooTab extends WC_Settings_Page implements Hookable {
 			],
 			[
 				'type' => 'sectionend',
+				'id'   => 'cc_woo_store_marketing_ends',
+			],
+			[
+				'title' => esc_html__( 'Store Information', 'cc-woo' ),
+				'type'  => 'title',
+				'id'    => 'cc_woo_store_information_settings',
+			],
+			[
+				'title'             => esc_html__( 'Enter store information?', 'cc-woo' ),
+				'desc'              => '',
+				'id'                => self::SAVE_STORE_DETAILS,
+				'type'              => 'checkbox',
+			],
+			[
+				'type' => 'sectionend',
+				'id'   => 'cc_woo_store_information_settings_save_end',
+			],
+			[
+				'title' => '',
+				'type'  => 'title',
+				'id'    => 'cc_woo_store_information_settings_data',
+			],
+			[
+				'title'             => esc_html__( 'First Name', 'cc-woo' ),
+				'desc'              => '',
+				'id'                => self::FIRST_NAME_FIELD,
+				'type'              => 'text',
+				'custom_attributes' => [
+					'required'  => '',
+					'maxlength' => 255,
+				],
+			],
+			[
+				'title'             => esc_html__( 'Last Name', 'cc-woo' ),
+				'desc'              => '',
+				'id'                => self::LAST_NAME_FIELD,
+				'type'              => 'text',
+				'custom_attributes' => [
+					'required'  => '',
+					'maxlength' => 255,
+				],
+			],
+			[
+				'title'             => esc_html__( 'Phone Number', 'cc-woo' ),
+				'id'                => self::PHONE_NUMBER_FIELD,
+				'desc'              => '',
+				'type'              => 'text',
+				'custom_attributes' => [
+					'required'  => '',
+					'maxlength' => 255,
+				],
+			],
+			[
+				'title'             => esc_html__( 'Store Name', 'cc-woo' ),
+				'id'                => self::STORE_NAME_FIELD,
+				'desc'              => '',
+				'type'              => 'text',
+				'custom_attributes' => [
+					'required'  => '',
+					'maxlength' => 255,
+				],
+			],
+			[
+				'title'             => esc_html__( 'Contact E-mail Address', 'cc-woo' ),
+				'id'                => self::EMAIL_FIELD,
+				'desc'              => '',
+				'type'              => 'email',
+				'custom_attributes' => [
+					'required'  => '',
+					'maxlength' => 255,
+				],
+			],
+			[
+				'title'             => esc_html__( 'Currency', 'cc-woo' ),
+				'id'                => self::CURRENCY_FIELD,
+				'desc'              => $readonly_from_general_settings,
+				'type'              => 'text',
+				'custom_attributes' => [
+					'readonly' => 'readonly',
+					'size'     => 4,
+				],
+			],
+			[
+				'title'             => esc_html__( 'Country Code', 'cc-woo' ),
+				'id'                => self::COUNTRY_CODE_FIELD,
+				'desc'              => $readonly_from_general_settings,
+				'type'              => 'text',
+				'custom_attributes' => [
+					'readonly' => 'readonly',
+					'size'     => 4,
+				],
+			],
+			[
+				'type' => 'sectionend',
 				'id'   => 'cc_woo_store_information_settings',
 			],
 		];
 	}
 
 	/**
-	 * Get the customer marketing settings.
+	 * Show the welcome screen if it's not connected.
 	 *
-	 * @since  2019-03-08
-	 * @author Zach Owen <zach@webdevstudios>
+	 * @since  2022-06-23
+	 * @author Biplav Subedi <biplav.subedi@webdevstudios>
 	 * @return array
 	 */
-	private function get_customer_data_settings() {
-
-		$historical_import_field = new \WebDevStudios\CCForWoo\View\Admin\Field\ImportHistoricalData();
-
-		$settings = [
-			[
-				'title' => esc_html__( 'Import your contacts', 'cc-woo' ),
-				'id'    => 'cc_woo_customer_data_settings',
-				'type'  => 'title',
-				'desc'  => wp_kses(
-					sprintf(
-						__( "Start marketing to your customers right away by importing all your contacts now.\n\nDo you want to import your current contacts? By selecting yes below, you agree you have permission to market to your current contacts. \n\nSee more on Constant Contact's <a href='%s' target='_blank'>anti-spam policy</a>.", 'cc-woo' ),
-						esc_url( 'https://www.constantcontact.com/legal/anti-spam' )
-					),
-					[
-						'a' => [
-							'href' => [],
-							'target' => [],
-						],
-					]
-				)
-			],
-			$historical_import_field->get_form_field(),
-			[
-				'type' => 'sectionend',
-				'id'   => 'cc_woo_customer_data_settings',
-			],
-		];
-
-		return $settings;
+	private function get_welcome_screen() {
+		if( ! isset( $_GET['cc-connect'] ) && ! get_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY ) ) {
+			include_once dirname( __FILE__ ) . '/welcome.php';
+			
+			// Fallback.
+			return [
+				[
+					'title' => '',
+					'type'  => 'title',
+					'id'    => 'cc_woo_store_welcome_fallback',
+				]
+			];
+		} else {
+			return $this->get_store_information_settings();
+		}
 	}
 
 	/**
@@ -554,6 +589,22 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		return array_merge( [ $this->get_connection_button() ], $settings );
 	}
 
+	/**
+	 * Add the Constant Contact connection button when displaying the form.
+	 *
+	 * Will display as a "Disconnect" button if the connection has already been established.
+	 *
+	 * @since  2019-03-08
+	 * @author Zach Owen <zach@webdevstudios>
+	 */
+	public function add_go_back_button() {
+		if( isset( $_GET['cc-connect'] ) && 'connect' === esc_html( $_GET['cc-connect'] ) && ! get_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY ) ) {
+			$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; 
+			$url = remove_query_arg( ['cc-connect'], $url );
+			?><a href="<?php echo esc_url( $url ); ?>" class="cc-woo-back"> <span class="dashicons dashicons-arrow-left-alt2"></span><?php _e( "  Go Back", 'cc-woo' ); ?> </a><?php
+	
+		}
+	}	
 	/**
 	 * Add the Constant Contact connection button when displaying the form.
 	 *

@@ -6,6 +6,11 @@ module.exports = {
 		filename: 'bundle.js',
 		path: path.resolve(__dirname, 'app')
 	},
+	entry: './app/admin.js',
+	output: {
+		filename: 'admin-bundle.js',
+		path: path.resolve(__dirname, 'app')
+	},
 	module: {
 		rules: [
 			{
