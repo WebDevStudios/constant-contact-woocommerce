@@ -28,6 +28,24 @@ class MenuItem extends Service {
 		add_action( 'admin_menu', [ $this, 'add_cc_woo_admin_menu' ], 100 );
 	}
 
+	public function add_cc_woo_admin_menu() {
+		add_menu_page(
+			__( 'Constant Contact', 'cc-woo' ),
+			__( 'Constant Contact', 'cc-woo' ),
+			'manage_options',
+			'ctct-woo-settings',
+			[$this, 'cctct_standalone_settings_page_contents'],
+			'dashicons-email',
+			56
+		);
+	}
+	
+	public function cctct_standalone_settings_page_contents() {
+		\WC_Admin_Settings::get_settings_pages();
+		$woo = new \WebDevStudios\CCForWoo\View\Admin\WooTab();
+		woocommerce_admin_fields( $woo->get_welcome_screen() );
+	}
+
 	/**
 	 * Add the CC Woo Submenu Item.
 	 *
@@ -42,24 +60,6 @@ class MenuItem extends Service {
 			'manage_woocommerce',
 			'cc-woo-settings',
 			[ $this, 'redirect_to_cc_woo' ]
-		);
-	}
-
-	/**
-	 * Add the CC Woo Menu Item.
-	 *
-	 * @since 0.0.1
-	 * @author Zach Owen <zach@webdevstudios>
-	 */
-	public function add_cc_woo_admin_menu() {
-		add_menu_page(
-			esc_html__( 'Constant Contact', 'cc-woo' ),
-			esc_html__( 'Constant Contact', 'cc-woo' ),
-			'manage_woocommerce',
-			'cc-woo-settings',
-			[ $this, 'redirect_to_cc_woo' ],
-			'dashicons-email',
-			56
 		);
 	}
 

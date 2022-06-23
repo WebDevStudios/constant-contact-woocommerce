@@ -344,5 +344,5 @@ final class Plugin extends ServiceRegistrar {
 		wp_enqueue_style( 'cc-woo-admin', trailingslashit( plugin_dir_url( $this->get_plugin_file() ) ) . 'app/admin.css' );
 	}
 
-
 }
+

@@ -589,7 +589,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * @author Biplav Subedi <biplav.subedi@webdevstudios>
 	 * @return array
 	 */
-	private function get_welcome_screen() {
+	public function get_welcome_screen() {
 		if( ! isset( $_GET['cc-connect'] ) && ! get_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY ) ) {
 			include_once dirname( __FILE__ ) . '/welcome.php';
 			
@@ -994,4 +994,5 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		<?php
 		}
 	}
+
 }
