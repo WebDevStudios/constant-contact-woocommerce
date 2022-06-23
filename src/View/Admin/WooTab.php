@@ -164,6 +164,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		add_action( "woocommerce_settings_cc_woo_store_information_settings_data_end", [ $this, 'add_optional_fields_wrapper_end' ] );
 
 		add_action( "woocommerce_settings_{$this->id}", [ $this, 'output' ] );
+		add_action( "woocommerce_settings_tabs_{$this->id}", [ $this, 'override_save_button' ] );
 
 		// Output settings sections.
 		add_action( "woocommerce_sections_{$this->id}", [ $this, 'output_sections' ] );
@@ -181,14 +182,17 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		add_filter( 'pre_option_' . self::COUNTRY_CODE_FIELD, [ $this, 'get_woo_country' ] );
 		add_filter( 'woocommerce_admin_settings_sanitize_option_' . self::PHONE_NUMBER_FIELD, [ $this, 'sanitize_phone_number' ] );
 		add_filter( "woocommerce_get_settings_{$this->id}", [ $this, 'maybe_add_connection_button' ] );
-		// add_action( 'woocommerce_admin_field_cc_connection_button', [ $this, 'add_cc_connection_button' ] );
-		add_action( 'woocommerce_admin_field_cc_connection_button', [ $this, 'add_go_back_button' ] );
 		add_action( 'woocommerce_admin_field_cc_cta_button', [ $this, 'render_cta_button' ] );
+		add_action( 'woocommerce_admin_field_cc_connection_button', [ $this, 'add_go_back_button' ] );
 
 		// Save actions.
 		add_filter( 'woocommerce_settings_start', [ $this, 'validate_option_values' ], 10, 3 );
 		add_action( "woocommerce_settings_save_{$this->id}", [ $this, 'save' ] );
 		add_action( "woocommerce_settings_save_{$this->id}", [ $this, 'update_setup_option' ] );
+
+		//hide default button
+		add_action( "admin_head", [ $this, 'hide_default_save_button' ] );
+		
 	}
 
 	/**
@@ -590,13 +594,11 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	}
 
 	/**
-	 * Add the Constant Contact connection button when displaying the form.
-	 *
-	 * Will display as a "Disconnect" button if the connection has already been established.
-	 *
-	 * @since  2019-03-08
-	 * @author Zach Owen <zach@webdevstudios>
-	 */
+	* Add a go back button.
+	*
+	* @since  2022-06-23
+	* @author Biplav Subedi <biplav.subedi@webdevstudios>
+	*/
 	public function add_go_back_button() {
 		if( isset( $_GET['cc-connect'] ) && 'connect' === esc_html( $_GET['cc-connect'] ) && ! get_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY ) ) {
 			$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; 
@@ -605,40 +607,6 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	
 		}
 	}	
-	/**
-	 * Add the Constant Contact connection button when displaying the form.
-	 *
-	 * Will display as a "Disconnect" button if the connection has already been established.
-	 *
-	 * @since  2019-03-08
-	 * @author Zach Owen <zach@webdevstudios>
-	 */
-	public function add_cc_connection_button() {
-		$connected = get_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY );
-		$value     = $connected ? 'disconnect' : 'connect';
-		$message   = $connected
-			? esc_html__( 'Disconnect from Constant Contact', 'cc-woo' )
-			: esc_html__( 'Connect with Constant Contact', 'cc-woo' );
-
-		wp_nonce_field( $this->nonce_action, $this->nonce_name );
-		?>
-		<div style="padding: 1rem 0;">
-		<button class="button button-primary" type="submit" name="cc_woo_action" value="<?php echo esc_attr( $value ); ?>">
-			<?php echo esc_html( $message ); ?>
-		</button>
-			<span style="line-height:28px; margin-left:25px;">
-				<?php
-				printf(
-					/* translators: the placeholders hold opening and closing `<a>` tags. */
-					esc_html__( 'If you have any issues connecting please call %1$sConstant Contact Support%2$s', 'cc-woo' ),
-					'<a href="https://community.constantcontact.com/contact-support">',
-					'</a>'
-				);
-				?>
-			</span>
-		</div>
-		<?php
-	}
 
 	/**
 	 * Maybe redirects to Constant Contact to connect accounts.
@@ -666,14 +634,15 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * @return bool
 	 */
 	private function requested_connect_to_cc() {
+		
 		if ( ! $this->has_valid_nonce() ) {
 			return false;
 		}
-
+		
 		// phpcs:disable -- Ignoring $_POST warnings.
 		return (
-			isset( $_POST['cc_woo_action'] )
-			&& 'connect' === filter_var( $_POST['cc_woo_action'], FILTER_SANITIZE_STRING )
+			isset( $_POST['save'] )
+			&& 'cc-woo-connect' === filter_var( $_POST['save'], FILTER_SANITIZE_STRING )
 		);
 		// phpcs:enable
 	}
@@ -895,8 +864,43 @@ class WooTab extends WC_Settings_Page implements Hookable {
 			return;
 		}
 
+		// Maybe redirect to the connect bridge.
+		$this->maybe_redirect_to_cc();
+
 		wp_safe_redirect( add_query_arg( 'section', $this->import_existing_customer_section ) );
 		exit;
+	}
+
+	/**
+	 * Overrides the save button.
+	 *
+	 * @since 2022-06-16
+	 * @author Biplav Subedi <biplav.subedi@webdevstudios>
+	 * @return array
+	 */
+	public function override_save_button() {
+		$connected = get_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY );
+		$text      = $connected ? 'Save' : __( 'Save and Connect account', 'cc-woo' );
+		$value     = $connected ? 'Save Changes' :'cc-woo-connect';
+	?><div style="padding: 1rem 0;">
+			<p class="submit">
+				<?php if ( empty( $GLOBALS['hide_save_button'] ) ) : ?>
+					<button name="save" class="ctct-woo-connect button-primary woocommerce-save-button" type="submit" value="<?php echo $value; ?>"><?php echo esc_html( $text ); ?></button>
+				<?php endif; ?>
+				<span style="line-height:28px; margin-left:25px;">
+					<?php
+					printf(
+						/* translators: the placeholders hold opening and closing `<a>` tags. */
+						esc_html__( 'If you have any issues connecting please call %1$sConstant Contact Support%2$s', 'cc-woo' ),
+						'<a href="https://community.constantcontact.com/contact-support">',
+						'</a>'
+					);
+					?>
+				</span>
+			</p>
+		</div>
+		
+	<?php
 	}
 
 	/**
@@ -938,5 +942,24 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 */
 	private function has_active_settings_section() : bool {
 		return ! empty( $GLOBALS['current_section'] ?? '' );
+	}
+
+	/**
+	 * Hides the default save button
+	 *
+	 * @return void
+	 * @author Biplav Subedi <biplav.subedi@webdevstudios.com>
+	 * @since  2022-06-16
+	 */
+	public function hide_default_save_button(){
+		if( isset( $_GET['tab'] ) && 'cc_woo' === $_GET['tab'] ) {
+		?>
+			<style>
+				button.woocommerce-save-button:not(.ctct-woo-connect) {
+					display:none;
+				}
+			</style>
+		<?php
+		}
 	}
 }
