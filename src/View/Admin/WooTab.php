@@ -913,6 +913,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		$connected = get_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY );
 		$text      = $connected ? 'Save' : __( 'Save and Connect account', 'cc-woo' );
 		$value     = $connected ? 'Save Changes' :'cc-woo-connect';
+		wp_nonce_field( $this->nonce_action, $this->nonce_name );
 	?><div style="padding: 1rem 0;">
 			<p class="submit">
 				<?php if ( empty( $GLOBALS['hide_save_button'] ) ) : ?>
