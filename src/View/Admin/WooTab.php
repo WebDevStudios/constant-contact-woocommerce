@@ -182,7 +182,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		add_filter( 'pre_option_' . self::COUNTRY_CODE_FIELD, [ $this, 'get_woo_country' ] );
 		add_filter( 'woocommerce_admin_settings_sanitize_option_' . self::PHONE_NUMBER_FIELD, [ $this, 'sanitize_phone_number' ] );
 		add_filter( "woocommerce_get_settings_{$this->id}", [ $this, 'maybe_add_connection_button' ] );
-		add_action( 'woocommerce_admin_field_cc_cta_button', [ $this, 'render_cta_button' ] );
+		// add_action( 'woocommerce_admin_field_cc_cta_button', [ $this, 'render_cta_button' ] );
 		add_action( 'woocommerce_admin_field_cc_connection_button', [ $this, 'add_go_back_button' ] );
 
 		// Save actions.
@@ -261,10 +261,9 @@ class WooTab extends WC_Settings_Page implements Hookable {
 			);
 		}
 
-		return $this->get_filtered_settings( array_merge(
-			$this->get_connection_established_options(),
+		return $this->get_filtered_settings( 
 			$this->get_default_settings_options()
-		) );
+		);
 	}
 
 	/**
@@ -411,6 +410,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		</a>
 		<?php
 	}
+
 	public function connect_title() {
 		
 		return [
@@ -541,7 +541,6 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				'id'                => self::FIRST_NAME_FIELD,
 				'type'              => 'text',
 				'custom_attributes' => [
-					'required'  => '',
 					'maxlength' => 255,
 				],
 			],
@@ -551,7 +550,6 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				'id'                => self::LAST_NAME_FIELD,
 				'type'              => 'text',
 				'custom_attributes' => [
-					'required'  => '',
 					'maxlength' => 255,
 				],
 			],
@@ -561,7 +559,6 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				'desc'              => '',
 				'type'              => 'text',
 				'custom_attributes' => [
-					'required'  => '',
 					'maxlength' => 255,
 				],
 			],
@@ -571,7 +568,6 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				'desc'              => '',
 				'type'              => 'text',
 				'custom_attributes' => [
-					'required'  => '',
 					'maxlength' => 255,
 				],
 			],
@@ -581,7 +577,6 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				'desc'              => '',
 				'type'              => 'email',
 				'custom_attributes' => [
-					'required'  => '',
 					'maxlength' => 255,
 				],
 			],
@@ -629,6 +624,17 @@ class WooTab extends WC_Settings_Page implements Hookable {
 					'title' => '',
 					'type'  => 'title',
 					'id'    => 'cc_woo_store_welcome_fallback',
+				]
+			];
+		} elseif ( ! isset( $_GET['cc-connect'] ) && get_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY ) ) {
+			include_once dirname( __FILE__ ) . '/connected.php';
+			
+			// Fallback.
+			return [
+				[
+					'title' => '',
+					'type'  => 'title',
+					'id'    => 'cc_woo_store_connected_fallback',
 				]
 			];
 		} else {
@@ -800,7 +806,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		if ( ! empty( get_option( $field['id'] ) ) ) {
 			return;
 		}
-		$is_required = isset( $field['custom_attributes']['required'] ) ?  $field['custom_attributes']['required'] : false;
+		$is_required = isset( $field['custom_attributes']['required'] ) ?  (bool)$field['custom_attributes']['required'] : false;
 
 		$this->errors[ $field['id'] ] = $is_required ? sprintf(
 			/* Translators: Placeholder is the field's title. */
@@ -914,13 +920,14 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * @return void
 	 */
 	public function save() {
+		
 		parent::save();
 
 		// Prevent redirect to customer_data_import screen if we don't meet connection requirements.
 		if ( ! $this->meets_connect_requirements() ) {
 			return;
 		}
-
+		
 		if ( $this->connection->is_connected() || $this->has_active_settings_section() ) {
 			return;
 		}
@@ -940,11 +947,15 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * @return array
 	 */
 	public function override_save_button() {
+		if ( ! isset( $_GET['cc-connect'] ) ) {
+			return;
+		}
+
 		$connected = get_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY );
 		$text      = $connected ? 'Save' : __( 'Save and Connect account', 'cc-woo' );
 		$value     = $connected ? 'Save Changes' :'cc-woo-connect';
 		wp_nonce_field( $this->nonce_action, $this->nonce_name );
-	?><div style="padding: 1rem 0;">
+		?><div style="padding: 1rem 0;">
 			<p class="submit">
 				<?php if ( empty( $GLOBALS['hide_save_button'] ) ) : ?>
 					<button name="save" class="ctct-woo-connect button-primary woocommerce-save-button" type="submit" value="<?php echo $value; ?>"><?php echo esc_html( $text ); ?></button>
