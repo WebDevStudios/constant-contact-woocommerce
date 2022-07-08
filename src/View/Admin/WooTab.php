@@ -452,8 +452,24 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		$connected                      = get_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY );
 		$title                          = $connected ? __( 'Connected to Constant Contact', 'cc-woo' )  : __( 'Connect to Constant Contact', 'cc-woo' );
 		$desc                           = $connected ? ''  : __( 'Enter this information in order to connect your Constant Contact account.', 'cc-woo' );
-		
+
+		$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; 
+		$url = remove_query_arg( ['cc-connect'], $url );
+
 		return [
+
+			[ 
+				'title' => '',
+				'type'  => 'title',
+				'id'    => 'cc_woo_store_marketing_title_settings_go_back',
+				'desc'  => wp_kses_post(
+					sprintf(
+						'<a href="%s" class="cc-woo-back"><span class="dashicons dashicons-arrow-left-alt2"></span>%s</a>',
+						esc_html( $url ),
+						__( "Go back", 'cc-woo' ),
+					),
+				)
+			],
 			
 			[
 				'title' => $title,
@@ -952,24 +968,14 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		}
 
 		$connected = get_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY );
-		$text      = $connected ? 'Save' : __( 'Save and Connect account', 'cc-woo' );
-		$value     = $connected ? 'Save Changes' :'cc-woo-connect';
+		$text      = $connected ? 'Save & reconnect account' : __( 'Save and Connect account', 'cc-woo' );
+		$value     = $connected ? 'Save & connect account' :'cc-woo-connect';
 		wp_nonce_field( $this->nonce_action, $this->nonce_name );
 		?><div style="padding: 1rem 0;">
 			<p class="submit">
 				<?php if ( empty( $GLOBALS['hide_save_button'] ) ) : ?>
 					<button name="save" class="ctct-woo-connect button-primary woocommerce-save-button" type="submit" value="<?php echo $value; ?>"><?php echo esc_html( $text ); ?></button>
 				<?php endif; ?>
-				<span style="line-height:28px; margin-left:25px;">
-					<?php
-					printf(
-						/* translators: the placeholders hold opening and closing `<a>` tags. */
-						esc_html__( 'If you have any issues connecting please call %1$sConstant Contact Support%2$s', 'cc-woo' ),
-						'<a href="https://community.constantcontact.com/contact-support">',
-						'</a>'
-					);
-					?>
-				</span>
 			</p>
 		</div>
 		
