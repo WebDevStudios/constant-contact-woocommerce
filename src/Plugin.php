@@ -20,6 +20,7 @@ use WebDevStudios\CCForWoo\Meta\ConnectionStatus;
 use WebDevStudios\CCForWoo\Api\KeyManager;
 use WebDevStudios\CCForWoo\WebHook\Disconnect;
 use WebDevStudios\CCForWoo\View\Admin\MenuItem;
+use WebDevStudios\CCForWoo\View\Admin\Disconnect as DisconnectSettings;
 use WebDevStudios\CCForWoo\AbandonedCheckouts\CheckoutHandler;
 use WebDevStudios\CCForWoo\AbandonedCheckouts\CheckoutsTable;
 use WebDevStudios\CCForWoo\AbandonedCheckouts\CheckoutRecovery;
@@ -79,6 +80,7 @@ final class Plugin extends ServiceRegistrar {
 		CheckoutsTable::class,
 		CheckoutRecovery::class,
 		RestRegistrar::class,
+		DisconnectSettings::class,
 	];
 
 	/**
