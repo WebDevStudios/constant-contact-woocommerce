@@ -33,9 +33,9 @@ class ImportHistoricalData {
 	 */
 	public function get_form_field() : array {
 		return [
-			'title'             => esc_html__( 'Import your contacts', 'cc-woo' ),
+			'title'             => '',
 			'desc'              => $this->get_description(),
-			'type'              => 'select',
+			'type'              => 'radio',
 			'id'                => self::OPTION_FIELD_NAME,
 			'default'           => 'true',
 			'custom_attributes' => $this->get_custom_attributes(),

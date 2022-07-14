@@ -164,7 +164,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		add_action( "woocommerce_settings_cc_woo_store_information_settings_data_end", [ $this, 'add_optional_fields_wrapper_end' ] );
 
 		add_action( "woocommerce_settings_{$this->id}", [ $this, 'output' ] );
-		add_action( "woocommerce_settings_tabs_{$this->id}", [ $this, 'override_save_button' ] );
+		// add_action( "woocommerce_settings_tabs_{$this->id}", [ $this, 'override_save_button' ] );
 
 		// Output settings sections.
 		add_action( "woocommerce_sections_{$this->id}", [ $this, 'output_sections' ] );
@@ -183,7 +183,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		add_filter( 'woocommerce_admin_settings_sanitize_option_' . self::PHONE_NUMBER_FIELD, [ $this, 'sanitize_phone_number' ] );
 		add_filter( "woocommerce_get_settings_{$this->id}", [ $this, 'maybe_add_connection_button' ] );
 		// add_action( 'woocommerce_admin_field_cc_cta_button', [ $this, 'render_cta_button' ] );
-		add_action( 'woocommerce_admin_field_cc_connection_button', [ $this, 'add_go_back_button' ] );
+		// add_action( 'woocommerce_admin_field_cc_connection_button', [ $this, 'add_go_back_button' ] );
 
 		// Save actions.
 		add_filter( 'woocommerce_settings_start', [ $this, 'validate_option_values' ], 10, 3 );
@@ -505,9 +505,9 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				'id'    => 'cc_woo_store_marketing_title_settings',
 			],
 			[
-				'title'   => esc_html__( 'Marketing Opt-in', 'cc-woo' ),
+				'title'   => '',
 				'desc'    => esc_html__( 'At checkout, new customers must check a box if they want to receive marketing emails from you. Do you want this box checked by default?', 'cc-woo' ),
-				'type'    => 'select',
+				'type'    => 'radio',
 				'id'      => NewsletterPreferenceCheckbox::STORE_NEWSLETTER_DEFAULT_OPTION,
 				'default' => 'false',
 				'options' => [
@@ -517,11 +517,11 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				
 			],
 			[
-				'title'   => esc_html__( 'Checkbox Filter Location', 'cc-woo' ),
+				'title'   => '',
 				'desc'    => esc_html__( 'Change filter location where checkbox is rendered.', 'cc-woo' ),
-				'type'    => 'select',
+				'type'    => 'radio',
 				'id'      => self::CHECKBOX_LOCATION,
-				'default' => 'false',
+				'default' => 'woocommerce_after_checkout_billing_form',
 				'options' => [
 					'woocommerce_after_checkout_billing_form' => esc_html__( 'After checkout billing form', 'cc-woo' ),
 					'woocommerce_review_order_before_submit'  => esc_html__( 'Before order submit button', 'cc-woo' ),
@@ -538,7 +538,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 			],
 			[
 				'title'             => esc_html__( 'Enter store information?', 'cc-woo' ),
-				'desc'              => '',
+				'desc'              => 'Yes',
 				'id'                => self::SAVE_STORE_DETAILS,
 				'type'              => 'checkbox',
 			],
@@ -599,7 +599,6 @@ class WooTab extends WC_Settings_Page implements Hookable {
 			[
 				'title'             => esc_html__( 'Currency', 'cc-woo' ),
 				'id'                => self::CURRENCY_FIELD,
-				'desc'              => $readonly_from_general_settings,
 				'type'              => 'text',
 				'custom_attributes' => [
 					'readonly' => 'readonly',
@@ -609,7 +608,6 @@ class WooTab extends WC_Settings_Page implements Hookable {
 			[
 				'title'             => esc_html__( 'Country Code', 'cc-woo' ),
 				'id'                => self::COUNTRY_CODE_FIELD,
-				'desc'              => $readonly_from_general_settings,
 				'type'              => 'text',
 				'custom_attributes' => [
 					'readonly' => 'readonly',
@@ -911,7 +909,6 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				continue;
 			}
 
-			$settings[ $key ]['css'] = 'display: block';
 		}
 
 		return $settings;
@@ -968,14 +965,12 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		}
 
 		$connected = get_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY );
-		$text      = $connected ? 'Save & reconnect account' : __( 'Save and Connect account', 'cc-woo' );
+		$text      = $connected ? 'Save & reconnect account' : __( 'Save & Connect account', 'cc-woo' );
 		$value     = $connected ? 'Save & connect account' :'cc-woo-connect';
 		wp_nonce_field( $this->nonce_action, $this->nonce_name );
 		?><div style="padding: 1rem 0;">
 			<p class="submit">
-				<?php if ( empty( $GLOBALS['hide_save_button'] ) ) : ?>
-					<button name="save" class="ctct-woo-connect button-primary woocommerce-save-button" type="submit" value="<?php echo $value; ?>"><?php echo esc_html( $text ); ?></button>
-				<?php endif; ?>
+				<button name="save" class="cc-woo-btn ctct-woo-connect button-primary woocommerce-save-button" type="submit" value="<?php echo $value; ?>" style="background-color:#1856ED"><?php echo esc_html( $text ); ?></button>
 			</p>
 		</div>
 		
@@ -1040,6 +1035,16 @@ class WooTab extends WC_Settings_Page implements Hookable {
 			</style>
 		<?php
 		}
+	}
+
+	/**
+	 * Adding a wrapper class.
+	 */
+	public function output() {
+		echo "<div class='cc-woo-wrap'>";
+			parent::output();
+			$this->override_save_button();
+		echo "</div>";
 	}
 
 }

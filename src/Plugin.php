@@ -187,7 +187,7 @@ final class Plugin extends ServiceRegistrar {
 	public function register_hooks() {
 		add_action( 'plugins_loaded', [ $this, 'check_for_required_dependencies' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'register_scripts' ] );
-		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ], 99 );
 
 		register_activation_hook( $this->plugin_file, [ $this, 'do_activation_process' ] );
 		register_deactivation_hook( $this->plugin_file, [ $this, 'do_deactivation_process' ] );
@@ -342,7 +342,7 @@ final class Plugin extends ServiceRegistrar {
 	public function admin_enqueue_scripts() {
 		wp_enqueue_script( 'cc-woo-admin', trailingslashit( plugin_dir_url( $this->get_plugin_file() ) ) . 'app/admin-bundle.js', [ 'wp-util' ], self::PLUGIN_VERSION, false );
 		wp_enqueue_style( 'cc-woo-admin', trailingslashit( plugin_dir_url( $this->get_plugin_file() ) ) . 'app/admin.css' );
+    	wp_enqueue_style( 'cc-woo-google-fonts', 'https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;700&display=swap', false );
 	}
-
 }
 

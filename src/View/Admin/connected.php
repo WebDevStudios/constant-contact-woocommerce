@@ -9,10 +9,15 @@
 
 <div class="cc-woo-welcome-wrap"> 
     <div class="container">
+        <div class="cc-woo-top-logo">
+            <img class="cc-logo-main" src="<?php echo plugin_dir_url( __FILE__ ) . '../../assets/ctct.png'?>" />
+        </div>
         <img class="cc-logo-main" src="<?php echo plugin_dir_url( __FILE__ ) . '../../assets/ctct-connected.png'?>" />
         <h1> <?php esc_html_e( 'Your store is connected to Constant Contact!', 'cc-woo' ); ?> </h1>
         <p><?php esc_html_e( 'If you want to disconnect constant contact from your store please go to the settings page.', 'cc-woo' ); ?></p>
-        <a href="<?php echo esc_url( $url ); ?>" class="cc-woo-btn btn-alternate"> <?php _e( "Edit Store Settings", 'cc-woo' ); ?> </a>
-        <a href="<?php echo esc_url( $dash_url ); ?>" class="cc-woo-btn btn-primary"> <?php _e( "Constant Contact Dashboard", 'cc-woo' ); ?> </a>
+        <div class="btn-wrap">
+            <a href="<?php echo esc_url( $url ); ?>" class="cc-woo-btn btn-alternate"> <?php _e( "Edit Store Settings", 'cc-woo' ); ?> </a>
+            <a href="<?php echo esc_url( $dash_url ); ?>" class="cc-woo-btn btn-connected"> <?php _e( "Constant Contact Dashboard", 'cc-woo' ); ?> </a>
+        </div>
     </div>
 </div>
