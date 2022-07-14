@@ -83,7 +83,6 @@ a.cc-woo-btn.btn-alternate {
     color: #fff;
     padding: 7px 14px;
     margin: 20px auto;
-    min-height: 40px;
     width: fit-content;
     background: #1856ED;
 }
@@ -178,4 +177,15 @@ input#cc_woo_save_store_details:checked {
 
 input#cc_woo_save_store_details:checked::before {
     filter: brightness(0) invert(1);
+}
+
+body.toplevel_page_ctct-woo-settings input[type="radio"]:checked::before,
+.cc-woo-wrap input[type="radio"]:checked::before {
+    background: #1856ED;
+}
+
+body.toplevel_page_ctct-woo-settings a:focus,
+.cc-woo-wrap a:focus {
+    outline: none;
+    box-shadow: none;
 }
