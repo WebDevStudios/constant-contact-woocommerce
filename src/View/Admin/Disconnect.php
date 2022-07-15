@@ -68,13 +68,11 @@ class Disconnect extends Service {
     */
     public function redirect() {
         $url = admin_url( 'admin.php?page=' . esc_attr( $_GET['page'] ) );
-        $url = remove_query_arg( [
-            'cc-connect',
-        ], $url );
-        $url = add_query_arg( array(
+        $url = add_query_arg([
             'tab'  => 'wc-settings' === $_GET['page'] ? 'cc_woo' : '',
-        ), $url );  
-        wp_redirect( esc_url( $url ) );
+            'cc-connect' => '',
+        ], $url );  
+        wp_redirect( $url );
         exit;
     }
 }
