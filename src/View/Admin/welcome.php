@@ -2,7 +2,9 @@
     $url = admin_url( 'admin.php?page=' . esc_attr( $_GET['page'] ) );
     $url = add_query_arg( array(
         'cc-connect' => 'connect',
-    ), $url );    
+    ), $url );   
+    
+
 ?>
 <div class="cc-woo-welcome-wrap"> 
     <div class="container">
@@ -11,7 +13,18 @@
             <?php esc_html_e( 'Constant Contact for WooCommerce' ); ?> 
         </h1>
         <p>
-            <?php esc_html_e( 'Looks like you have not connected your account yet, You will first need to enter the information required in order to connect your account. If you have any issues connecting please call Constant Contact Support', 'cc-woo'); ?>
+        <?php     
+            echo wp_kses_post (
+                sprintf( 
+                __( 
+                    'Looks like you have not connected your account yet, You will first need to enter the information required in order to connect your account. If you have any issues connecting please call %sConstant Contact Support%s', 
+                    'cc-woo' 
+                ), 
+                '<a href="' . esc_url( "https://community.constantcontact.com/contact-support" ) . '">',
+                '</a>'
+                )
+            ); 
+        ?>
         </p>
         <a href="<?php echo esc_url( $url ); ?>" class="cc-woo-btn btn-primary"> <?php esc_html_e( "Let's Start", 'cc-woo' ); ?> </a>
     </div>
