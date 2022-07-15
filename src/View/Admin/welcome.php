@@ -2,6 +2,7 @@
     $url = admin_url( 'admin.php?page=' . esc_attr( $_GET['page'] ) );
     $url = add_query_arg( array(
         'cc-connect' => 'connect',
+        'tab'        => 'wc-settings' === $_GET['page'] ? 'cc_woo' : '',
     ), $url );   
     
 

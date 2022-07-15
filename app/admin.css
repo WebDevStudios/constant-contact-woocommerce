@@ -91,9 +91,7 @@ a.cc-woo-btn.btn-alternate {
 }
 
 .cc-woo-wrap a.cc-woo-btn.btn-primary,
-body.toplevel_page_ctct-woo-settings a.cc-woo-btn.btn-primary,
-.cc-woo-wrap .ctct-woo-connect,
-body.toplevel_page_ctct-woo-settings .ctct-woo-connect {
+body.toplevel_page_ctct-woo-settings a.cc-woo-btn.btn-primary{
     display: flex;
     justify-content: center;
     align-items: center;
