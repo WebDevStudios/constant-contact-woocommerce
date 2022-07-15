@@ -463,13 +463,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				'title' => '',
 				'type'  => 'title',
 				'id'    => 'cc_woo_store_marketing_title_settings_go_back',
-				'desc'  => wp_kses_post(
-					sprintf(
-						'<a href="%s" class="cc-woo-back"><span class="dashicons dashicons-arrow-left-alt2"></span>%s</a>',
-						esc_html( $url ),
-						__( "Go back", 'cc-woo' ),
-					),
-				)
+				'desc'  => '<a href="' . esc_url( $url ) . '" class="cc-woo-back"><span class="dashicons dashicons-arrow-left-alt2"></span>' . esc_html__( 'Go back', 'cc-woo' ) . '</span></a>',
 			],
 			
 			[
