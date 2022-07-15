@@ -1,8 +1,9 @@
 <?php 
     $url = admin_url( 'admin.php?page=' . esc_attr( $_GET['page'] ) );
     $url = add_query_arg( array(
-        'cc-connect' => 'connected',
-    ), $url );
+        'cc-connect' => 'connect',
+        'tab'        => 'wc-settings' === $_GET['page'] ? 'cc_woo' : '',
+    ), $url ); 
     $dash_url = 'https://login.constantcontact.com/login/?goto=https%3A%2F%2Fapp.constantcontact.com%2Fpages%2Fecomm%2Fdashboard%23woocommerce';
 
 

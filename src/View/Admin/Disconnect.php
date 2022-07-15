@@ -67,7 +67,7 @@ class Disconnect extends Service {
     * @return void
     */
     public function redirect() {
-        $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; 
+        $url = admin_url( 'admin.php?page=' . esc_attr( $_GET['page'] ) );
         $url = remove_query_arg( [
             'cc-connect',
         ], $url );

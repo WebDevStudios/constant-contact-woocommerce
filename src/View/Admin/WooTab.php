@@ -452,6 +452,10 @@ class WooTab extends WC_Settings_Page implements Hookable {
 
 		$url = admin_url( 'admin.php?page=' . esc_attr( $_GET['page'] ) );
 		$url = remove_query_arg( ['cc-connect'], $url );
+		$url = add_query_arg( 
+			['tab' => 'wc-settings' === $_GET['page'] ? 'cc_woo' : ''], 
+			$url 
+		);
 
 		return [
 
@@ -965,9 +969,19 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		$text      = $connected ? 'Save & reconnect account' : __( 'Save & Connect account', 'cc-woo' );
 		$value     = $connected ? 'Save & connect account' :'cc-woo-connect';
 		wp_nonce_field( $this->nonce_action, $this->nonce_name );
+
+		$disc = admin_url( 'admin.php?page=' . esc_attr( $_GET['page'] ) );
+		$disc = add_query_arg( array(
+			'cc-connect' => 'disconnect',
+			'tab'        => 'wc-settings' === $_GET['page'] ? 'cc_woo' : '',
+		), $disc );  
+
 		?><div style="padding: 1rem 0;">
 			<p class="submit">
 				<button name="save" class="cc-woo-btn ctct-woo-connect button-primary woocommerce-save-button" type="submit" value="<?php echo $value; ?>" style="background-color:#1856ED"><?php echo esc_html( $text ); ?></button>
+				<?php if( $connected ) { ?>
+					<a href="<?php echo esc_url( $disc ); ?>" class="cc-woo-btn btn-alternate" style="margin-left:20px;"> <?php esc_html_e( "Disconnect", 'cc-woo' ); ?> </a>
+				<?php } ?>
 			</p>
 		</div>
 		
