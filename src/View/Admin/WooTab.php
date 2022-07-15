@@ -2,7 +2,7 @@
 /**
  * Constant Contact WooCommerce Settings Tab
  *
- * @since   2019-03-07
+ * @since   ??
  * @author  Zach Owen <zach@webdevstudios>, Jeremy Ward <jeremy.ward@webdevstudios.com>
  * @package cc-woo
  */
@@ -22,7 +22,7 @@ use WC_Settings_Page;
  *
  * @author  Jeremy Ward <jeremy.ward@webdevstudios.com>
  * @package WebDevStudios\CCForWoo\View\Admin
- * @since   2019-03-08
+ * @since   ??
  */
 class WooTab extends WC_Settings_Page implements Hookable {
 	use NonceVerification;
@@ -30,63 +30,63 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * Store owner first name field.
 	 *
-	 * @since 2019-03-12
+	 * @since ??
 	 */
 	const FIRST_NAME_FIELD = 'cc_woo_store_information_first_name';
 
 	/**
 	 * Store owner last name field.
 	 *
-	 * @since 2019-03-12
+	 * @since ??
 	 */
 	const LAST_NAME_FIELD = 'cc_woo_store_information_last_name';
 
 	/**
 	 * Store phone number field.
 	 *
-	 * @since 2019-03-12
+	 * @since ??
 	 */
 	const PHONE_NUMBER_FIELD = 'cc_woo_store_information_phone_number';
 
 	/**
 	 * Store name field.
 	 *
-	 * @since 2019-03-12
+	 * @since ??
 	 */
 	const STORE_NAME_FIELD = 'cc_woo_store_information_store_name';
 
 	/**
 	 * Store currency field.
 	 *
-	 * @since 2019-03-12
+	 * @since ??
 	 */
 	const CURRENCY_FIELD = 'cc_woo_store_information_currency';
 
 	/**
 	 * Is store details is enabled.
 	 *
-	 * @since 2022-07-19
+	 * @since ??
 	 */
 	const SAVE_STORE_DETAILS = 'cc_woo_save_store_details';
 
 	/**
 	 * Store country code field.
 	 *
-	 * @since 2019-03-12
+	 * @since ??
 	 */
 	const COUNTRY_CODE_FIELD = 'cc_woo_store_information_country_code';
 
 	/**
 	 * Store contact e-mail field.
 	 *
-	 * @since 2019-03-12
+	 * @since ??
 	 */
 	const EMAIL_FIELD = 'cc_woo_store_information_contact_email';
 
 	/**
 	 * Store checkbox location.
 	 *
-	 * @since 2021-07-26
+	 * @since ??
 	 */
 	const CHECKBOX_LOCATION = 'cc_woo_store_information_checkbox_location';
 
@@ -94,7 +94,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * Settings section ID.
 	 *
 	 * @var string
-	 * @since 2019-03-08
+	 * @since ??
 	 */
 	protected $id = 'cc_woo';
 
@@ -102,14 +102,14 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * Settings Section label.
 	 *
 	 * @var string
-	 * @since 2019-03-08
+	 * @since ??
 	 */
 	protected $label = '';
 
 	/**
 	 * Array of form errors to display with their fields.
 	 *
-	 * @since 2019-03-08
+	 * @since ??
 	 * @var array
 	 */
 	private $errors = [];
@@ -118,14 +118,14 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * Instance of the ConnectionStatus object.
 	 *
 	 * @var ConnectionStatus
-	 * @since 2019-03-21
+	 * @since ??
 	 */
 	private $connection;
 
 	/**
 	 * Is the current request a REST API request?
 	 *
-	 * @since 2019-04-16
+	 * @since ??
 	 * @var bool
 	 */
 	private $is_rest = false;
@@ -133,7 +133,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * The identifier for the Importing Existing Customers section.
 	 *
-	 * @since 2019-04-16
+	 * @since ??
 	 * @var string
 	 */
 	private $import_existing_customer_section = 'customer_data_import';
@@ -141,7 +141,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * WooTab constructor.
 	 *
-	 * @since  2019-03-08
+	 * @since  ??
 	 * @author Zach Owen <zach@webdevstudios>
 	 */
 	public function __construct() {
@@ -155,7 +155,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * Register hooks into WooCommerce
 	 *
-	 * @since  2019-03-08
+	 * @since  ??
 	 * @author Zach Owen <zach@webdevstudios>
 	 */
 	public function register_hooks() {
@@ -164,7 +164,6 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		add_action( "woocommerce_settings_cc_woo_store_information_settings_data_end", [ $this, 'add_optional_fields_wrapper_end' ] );
 
 		add_action( "woocommerce_settings_{$this->id}", [ $this, 'output' ] );
-		// add_action( "woocommerce_settings_tabs_{$this->id}", [ $this, 'override_save_button' ] );
 
 		// Output settings sections.
 		add_action( "woocommerce_sections_{$this->id}", [ $this, 'output_sections' ] );
@@ -182,8 +181,6 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		add_filter( 'pre_option_' . self::COUNTRY_CODE_FIELD, [ $this, 'get_woo_country' ] );
 		add_filter( 'woocommerce_admin_settings_sanitize_option_' . self::PHONE_NUMBER_FIELD, [ $this, 'sanitize_phone_number' ] );
 		add_filter( "woocommerce_get_settings_{$this->id}", [ $this, 'maybe_add_connection_button' ] );
-		// add_action( 'woocommerce_admin_field_cc_cta_button', [ $this, 'render_cta_button' ] );
-		// add_action( 'woocommerce_admin_field_cc_connection_button', [ $this, 'add_go_back_button' ] );
 
 		// Save actions.
 		add_filter( 'woocommerce_settings_start', [ $this, 'validate_option_values' ], 10, 3 );
@@ -198,7 +195,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * Add the settings sections.
 	 *
-	 * @since  2019-03-08
+	 * @since  ??
 	 * @author Zach Owen <zach@webdevstudios>
 	 * @return array
 	 */
@@ -213,7 +210,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * Add a custom wrapper for fields.
 	 *
-	 * @since  2022-06-23
+	 * @since  ??
 	 * @author Biplav Subedi <biplav.subedi@webdevstudios>
 	 * @return string
 	 */
@@ -224,7 +221,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * Add a custom wrapper for fields end.
 	 *
-	 * @since  2022-06-23
+	 * @since  ??
 	 * @author Biplav Subedi <biplav.subedi@webdevstudios>
 	 * @return string
 	 */
@@ -235,7 +232,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * Get the settings for the settings tab.
 	 *
-	 * @since  2019-03-08
+	 * @since  ??
 	 * @author Zach Owen <zach@webdevstudios>
 	 * @return array
 	 */
@@ -272,7 +269,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * @param array $settings Settings options.
 	 *
 	 * @author Jeremy Ward <jeremy.ward@webdevstudios.com>
-	 * @since  2019-03-21
+	 * @since  ??
 	 * @return array
 	 */
 	private function get_filtered_settings( array $settings ) {
@@ -285,7 +282,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * Get the default view for our settings page.
 	 *
 	 * @author Jeremy Ward <jeremy.ward@webdevstudios.com>
-	 * @since  2019-03-21
+	 * @since  ??
 	 * @return array
 	 */
 	private function get_default_settings_options() {
@@ -307,7 +304,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * Add our settings group to the REST API.
 	 *
-	 * @since  2019-03-08
+	 * @since  ??
 	 * @author Zach Owen <zach@webdevstudios>
 	 *
 	 * @param array $groups The array of groups being sent to the API.
@@ -327,7 +324,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * Add fields to the REST API for our settings.
 	 *
-	 * @since  2019-03-08
+	 * @since  ??
 	 * @author Zach Owen <zach@webdevstudios>
 	 *
 	 * @param array $settings The array of settings going to the API.
@@ -354,7 +351,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * Get the section options for an attempted connection that failed.
 	 *
 	 * @author Jeremy Ward <jeremy.ward@webdevstudios.com>
-	 * @since  2019-03-21
+	 * @since  ??
 	 * @return array
 	 */
 	private function get_connection_attempted_options() {
@@ -372,7 +369,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * Get the settings for the main section if already connected to Constant Contact.
 	 *
 	 * @author Jeremy Ward <jeremy.ward@webdevstudios.com>
-	 * @since  2019-03-21
+	 * @since  ??
 	 * @return array
 	 */
 	private function get_connection_established_options() {
@@ -396,7 +393,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * Render the call-to-action button in the admin.
 	 *
 	 * @author Jeremy Ward <jeremy.ward@webdevstudios.com>
-	 * @since  2019-03-21
+	 * @since  ??
 	 */
 	public function render_cta_button() {
 		$url = 'https://login.constantcontact.com/login/?goto=https%3A%2F%2Fapp.constantcontact.com%2Fpages%2Fecomm%2Fdashboard%23woocommerce';
@@ -442,7 +439,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * Gets the settings for the Store Information section.
 	 *
-	 * @since  2019-03-08
+	 * @since  ??
 	 * @author Zach Owen <zach@webdevstudios>
 	 * @return array
 	 */
@@ -453,7 +450,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		$title                          = $connected ? __( 'Connected to Constant Contact', 'cc-woo' )  : __( 'Connect to Constant Contact', 'cc-woo' );
 		$desc                           = $connected ? ''  : __( 'Enter this information in order to connect your Constant Contact account.', 'cc-woo' );
 
-		$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; 
+		$url = admin_url( 'admin.php?page=' . esc_attr( $_GET['page'] ) );
 		$url = remove_query_arg( ['cc-connect'], $url );
 
 		return [
@@ -624,7 +621,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * Show the welcome screen if it's not connected.
 	 *
-	 * @since  2022-06-23
+	 * @since  ??
 	 * @author Biplav Subedi <biplav.subedi@webdevstudios>
 	 * @return array
 	 */
@@ -659,7 +656,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * Displays the Constant Contact connection button when the form is validated and a connection is not already established.
 	 *
-	 * @since  2019-03-08
+	 * @since  ??
 	 * @author Zach Owen <zach@webdevstudios>
 	 *
 	 * @param array $settings The current settings array.
@@ -677,14 +674,14 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	* Add a go back button.
 	*
-	* @since  2022-06-23
+	* @since  ??
 	* @author Biplav Subedi <biplav.subedi@webdevstudios>
 	*/
 	public function add_go_back_button() {
 		if( isset( $_GET['cc-connect'] ) && 'connect' === esc_html( $_GET['cc-connect'] ) && ! get_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY ) ) {
-			$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; 
+			$url = admin_url( 'admin.php?page=' . esc_attr( $_GET['page'] ) );
 			$url = remove_query_arg( ['cc-connect'], $url );
-			?><a href="<?php echo esc_url( $url ); ?>" class="cc-woo-back"> <span class="dashicons dashicons-arrow-left-alt2"></span><?php _e( "  Go Back", 'cc-woo' ); ?> </a><?php
+			?><a href="<?php echo esc_url( $url ); ?>" class="cc-woo-back"> <span class="dashicons dashicons-arrow-left-alt2"></span><?php esc_html_e( "  Go Back", 'cc-woo' ); ?> </a><?php
 	
 		}
 	}	
@@ -693,7 +690,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * Maybe redirects to Constant Contact to connect accounts.
 	 *
 	 * @author Jeremy Ward <jeremy.ward@webdevstudios.com>
-	 * @since  2019-03-19
+	 * @since  ??
 	 * @return void
 	 */
 	public function maybe_redirect_to_cc() {
@@ -711,7 +708,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * Check whether a connection request to CC has been triggered.
 	 *
 	 * @author Jeremy Ward <jeremy.ward@webdevstudios.com>
-	 * @since  2019-03-19
+	 * @since  ??
 	 * @return bool
 	 */
 	private function requested_connect_to_cc() {
@@ -732,7 +729,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * Add the Constant Contact host to the list of allowed hosts.
 	 *
 	 * @author Jeremy Ward <jeremy.ward@webdevstudios.com>
-	 * @since  2019-03-19
+	 * @since  ??
 	 * @return array
 	 */
 	public function allow_redirect_to_cc() {
@@ -744,7 +741,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * Check to see if the settings meet the requirements to connect to CC.
 	 *
-	 * @since  2019-03-08
+	 * @since  ??
 	 * @author Zach Owen <zach@webdevstudios>
 	 * @return bool
 	 */
@@ -769,7 +766,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * Listen for GET request that establishes connection.
 	 *
 	 * @author Jeremy Ward <jeremy.ward@webdevstudios.com>
-	 * @since  2019-03-21
+	 * @since  ??
 	 * @return void
 	 */
 	public function maybe_update_connection_status() {
@@ -786,7 +783,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * Verify that all option values meet the minimum requirements.
 	 *
-	 * @since  2019-03-08
+	 * @since  ??
 	 * @author Zach Owen <zach@webdevstudios>
 	 * @return void
 	 */
@@ -805,7 +802,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * Validate a field's value is set, otherwise log an error.
 	 *
-	 * @since  2019-03-08
+	 * @since  ??
 	 * @author Zach Owen <zach@webdevstudios>
 	 *
 	 * @param array $field The field to validate.
@@ -831,7 +828,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * Sanitize incoming phone number.
 	 *
-	 * @since  2019-03-08
+	 * @since  ??
 	 * @author Zach Owen <zach@webdevstudios>
 	 *
 	 * @param mixed $value The incoming phone number value.
@@ -849,7 +846,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * Process errors logged for form fields.
 	 *
-	 * @since  2019-03-08
+	 * @since  ??
 	 * @author Zach Owen <zach@webdevstudios>
 	 *
 	 * @param array $settings An array of settings fields.
@@ -882,7 +879,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * This is used to prevent errors from appearing before the user has submitted the form,
 	 * i.e. after a fresh installation.
 	 *
-	 * @since  2019-03-08
+	 * @since  ??
 	 * @author Zach Owen <zach@webdevstudios>
 	 */
 	public function update_setup_option() {
@@ -892,7 +889,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * Make all form elements for our settings `display:block`.
 	 *
-	 * @since  2019-03-08
+	 * @since  ??
 	 * @author Zach Owen <zach@webdevstudios>
 	 *
 	 * @param array $settings Array of settings to adjust.
@@ -917,7 +914,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * Get the Country code from the WooCommerce settings.
 	 *
-	 * @since 2019-03-15
+	 * @since ??
 	 * @author Zach Owen <zach@webdevstudios>
 	 * @return string
 	 */
@@ -929,7 +926,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * Save settings.
 	 *
 	 * @author Zach Owen <zach@webdevstudios>
-	 * @since 2019-04-16
+	 * @since ??
 	 * @return void
 	 */
 	public function save() {
@@ -955,7 +952,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * Overrides the save button.
 	 *
-	 * @since 2022-06-16
+	 * @since ??
 	 * @author Biplav Subedi <biplav.subedi@webdevstudios>
 	 * @return array
 	 */
@@ -980,7 +977,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * Return the options for REST requests.
 	 *
-	 * @since 2019-05-06
+	 * @since ??
 	 * @author Zach Owen <zach@webdevstudios>
 	 * @return array
 	 */
@@ -994,7 +991,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	/**
 	 * Gets the Connect Button for the settings fields.
 	 *
-	 * @since 2019-05-06
+	 * @since ??
 	 * @author Zach Owen <zach@webdevstudios>
 	 * @return array
 	 */
@@ -1010,7 +1007,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * When a user clicks a subsection (in this case the Historical data tab),
 	 * Woo sets a global `$current_section` variable to know which tab to select.
 	 *
-	 * @since 2019-05-06
+	 * @since ??
 	 * @author Zach Owen <zach@webdevstudios>
 	 * @return bool
 	 */
@@ -1023,7 +1020,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 *
 	 * @return void
 	 * @author Biplav Subedi <biplav.subedi@webdevstudios.com>
-	 * @since  2022-06-16
+	 * @since  ??
 	 */
 	public function hide_default_save_button(){
 		if( isset( $_GET['tab'] ) && 'cc_woo' === $_GET['tab'] ) {

@@ -1,5 +1,5 @@
 <?php 
-    $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; 
+    $url = admin_url( 'admin.php?page=' . esc_attr( $_GET['page'] ) );
     $url = add_query_arg( array(
         'cc-connect' => 'connected',
     ), $url );
@@ -16,8 +16,8 @@
         <h1> <?php esc_html_e( 'Your store is connected to Constant Contact!', 'cc-woo' ); ?> </h1>
         <p><?php esc_html_e( 'If you want to disconnect constant contact from your store please go to the settings page.', 'cc-woo' ); ?></p>
         <div class="btn-wrap">
-            <a href="<?php echo esc_url( $url ); ?>" class="cc-woo-btn btn-alternate"> <?php _e( "Edit Store Settings", 'cc-woo' ); ?> </a>
-            <a href="<?php echo esc_url( $dash_url ); ?>" class="cc-woo-btn btn-connected"> <?php _e( "Constant Contact Dashboard", 'cc-woo' ); ?> </a>
+            <a href="<?php echo esc_url( $url ); ?>" class="cc-woo-btn btn-alternate"> <?php esc_html_e( "Edit Store Settings", 'cc-woo' ); ?> </a>
+            <a href="<?php echo esc_url( $dash_url ); ?>" class="cc-woo-btn btn-connected"> <?php esc_html_e( "Constant Contact Dashboard", 'cc-woo' ); ?> </a>
         </div>
     </div>
 </div>
