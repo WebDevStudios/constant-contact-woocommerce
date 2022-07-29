@@ -990,10 +990,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * @return array
 	 */
 	private function get_rest_settings_options() : array {
-		return array_merge(
-			$this->get_store_information_settings(),
-			$this->get_customer_data_settings()
-		);
+		return $this->get_store_information_settings();
 	}
 
 	/**
