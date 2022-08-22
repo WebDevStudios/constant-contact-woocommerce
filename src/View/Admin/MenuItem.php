@@ -76,7 +76,7 @@ class MenuItem extends Service {
 			return;
 		}
 
-		if ( isset( $_POST['save'] ) && 'cc-woo-connect' === $_POST['save'] ) {
+		if ( isset( $_POST['save'] ) && ( in_array( $_POST['save'], ['cc-woo-connect', 'cc-woo-save' ]) ) )  {
 			\WC_Admin_Settings::get_settings_pages();
 			$woo = new \WebDevStudios\CCForWoo\View\Admin\WooTab();
 			$woo->save();

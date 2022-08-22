@@ -961,7 +961,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 
 		$connected = get_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY );
 		$text      = $connected ? 'Save & reconnect account' : __( 'Save & Connect account', 'cc-woo' );
-		$value     = 'cc-woo-connect';
+		$value     = $connected ? 'cc-woo-save' : 'cc-woo-connect';
 		wp_nonce_field( $this->nonce_action, $this->nonce_name );
 
 		$disc = admin_url( 'admin.php?page=' . esc_attr( $_GET['page'] ) );
