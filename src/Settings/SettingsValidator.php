@@ -87,7 +87,7 @@ class SettingsValidator implements Validatable {
 	 */
 	private function has_valid_email() {
 		// Not required.
-		if( empty( $this->settings->get_email_address() ) ) {
+		if ( empty( $this->settings->get_email_address() ) ) {
 			return true;
 		}
 
@@ -106,7 +106,7 @@ class SettingsValidator implements Validatable {
 	 */
 	private function has_valid_phone(): bool {
 		// Not required.
-		if( empty( $this->settings->get_phone_number() ) ) {
+		if ( empty( $this->settings->get_phone_number() ) ) {
 			return true;
 		}
 		return ! empty( $this->settings->get_phone_number() )
