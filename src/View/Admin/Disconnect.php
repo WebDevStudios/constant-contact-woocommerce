@@ -8,7 +8,7 @@ use WebDevStudios\CCForWoo\AbandonedCheckouts\CheckoutsTable;
 /**
  * Disconnects the plugin from Constant Contact WOO.
  *
- * @since ??
+ * @since 2.0.0
  * @return void
  */
 class Disconnect extends Service {
@@ -16,7 +16,7 @@ class Disconnect extends Service {
     /**
     * Constructor.
     *
-    * @since ??
+    * @since 2.0.0
     * @return void
     */
     public function register_hooks() {
@@ -26,7 +26,7 @@ class Disconnect extends Service {
     /**
     * Disconnects the plugin from Constant Contact WOO.
     *
-    * @since ??
+    * @since 2.0.0
     * @return void
     */
     public function disconnect() {
@@ -41,7 +41,7 @@ class Disconnect extends Service {
     /**
     * Disconnects the plugin from Constant Contact WOO.
     *
-    * @since ??
+    * @since 2.0.0
     * @return void
     */
     public function disconnect_plugin() {
@@ -79,7 +79,7 @@ class Disconnect extends Service {
     /**
     * Redirects to the admin page.
     *
-    * @since ??
+    * @since 2.0.0
     * @return void
     */
     public function redirect() {

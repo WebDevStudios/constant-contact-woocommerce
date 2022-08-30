@@ -11,7 +11,7 @@ export default class HandleSettingsPage {
      * @constructor
      *
      * @author Biplav Subedi <biplav.subedi@webdevstudios.com>
-     * @since  ??
+     * @since 2.0.0
      */
     constructor() {
         this.els = {};
@@ -21,7 +21,7 @@ export default class HandleSettingsPage {
      * Init ccWoo admin JS.
      *
      * @author Biplav Subedi <biplav.subedi@webdevstudios.com>
-     * @since  ??
+     * @since 2.0.0
      */
     init() {
         this.cacheEls();
@@ -33,7 +33,7 @@ export default class HandleSettingsPage {
      * Cache some DOM elements.
      *
      * @author Biplav Subedi <biplav.subedi@webdevstudios.com>
-     * @since  ??
+     * @since 2.0.0
      */
     cacheEls() {
         this.els.enableStoreDetails = document.getElementById( 'cc_woo_save_store_details' );
@@ -45,7 +45,7 @@ export default class HandleSettingsPage {
      * Bind callbacks to events.
      *
      * @author Biplav Subedi <biplav.subedi@webdevstudios.com>
-     * @since  ??
+     * @since 2.0.0
      */
     bindEvents() {
         this.els.enableStoreDetails.addEventListener( 'change', e => {
@@ -57,7 +57,7 @@ export default class HandleSettingsPage {
      * Captures guest checkout if billing email is valid.
      *
      * @author Biplav Subedi <biplav.subedi@webdevstudios.com>
-     * @since  ??
+     * @since 2.0.0
      */
      enableStoreDetails() {
         if (this.els.enableStoreDetails.checked) {

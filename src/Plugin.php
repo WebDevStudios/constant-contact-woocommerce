@@ -101,7 +101,7 @@ final class Plugin extends ServiceRegistrar {
 	/**
 	 * Returns a notice if SSL is not active.
 	 *
-	 * @since ??
+	 * @since 2.0.0
 	 * @author Biplav Subedi <biplav.subedi@webdevstudios.com>
 	 */
 	public function add_ssl_notice() {
@@ -358,7 +358,7 @@ final class Plugin extends ServiceRegistrar {
 	 * Load back-end scripts.
 	 *
 	 * @author Biplav Subedi <biplav.subedi@webdevstudios.com>
-	 * @since  ??
+	 * @since 2.0.0
 	 *
 	 * @return void
 	 */

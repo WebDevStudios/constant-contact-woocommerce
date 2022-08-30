@@ -20,7 +20,7 @@ class MenuItem extends Service {
 	/**
 	 * Register WP hooks.
 	 *
-	 * @since ??
+	 * @since 2.0.0
 	 * @author Zach Owen <zach@webdevstudios>
 	 */
 	public function register_hooks() {
