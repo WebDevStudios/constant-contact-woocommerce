@@ -2,8 +2,8 @@
 Contributors: constantcontact, webdevstudios, znowebdev, jmichaelward, ggwicz, ravedev
 Tags: Constant Contact, WooCommerce, eCommerce, email marketing, marketing automation, email, form, forms, marketing, mobile, opt-in, plugin, signup, subscribe, subscription, widget
 Requires at least: 5.2.2
-Tested up to: 6.0
-Stable tag: 1.4.1
+Tested up to: 6.0.2
+Stable tag: 2.0.0
 Requires PHP: 7.2
 License: GPLv3
 
@@ -81,48 +81,14 @@ You've connected your WooCommerce store to Constant Contact, promoted your WooCo
 
 == Changelog ==
 
-= 1.4.1 =
+= 2.0.0 =
 
-* Updated - Constant Contact Dashboard button now opens Dashboard in a new tab.
-* Updated - Set default value for importing contacts to 'true'.
-* Fix - Fixed broken form field layout on 'Import your contacts' tab.
+* Updated - All new ui for the constant contact woocommerce plugin.
+* Updated - Store data are now optional. You can connect to constantcontact without store details.
+* Updated - Now you can save your settings and connect to constant contact in a single click.
+* Updated - Added a disconnect settings to the constant contact woocommerce settings.
+* Fix - Minor bug fixes. 
 
-= 1.4.0 =
-
-* New - Add Checkbox Filter Location setting
-* Tweak - Delete plugin options on de-activation
-
-= 1.3.3 =
-
-* New - Adding minimum required WooCommerce version.
-* Updated - Resolving various undefined index notices when WP_DEBUG is enabled.
-
-= 1.3.2 =
-
-* Updated - Add links to documentation in README Frequently Asked Questions.
-* Updated - Use WooCommerce's WC_Validation::is_phone() for Phone Number setting validation.
-* Updated - Use WooCommerce's wc_sanitize_phone_number() for Phone Number setting sanitization.
-
-= 1.3.1 =
-
-* Tweak - Change `CampaignId::save_user_campaign_id_to_order` and `NewsletterPreferenceCheckbox::save_user_preference_to_order` methods to fire on `woocommerce_checkout_create_order` hook.
-* Tweak - Replace `add_post_meta` usage with `$order->update_meta_data` in `CampaignId::save_user_campaign_id_to_order` and `NewsletterPreferenceCheckbox::save_user_preference_to_order` methods.
-
-= 1.3.0 =
-
-* Updated - Revised abandoned cart functionality to instead be abandoned checkouts
-* Fix - Fixed callback warning about WooTab and enqueue_scripts
-
-= 1.2.0 =
-
-* New - Introduced the "abandoned carts" feature, where abandoned carts are captured and stored in the database for further action.
-* New — Introduced new authenticated REST API endpoints that list abandoned carts.
-
-= 1.1.0 =
-
-* New - Added Campaign ID data inclusion for purchased orders originating from your mailing campaigns.
-* Fix - Fixed compatibility issue with phone numbers and PHP 7.3
-* Tweak - Updated wording in our WooCommerce tab.
 
 == Installation ==
 
