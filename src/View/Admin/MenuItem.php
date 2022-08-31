@@ -14,7 +14,7 @@ use WebDevStudios\OopsWP\Structure\Service;
  * MenuItem Class
  *
  * @since 2019-04-16
- * @version ??
+ * @version 2.0.0
  */
 class MenuItem extends Service {
 	/**
