@@ -2,8 +2,8 @@
 Contributors: constantcontact, webdevstudios, znowebdev, jmichaelward, ggwicz, ravedev
 Tags: Constant Contact, WooCommerce, eCommerce, email marketing, marketing automation, email, form, forms, marketing, mobile, opt-in, plugin, signup, subscribe, subscription, widget
 Requires at least: 5.2.2
-Tested up to: 6.0
-Stable tag: 1.4.1
+Tested up to: 6.0.2
+Stable tag: 2.0.0
 Requires PHP: 7.2
 License: GPLv3
 
@@ -80,6 +80,14 @@ You've connected your WooCommerce store to Constant Contact, promoted your WooCo
 [Learn more with our step-by-step revenue reporting guide.](https://knowledgebase.constantcontact.com/articles/KnowledgeBase/36892-View-Recovered-Revenue-from-the-WooCommerce-Abandoned-Cart-Reminder-Email?q=woocommerce*&lang=en_US)
 
 == Changelog ==
+
+= 2.0.0 =
+
+* Updated - All new ui for the constant contact woocommerce plugin.
+* Updated - Store data are now optional. You can connect to constantcontact without store details.
+* Updated - Now you can save your settings and connect to constant contact in a single click.
+* Updated - Added a disconnect settings to the constant contact woocommerce settings.
+* Fix - Minor bug fixes. 
 
 = 1.4.1 =
 
