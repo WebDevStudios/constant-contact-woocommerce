@@ -33,6 +33,7 @@ class CheckoutHandler extends Service {
 	public function register_hooks() {
 		add_action( 'woocommerce_before_checkout_form', [ $this, 'enqueue_scripts' ] );
 
+
 		add_action( 'woocommerce_after_template_part', [ $this, 'save_or_clear_checkout_data' ], 10, 4 );
 		add_action( 'woocommerce_cart_updated', [ $this, 'update_checkout_data' ] );
 		add_action( 'woocommerce_set_cart_cookies', [ $this, 'update_checkout_data' ] );

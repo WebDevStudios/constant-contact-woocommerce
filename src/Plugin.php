@@ -20,6 +20,7 @@ use WebDevStudios\CCForWoo\Meta\ConnectionStatus;
 use WebDevStudios\CCForWoo\Api\KeyManager;
 use WebDevStudios\CCForWoo\WebHook\Disconnect;
 use WebDevStudios\CCForWoo\View\Admin\MenuItem;
+use WebDevStudios\CCForWoo\View\Admin\Disconnect as DisconnectSettings;
 use WebDevStudios\CCForWoo\AbandonedCheckouts\CheckoutHandler;
 use WebDevStudios\CCForWoo\AbandonedCheckouts\CheckoutsTable;
 use WebDevStudios\CCForWoo\AbandonedCheckouts\CheckoutRecovery;
@@ -46,7 +47,7 @@ final class Plugin extends ServiceRegistrar {
 	 * @since 1.0.0
 	 * @var string
 	 */
-	const PLUGIN_VERSION = '1.4.0';
+	const PLUGIN_VERSION = '2.0.0';
 
 	/**
 	 * Whether the plugin is currently active.
@@ -79,6 +80,7 @@ final class Plugin extends ServiceRegistrar {
 		CheckoutsTable::class,
 		CheckoutRecovery::class,
 		RestRegistrar::class,
+		DisconnectSettings::class,
 	];
 
 	/**
@@ -93,6 +95,25 @@ final class Plugin extends ServiceRegistrar {
 	 */
 	public function __construct( string $plugin_file ) {
 		$this->plugin_file = $plugin_file;
+		add_action( 'admin_notices', [ $this, 'add_ssl_notice' ] );
+	}
+
+	/**
+	 * Returns a notice if SSL is not active.
+	 *
+	 * @since 2.0.0
+	 * @author Biplav Subedi <biplav.subedi@webdevstudios.com>
+	 */
+	public function add_ssl_notice() {
+		$connected = get_option( 'cc_woo_import_connection_established' );
+
+		if ( ! $connected && 'on' !== $_SERVER['HTTPS'] ) {
+			$message = __( 'Your site does not appear to be using a secure connection (SSL). You might face issues when connecting to your account. Please add HTTPS to your site to make sure you have no issues connecting.', 'cc-woo' );
+			new Notice(
+				new NoticeMessage( $message, 'error', true )
+			);
+		}
+		
 	}
 
 	/**
@@ -159,6 +180,8 @@ final class Plugin extends ServiceRegistrar {
 		} catch ( Exception $e ) {
 			$this->deactivate( $e->getMessage() );
 		}
+
+
 	}
 
 	/**
@@ -187,6 +210,7 @@ final class Plugin extends ServiceRegistrar {
 	public function register_hooks() {
 		add_action( 'plugins_loaded', [ $this, 'check_for_required_dependencies' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'register_scripts' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ], 99 );
 
 		register_activation_hook( $this->plugin_file, [ $this, 'do_activation_process' ] );
 		register_deactivation_hook( $this->plugin_file, [ $this, 'do_deactivation_process' ] );
@@ -329,4 +353,19 @@ final class Plugin extends ServiceRegistrar {
 	public function register_scripts() {
 		wp_register_script( 'cc-woo-public', trailingslashit( plugin_dir_url( $this->get_plugin_file() ) ) . 'app/bundle.js', [ 'wp-util' ], self::PLUGIN_VERSION, false );
 	}
+
+	/**
+	 * Load back-end scripts.
+	 *
+	 * @author Biplav Subedi <biplav.subedi@webdevstudios.com>
+	 * @since 2.0.0
+	 *
+	 * @return void
+	 */
+	public function admin_enqueue_scripts() {
+		wp_enqueue_script( 'cc-woo-admin', trailingslashit( plugin_dir_url( $this->get_plugin_file() ) ) . 'app/admin-bundle.js', [ 'wp-util' ], self::PLUGIN_VERSION, false );
+		wp_enqueue_style( 'cc-woo-admin', trailingslashit( plugin_dir_url( $this->get_plugin_file() ) ) . 'app/admin.css' );
+    	wp_enqueue_style( 'cc-woo-google-fonts', 'https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;700&display=swap', false );
+	}
 }
+
