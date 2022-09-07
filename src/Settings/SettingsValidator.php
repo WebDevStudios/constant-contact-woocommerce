@@ -51,11 +51,8 @@ class SettingsValidator implements Validatable {
 	 */
 	public function is_valid(): bool {
 		return (
-			$this->has_valid_name()
-			&& $this->has_valid_phone()
-			&& $this->has_valid_store_name()
+			$this->has_valid_phone()
 			&& $this->has_valid_email()
-			&& $this->has_valid_country_code()
 		);
 	}
 
@@ -89,7 +86,12 @@ class SettingsValidator implements Validatable {
 	 * @return bool
 	 */
 	private function has_valid_email() {
-		return ! empty( filter_var( $this->settings->get_email_address(), FILTER_VALIDATE_EMAIL ) );
+		// Not required.
+		if ( empty( $this->settings->get_email_address() ) ) {
+			return true;
+		}
+
+		return filter_var( $this->settings->get_email_address(), FILTER_VALIDATE_EMAIL );
 	}
 
 	/**
@@ -103,6 +105,10 @@ class SettingsValidator implements Validatable {
 	 * @return bool
 	 */
 	private function has_valid_phone(): bool {
+		// Not required.
+		if ( empty( $this->settings->get_phone_number() ) ) {
+			return true;
+		}
 		return ! empty( $this->settings->get_phone_number() )
 			? WC_Validation::is_phone( $this->settings->get_phone_number() )
 			: false;

@@ -33,14 +33,13 @@ class ImportHistoricalData {
 	 */
 	public function get_form_field() : array {
 		return [
-			'title'             => esc_html__( 'Import your contacts', 'cc-woo' ),
+			'title'             => '',
 			'desc'              => $this->get_description(),
-			'type'              => 'select',
+			'type'              => 'radio',
 			'id'                => self::OPTION_FIELD_NAME,
-			'default'           => '',
+			'default'           => 'true',
 			'custom_attributes' => $this->get_custom_attributes(),
 			'options'           => [
-				''      => '----',
 				'false' => esc_html__( 'No', 'cc-woo' ),
 				'true'  => esc_html__( 'Yes', 'cc-woo' ),
 			],
@@ -79,7 +78,7 @@ class ImportHistoricalData {
 	 * @return bool
 	 */
 	protected function is_required() : bool {
-		return true;
+		return false;
 	}
 
 	/**
