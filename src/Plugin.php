@@ -47,7 +47,7 @@ final class Plugin extends ServiceRegistrar {
 	 * @since 1.0.0
 	 * @var string
 	 */
-	const PLUGIN_VERSION = '2.0.0';
+	const PLUGIN_VERSION = '2.0.1';
 
 	/**
 	 * Whether the plugin is currently active.
@@ -107,13 +107,12 @@ final class Plugin extends ServiceRegistrar {
 	public function add_ssl_notice() {
 		$connected = get_option( 'cc_woo_import_connection_established' );
 
-		if ( ! $connected && 'on' !== $_SERVER['HTTPS'] ) {
+		if ( ! $connected && ( isset( $_SERVER['HTTPS'] ) && 'on' !== $_SERVER['HTTPS'] ) ) {
 			$message = __( 'Your site does not appear to be using a secure connection (SSL). You might face issues when connecting to your account. Please add HTTPS to your site to make sure you have no issues connecting.', 'cc-woo' );
 			new Notice(
 				new NoticeMessage( $message, 'error', true )
 			);
 		}
-		
 	}
 
 	/**

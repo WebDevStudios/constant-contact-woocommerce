@@ -13,11 +13,6 @@
 	"scripts": {
 		"test": [ "./vendor/bin/phpunit" ],
 		"generate-fixtures": [ "@php ./tests/cypress/bin/generate-cypress-fixtures.php" ],
-		"dist": [
-			"rm -rf ./vendor",
-			"rm -rf ./phpcs.xml.dist",
-			"@composer install --no-dev -a"
-		],
 		"install-codestandards": "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run",
 		"lint": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs --standard=phpcs.xml.dist",
 		"post-install-cmd": [
@@ -53,6 +48,7 @@
 			"cypress.*",
 			"phpunit.xml",
 			"README.md",
+			"phpcs.xml.dist",
 			"tags"
 		]
 	}
