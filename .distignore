@@ -9,7 +9,7 @@ cypress.example.json
 phpcs.xml.dist
 phpunit.xml
 README.md
-webpac.config.js
+webpack.config.js
 .nvmrc
 .wordpress-org
 .vscode
