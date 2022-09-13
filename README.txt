@@ -80,6 +80,9 @@ You've connected your WooCommerce store to Constant Contact, promoted your WooCo
 [Learn more with our step-by-step revenue reporting guide.](https://knowledgebase.constantcontact.com/articles/KnowledgeBase/36892-View-Recovered-Revenue-from-the-WooCommerce-Abandoned-Cart-Reminder-Email?q=woocommerce*&lang=en_US)
 
 == Changelog ==
+= 2.0.2 =
+
+* Fix - Minor bug fixes and stability improvements. 
 
 = 2.0.1 =
 
