@@ -9,3 +9,10 @@ cypress.example.json
 phpcs.xml.dist
 phpunit.xml
 README.md
+webpac.config.js
+.nvmrc
+.wordpress-org
+.vscode
+cypress.example.json
+package.json
+package-lock.json
