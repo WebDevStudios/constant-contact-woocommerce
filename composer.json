@@ -16,9 +16,7 @@
 		"dist": [
 			"rm -rf ./vendor",
 			"rm -rf ./phpcs.xml.dist",
-			"@composer install --no-dev -a",
-			"@composer archive --format=zip --file constant-contact-woocommerce",
-			"mv constant-contact-woocommerce.zip $HOME/Desktop"
+			"@composer install --no-dev -a"
 		],
 		"install-codestandards": "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run",
 		"lint": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs --standard=phpcs.xml.dist",
