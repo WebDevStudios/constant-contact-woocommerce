@@ -81,6 +81,11 @@ You've connected your WooCommerce store to Constant Contact, promoted your WooCo
 
 == Changelog ==
 
+= 2.0.1 =
+
+* Fix - Fixed an issue with notice not working when ssl is found. 
+* Fix - Minor typo fixes. 
+
 = 2.0.0 =
 
 * Updated - All new ui for the constant contact woocommerce plugin.
