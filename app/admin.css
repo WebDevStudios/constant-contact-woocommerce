@@ -6,7 +6,7 @@ body.toplevel_page_ctct-woo-settings,
     font-weight: 400px;
 }
 
-body.toplevel_page_ctct-woo-settings .wrap.woocommerce,
+body.toplevel_page_ctct-woo-settings .cc-wrap.woocommerce,
 .cc-woo-wrap {
     padding: 20px 30px;
     margin: 10px 20px 0 2px;
@@ -34,7 +34,7 @@ body.toplevel_page_ctct-woo-settings h2 {
     background-color: #ffff;
 }
 
-.wrap {
+.cc-wrap {
     position: relative; 
 }
 .cc-woo-welcome-wrap .container {

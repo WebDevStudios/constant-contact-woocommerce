@@ -56,7 +56,7 @@ class MenuItem extends Service {
 	 */
 	public function cctct_standalone_settings_page_contents() {
 		
-		echo '<div class="wrap woocommerce"><form method="post" id="mainform" action="" enctype="multipart/form-data">';
+		echo '<div class="wrap cc-wrap woocommerce"><form method="post" id="mainform" action="" enctype="multipart/form-data">';
 			\WC_Admin_Settings::get_settings_pages();
 			$woo = new \WebDevStudios\CCForWoo\View\Admin\WooTab();
 			woocommerce_admin_fields( $woo->get_welcome_screen() );
