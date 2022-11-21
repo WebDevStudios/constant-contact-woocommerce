@@ -189,7 +189,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 
 		//hide default button
 		add_action( "admin_head", [ $this, 'hide_default_save_button' ] );
-		
+
 	}
 
 	/**
@@ -258,7 +258,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 			);
 		}
 
-		return $this->get_filtered_settings( 
+		return $this->get_filtered_settings(
 			$this->get_default_settings_options()
 		);
 	}
@@ -396,7 +396,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * @since 2.0.0
 	 */
 	public function render_cta_button() {
-		$url = 'https://login.constantcontact.com/login/?goto=https%3A%2F%2Fapp.constantcontact.com%2Fpages%2Fecomm%2Fdashboard%23woocommerce';
+		$url = 'https://login.constantcontact.com/login/?goto=https%3A%2F%2Fapp.constantcontact.com%2Fpages%2Fecomm-dash%2Fdashboard%2F%23%2Fwoocommerce';
 		?>
 		<a
 			class="button button-primary"
@@ -409,7 +409,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	}
 
 	public function connect_title() {
-		
+
 		return [
 			[
 				'title' => $title,
@@ -452,20 +452,20 @@ class WooTab extends WC_Settings_Page implements Hookable {
 
 		$url = admin_url( 'admin.php?page=' . esc_attr( $_GET['page'] ) );
 		$url = remove_query_arg( ['cc-connect'], $url );
-		$url = add_query_arg( 
-			['tab' => 'wc-settings' === $_GET['page'] ? 'cc_woo' : ''], 
-			$url 
+		$url = add_query_arg(
+			['tab' => 'wc-settings' === $_GET['page'] ? 'cc_woo' : ''],
+			$url
 		);
 
 		return [
 
-			[ 
+			[
 				'title' => '',
 				'type'  => 'title',
 				'id'    => 'cc_woo_store_marketing_title_settings_go_back',
 				'desc'  => '<a href="' . esc_url( $url ) . '" class="cc-woo-back"><span class="dashicons dashicons-arrow-left-alt2"></span>' . esc_html__( 'Go back', 'cc-woo' ) . '</span></a>',
 			],
-			
+
 			[
 				'title' => $title,
 				'type'  => 'title',
@@ -509,7 +509,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 					'false' => esc_html__( 'No - do not check this box by default', 'cc-woo' ),
 					'true'  => esc_html__( 'Yes - check this box by default', 'cc-woo' ),
 				],
-				
+
 			],
 			[
 				'title'   => '',
@@ -626,7 +626,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	public function get_welcome_screen() {
 		if( ! isset( $_GET['cc-connect'] ) && ! get_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY ) ) {
 			include_once dirname( __FILE__ ) . '/welcome.php';
-			
+
 			// Fallback.
 			return [
 				[
@@ -637,7 +637,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 			];
 		} elseif ( ! isset( $_GET['cc-connect'] ) && get_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY ) ) {
 			include_once dirname( __FILE__ ) . '/connected.php';
-			
+
 			// Fallback.
 			return [
 				[
@@ -680,9 +680,9 @@ class WooTab extends WC_Settings_Page implements Hookable {
 			$url = admin_url( 'admin.php?page=' . esc_attr( $_GET['page'] ) );
 			$url = remove_query_arg( ['cc-connect'], $url );
 			?><a href="<?php echo esc_url( $url ); ?>" class="cc-woo-back"> <span class="dashicons dashicons-arrow-left-alt2"></span><?php esc_html_e( "  Go Back", 'cc-woo' ); ?> </a><?php
-	
+
 		}
-	}	
+	}
 
 	/**
 	 * Maybe redirects to Constant Contact to connect accounts.
@@ -710,11 +710,11 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * @return bool
 	 */
 	private function requested_connect_to_cc() {
-		
+
 		if ( ! $this->has_valid_nonce() ) {
 			return false;
 		}
-		
+
 		// phpcs:disable -- Ignoring $_POST warnings.
 		return (
 			isset( $_POST['save'] )
@@ -928,14 +928,14 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * @return void
 	 */
 	public function save() {
-		
+
 		parent::save();
 
 		// Prevent redirect to customer_data_import screen if we don't meet connection requirements.
 		if ( ! $this->meets_connect_requirements() ) {
 			return;
 		}
-		
+
 		if ( $this->connection->is_connected() || $this->has_active_settings_section() ) {
 			return;
 		}
@@ -968,7 +968,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		$disc = add_query_arg( array(
 			'cc-connect' => 'disconnect',
 			'tab'        => 'wc-settings' === $_GET['page'] ? 'cc_woo' : '',
-		), $disc );  
+		), $disc );
 
 		?><div style="padding: 1rem 0;">
 			<p class="submit">
@@ -978,7 +978,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				<?php } ?>
 			</p>
 		</div>
-		
+
 	<?php
 	}
 
