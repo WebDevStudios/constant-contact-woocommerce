@@ -213,6 +213,12 @@ class CheckoutHandler extends Service {
 		$is_checkout           = $is_checkout ?: is_checkout();
 		$checkout_uuid         = WC()->session->get( 'checkout_uuid' );
 
+		$billing_address = [];
+
+		foreach( $this->get_billing_address_fields() as $field ) {
+			$billing_address[ $field ] = WC()->session->get( $field ) ?: WC()->checkout->get_value( $field ) ?: '';
+		}
+
 		if ( empty( $billing_email ) ) {
 			return;
 		}
@@ -271,6 +277,7 @@ class CheckoutHandler extends Service {
 				maybe_serialize( [
 					'products' => array_values( WC()->cart->get_cart() ),
 					'coupons'  => WC()->cart->get_applied_coupons(),
+					'addresses' => $billing_address,
 				] ),
 				$current_time,
 				strtotime( $current_time ),
@@ -344,5 +351,28 @@ class CheckoutHandler extends Service {
 				( new DateTime() )->sub( new DateInterval( 'P30D' ) )->format( 'U' )
 			)
 		);
+	}
+
+	/**
+	 * Return array of address fields we want.
+	 *
+	 * @author Michael Beckwith <michael@webdevstudios.com>
+	 * @since  NEXT
+	 */
+	protected function get_billing_address_fields() {
+		return [
+			'address_1',
+			'address_2',
+			'city',
+			'country',
+			'postcode',
+			'state',
+			'shipping_address_1',
+			'shipping_address_2',
+			'shipping_city',
+			'shipping_country',
+			'shipping_postcode',
+			'shipping_state',
+		];
 	}
 }
