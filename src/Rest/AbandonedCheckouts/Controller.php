@@ -79,6 +79,13 @@ class Controller extends WP_REST_Controller {
 	 */
 	public function get_items_permissions_check( $request ) {
 		if ( ! wc_rest_check_manager_permissions( 'settings', 'read' ) ) {
+
+			$logger = wc_get_logger();
+			$logger->warning(
+				'CTCT Woo: no permission to check abandoned checkout',
+				[ 'cc-woo-rest-not-allowed' => $request ]
+			);
+
 			return new WP_Error( 'cc-woo-rest-not-allowed', esc_html__( 'Sorry, you cannot list resources.', 'cc-woo' ), [ 'status' => rest_authorization_required_code() ] );
 		}
 
