@@ -9,6 +9,7 @@
 namespace WebDevStudios\CCForWoo\Api;
 
 use WebDevStudios\OopsWP\Structure\Service;
+use WebDevStudios\CCForWoo\Utility\DebugLogging;
 
 /**
  * KeyManager class
@@ -56,10 +57,12 @@ class KeyManager extends Service {
 		 */
 		do_action( 'cc_woo_key_revoked' );
 
-		$logger = wc_get_logger();
-		$logger->info(
-			'WooCommerce API Key with Constant Contact revoked'
+		$ctct_logger = new DebugLogging(
+			wc_get_logger(),
+			'WooCommerce API Key with Constant Contact revoked',
+			'info'
 		);
+		$ctct_logger->log();
 
 		return $query;
 	}

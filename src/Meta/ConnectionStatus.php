@@ -9,6 +9,8 @@
 
 namespace WebDevStudios\CCForWoo\Meta;
 
+use WebDevStudios\CCForWoo\Utility\DebugLogging;
+
 /**
  * Class PluginOption
  *
@@ -106,10 +108,12 @@ class ConnectionStatus {
 			update_option( self::CC_FIRST_CONNECTION, true );
 		}
 
-		$logger = wc_get_logger();
-		$logger->info(
+		$ctct_logger = new DebugLogging(
+			wc_get_logger(),
 			'Constant Contact connection set',
+			'info',
 			[ 'status' => $connected ]
 		);
+		$ctct_logger->log();
 	}
 }

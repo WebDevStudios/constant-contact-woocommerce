@@ -2,6 +2,7 @@
 // Handles the plugin disconnection.
 
 namespace WebDevStudios\CCForWoo\View\Admin;
+use WebDevStudios\CCForWoo\Utility\DebugLogging;
 use WebDevStudios\OopsWP\Structure\Service;
 use WebDevStudios\CCForWoo\Meta\ConnectionStatus;
 use WebDevStudios\CCForWoo\AbandonedCheckouts\CheckoutsTable;
@@ -34,10 +35,12 @@ class Disconnect extends Service {
             return;
         }
 
-	    $logger = wc_get_logger();
-	    $logger->info(
-		    'CTCT Woo: Plugin disconnected from Constant Contact'
+	    $ctct_logger = new DebugLogging(
+		    wc_get_logger(),
+		    'CTCT Woo: Plugin disconnected from Constant Contact',
+		    'info'
 	    );
+	    $ctct_logger->log();
 
         $this->disconnect_plugin();
         $this->redirect();

@@ -8,6 +8,7 @@
 
 namespace WebDevStudios\CCForWoo\Rest\AbandonedCheckouts;
 
+use WebDevStudios\CCForWoo\Utility\DebugLogging;
 use WP_REST_Server;
 use WP_REST_Request;
 use WP_REST_Controller;
@@ -80,11 +81,13 @@ class Controller extends WP_REST_Controller {
 	public function get_items_permissions_check( $request ) {
 		if ( ! wc_rest_check_manager_permissions( 'settings', 'read' ) ) {
 
-			$logger = wc_get_logger();
-			$logger->warning(
+			$ctct_logger = new DebugLogging(
+				wc_get_logger(),
 				'CTCT Woo: no permission to check abandoned checkout',
+				'warning',
 				[ 'cc-woo-rest-not-allowed' => $request ]
 			);
+			$ctct_logger->log();
 
 			return new WP_Error( 'cc-woo-rest-not-allowed', esc_html__( 'Sorry, you cannot list resources.', 'cc-woo' ), [ 'status' => rest_authorization_required_code() ] );
 		}
