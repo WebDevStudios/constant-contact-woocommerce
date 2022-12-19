@@ -72,6 +72,12 @@ class ConnectionStatus {
 			$this->connected = (bool) $status;
 		}
 
+		$logger = wc_get_logger();
+		$logger->info(
+			'Constant Contact connection attempted',
+			[ 'attempted_status' => $this->attempted ]
+		);
+
 		return $this->attempted;
 	}
 
@@ -105,5 +111,11 @@ class ConnectionStatus {
 		if ( $this->connected ) {
 			update_option( self::CC_FIRST_CONNECTION, true );
 		}
+
+		$logger = wc_get_logger();
+		$logger->info(
+			'Constant Contact connection set',
+			[ 'status' => $connected ]
+		);
 	}
 }
