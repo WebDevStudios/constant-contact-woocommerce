@@ -34,6 +34,11 @@ class Disconnect extends Service {
             return;
         }
 
+	    $logger = wc_get_logger();
+	    $logger->info(
+		    'CTCT Woo: Plugin disconnected from Constant Contact'
+	    );
+
         $this->disconnect_plugin();
         $this->redirect();
     }
