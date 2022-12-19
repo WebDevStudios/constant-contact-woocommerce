@@ -72,12 +72,6 @@ class ConnectionStatus {
 			$this->connected = (bool) $status;
 		}
 
-		$logger = wc_get_logger();
-		$logger->info(
-			'Constant Contact connection attempted',
-			[ 'attempted_status' => $this->attempted ]
-		);
-
 		return $this->attempted;
 	}
 
