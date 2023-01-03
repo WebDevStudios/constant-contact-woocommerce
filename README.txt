@@ -53,6 +53,8 @@ https://www.youtube.com/watch?v=ZH9G4yhAngk
 2. Edit the details of your product.
 3. Pre-filtered segmented lists.
 4. Syncing status for contacts.
+5. Settings Page in WordPress
+6. Before and after connecting account.
 
 #### Overall WooCommerce and Constant Contact Guide
 Our WooCommerce integration is designed to help make your email marketing even easier. You can automatically sync your WooCommerce contacts right into your Constant Contact account, promote your products and services in emails, and recover lost revenue with automated abandoned cart emails!
@@ -82,16 +84,16 @@ You've connected your WooCommerce store to Constant Contact, promoted your WooCo
 == Changelog ==
 = 2.0.3 =
 
-* Fix - Minor design fixes, bug fixes and stability improvements. 
+* Fix - Minor design fixes, bug fixes and stability improvements.
 
 = 2.0.2 =
 
-* Fix - Minor bug fixes and stability improvements. 
+* Fix - Minor bug fixes and stability improvements.
 
 = 2.0.1 =
 
-* Fix - Fixed an issue with notice not working when ssl is found. 
-* Fix - Minor typo fixes. 
+* Fix - Fixed an issue with notice not working when ssl is found.
+* Fix - Minor typo fixes.
 
 = 2.0.0 =
 
@@ -99,7 +101,7 @@ You've connected your WooCommerce store to Constant Contact, promoted your WooCo
 * Updated - Store data are now optional. You can connect to constantcontact without store details.
 * Updated - Now you can save your settings and connect to constant contact in a single click.
 * Updated - Added a disconnect settings to the constant contact woocommerce settings.
-* Fix - Minor bug fixes. 
+* Fix - Minor bug fixes.
 
 
 == Installation ==
