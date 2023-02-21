@@ -213,10 +213,22 @@ class CheckoutHandler extends Service {
 		$is_checkout           = $is_checkout ?: is_checkout();
 		$checkout_uuid         = WC()->session->get( 'checkout_uuid' );
 
-		$billing_address = [];
+		$addresses = [];
 
-		foreach( $this->get_billing_address_fields() as $field ) {
-			$billing_address[ $field ] = WC()->session->get( $field ) ?: WC()->checkout->get_value( $field ) ?: '';
+		foreach( $this->get_the_address_fields() as $field ) {
+			$value = '';
+
+			$value_session  = WC()->session->get( $field );
+			if ( ! empty( $value_session ) ) {
+				$value = $value_session;
+			} else {
+				$value_checkout = WC()->checkout->get_value( $field );
+				if ( ! empty( $value_checkout ) ) {
+					$value = $value_checkout;
+				}
+			}
+
+			$addresses[ $field ] = $value;
 		}
 
 		if ( empty( $billing_email ) ) {
@@ -277,7 +289,7 @@ class CheckoutHandler extends Service {
 				maybe_serialize( [
 					'products' => array_values( WC()->cart->get_cart() ),
 					'coupons'  => WC()->cart->get_applied_coupons(),
-					'addresses' => $billing_address,
+					'addresses' => $addresses,
 				] ),
 				$current_time,
 				strtotime( $current_time ),
@@ -359,7 +371,7 @@ class CheckoutHandler extends Service {
 	 * @author Michael Beckwith <michael@webdevstudios.com>
 	 * @since  NEXT
 	 */
-	protected function get_billing_address_fields() {
+	protected function get_the_address_fields() {
 		return [
 			'address_1',
 			'address_2',
@@ -373,6 +385,14 @@ class CheckoutHandler extends Service {
 			'shipping_country',
 			'shipping_postcode',
 			'shipping_state',
+			'billing_address_1',
+			'billing_address_2',
+			'billing_city',
+			'billing_country',
+			'billing_postcode',
+			'billing_state',
+			'billing_phone',
+			'billing_email',
 		];
 	}
 }
