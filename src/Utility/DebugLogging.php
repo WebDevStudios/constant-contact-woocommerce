@@ -10,7 +10,7 @@ class DebugLogging {
 	/**
 	 * The logger from WooCommerce.
 	 *
-	 * @since 2.5.0
+	 * @since 2.1.0
 	 * @var object
 	 */
 	private $logger;
@@ -44,7 +44,7 @@ class DebugLogging {
 	 * @param string $classname The classname to use for testing.
 	 *
 	 * @author Zach Owen <zach@webdevstudios>
-	 * @since  2.5.0
+	 * @since  2.1.0
 	 */
 	public function __construct( $logger, $message = '', $level = '', $extras = [] ) {
 		$this->logger  = $logger;
@@ -56,7 +56,7 @@ class DebugLogging {
 	/**
 	 * Perform our logging, if WP_DEBUG_LOG is enabled.
 	 *
-	 * @since 2.5.0
+	 * @since 2.1.0
 	 */
 	public function log() {
 		if ( defined( 'WP_DEBUG_LOG' ) ) {
