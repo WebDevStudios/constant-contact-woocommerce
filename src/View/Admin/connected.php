@@ -15,14 +15,14 @@
             <img class="cc-logo-main" src="<?php echo plugin_dir_url( __FILE__ ) . '../../assets/ctct.png'?>" />
         </div>
         <img class="cc-logo-main" src="<?php echo plugin_dir_url( __FILE__ ) . '../../assets/ctct-connected.png'?>" />
-        <h1> <?php esc_html_e( 'Your store is connected to Constant Contact!', 'cc-woo' ); ?> </h1>
+        <h1> <?php esc_html_e( 'Your store is connected to Constant Contact!', 'constant-contact-woocommerce' ); ?> </h1>
         <p>
             <?php
             echo wp_kses_post (
                 sprintf(
                 __(
                     'If you want to disconnect constant contact from your store please go to the %ssettings page%s.',
-                    'cc-woo'
+                    'constant-contact-woocommerce'
                 ),
                 '<a href="' . esc_url( $url ) . '">',
                 '</a>'
@@ -31,8 +31,8 @@
             ?>
         </p>
         <div class="btn-wrap">
-            <a href="<?php echo esc_url( $url ); ?>" class="cc-woo-btn btn-alternate"> <?php esc_html_e( "Edit Store Settings", 'cc-woo' ); ?> </a>
-            <a href="<?php echo esc_url( $dash_url ); ?>" class="cc-woo-btn btn-connected"> <?php esc_html_e( "Constant Contact Dashboard", 'cc-woo' ); ?> </a>
+            <a href="<?php echo esc_url( $url ); ?>" class="cc-woo-btn btn-alternate"> <?php esc_html_e( "Edit Store Settings", 'constant-contact-woocommerce' ); ?> </a>
+            <a href="<?php echo esc_url( $dash_url ); ?>" class="cc-woo-btn btn-connected"> <?php esc_html_e( "Constant Contact Dashboard", 'constant-contact-woocommerce' ); ?> </a>
         </div>
     </div>
 </div>

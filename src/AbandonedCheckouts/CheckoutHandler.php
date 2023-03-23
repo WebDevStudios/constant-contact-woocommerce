@@ -76,13 +76,13 @@ class CheckoutHandler extends Service {
 		] );
 
 		if ( empty( $data['nonce'] ) || ! wp_verify_nonce( $data['nonce'], 'woocommerce-process_checkout' ) ) {
-			wp_send_json_error( esc_html__( 'Invalid nonce.', 'cc-woo' ) );
+			wp_send_json_error( esc_html__( 'Invalid nonce.', 'constant-contact-woocommerce' ) );
 		}
 
 		$email = filter_var( $data['email'], FILTER_VALIDATE_EMAIL );
 
 		if ( ! $email ) {
-			wp_send_json_error( esc_html__( 'Invalid email.', 'cc-woo' ) );
+			wp_send_json_error( esc_html__( 'Invalid email.', 'constant-contact-woocommerce' ) );
 		}
 
 		WC()->session->set( 'billing_email', $email );

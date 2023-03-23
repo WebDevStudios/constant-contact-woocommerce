@@ -145,7 +145,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * @author Zach Owen <zach@webdevstudios>
 	 */
 	public function __construct() {
-		$this->label        = esc_html__( 'Constant Contact', 'cc-woo' );
+		$this->label        = esc_html__( 'Constant Contact', 'constant-contact-woocommerce' );
 		$this->nonce_name   = '_cc_woo_nonce';
 		$this->nonce_action = 'cc-woo-connect-action';
 		$this->connection   = new ConnectionStatus();
@@ -201,7 +201,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 */
 	public function get_sections() {
 		$sections = [
-			''  => esc_html__( 'Store Information', 'cc-woo' ),
+			''  => esc_html__( 'Store Information', 'constant-contact-woocommerce' ),
 		];
 
 		/* This filter is documented in WooCommerce */
@@ -314,8 +314,8 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	public function add_rest_group( $groups ) {
 		$groups[] = [
 			'id'          => 'cc_woo',
-			'label'       => esc_html__( 'Constant Contact WooCommerce', 'cc-woo' ),
-			'description' => esc_html__( 'This endpoint provides information for the Constant Contact for WooCommerce plugin.', 'cc-woo' ),
+			'label'       => esc_html__( 'Constant Contact WooCommerce', 'constant-contact-woocommerce' ),
+			'description' => esc_html__( 'This endpoint provides information for the Constant Contact for WooCommerce plugin.', 'constant-contact-woocommerce' ),
 		];
 
 		return $groups;
@@ -358,7 +358,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		return [
 			[
 				'title' => '',
-				'desc'  => '<h2 style="color:red;margin-top:0;">' . esc_html__( 'There was a problem connecting your store to Constant Contact. Please try again.', 'cc-woo' ) . '</h2>',
+				'desc'  => '<h2 style="color:red;margin-top:0;">' . esc_html__( 'There was a problem connecting your store to Constant Contact. Please try again.', 'constant-contact-woocommerce' ) . '</h2>',
 				'type'  => 'title',
 				'id'    => 'cc_woo_connection_attempted_heading',
 			],
@@ -375,7 +375,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	private function get_connection_established_options() {
 		return [
 			[
-				'title' => esc_html__( 'Congratulations! Your store is connected to Constant Contact.', 'cc-woo' ),
+				'title' => esc_html__( 'Congratulations! Your store is connected to Constant Contact.', 'constant-contact-woocommerce' ),
 				'type'  => 'title',
 				'id'    => 'cc_woo_connection_established_heading',
 			],
@@ -403,7 +403,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 			target="_blank"
 			href="<?php echo esc_url( $url ); ?>"
 		>
-			<?php esc_html_e( 'Constant Contact Dashboard', 'cc-woo' ); ?>
+			<?php esc_html_e( 'Constant Contact Dashboard', 'constant-contact-woocommerce' ); ?>
 		</a>
 		<?php
 	}
@@ -418,12 +418,12 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				'desc'  => $desc
 			],
 			[
-				'title' => esc_html__( 'Import your contacts', 'cc-woo' ),
+				'title' => esc_html__( 'Import your contacts', 'constant-contact-woocommerce' ),
 				'id'    => 'cc_woo_customer_data_settings',
 				'type'  => 'title',
 				'desc'  => wp_kses(
 					sprintf(
-						__( "Start marketing to your customers right away by importing all your contacts now.\n\nDo you want to import your current contacts? By selecting yes below, you agree you have permission to market to your current contacts.", 'cc-woo' ),
+						__( "Start marketing to your customers right away by importing all your contacts now.\n\nDo you want to import your current contacts? By selecting yes below, you agree you have permission to market to your current contacts.", 'constant-contact-woocommerce' ),
 						esc_url( 'https://www.constantcontact.com/legal/anti-spam' )
 					),
 					[
@@ -444,11 +444,11 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * @return array
 	 */
 	private function get_store_information_settings() {
-		$readonly_from_general_settings = esc_html__( 'This field is read from your General settings.', 'cc-woo' );
+		$readonly_from_general_settings = esc_html__( 'This field is read from your General settings.', 'constant-contact-woocommerce' );
 		$historical_import_field        = new \WebDevStudios\CCForWoo\View\Admin\Field\ImportHistoricalData();
 		$connected                      = get_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY );
-		$title                          = $connected ? __( 'Connected to Constant Contact', 'cc-woo' )  : __( 'Connect to Constant Contact', 'cc-woo' );
-		$desc                           = $connected ? ''  : __( 'Enter this information in order to connect your Constant Contact account.', 'cc-woo' );
+		$title                          = $connected ? __( 'Connected to Constant Contact', 'constant-contact-woocommerce' )  : __( 'Connect to Constant Contact', 'constant-contact-woocommerce' );
+		$desc                           = $connected ? ''  : __( 'Enter this information in order to connect your Constant Contact account.', 'constant-contact-woocommerce' );
 
 		$url = admin_url( 'admin.php?page=' . esc_attr( $_GET['page'] ) );
 		$url = remove_query_arg( ['cc-connect'], $url );
@@ -463,7 +463,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				'title' => '',
 				'type'  => 'title',
 				'id'    => 'cc_woo_store_marketing_title_settings_go_back',
-				'desc'  => '<a href="' . esc_url( $url ) . '" class="cc-woo-back"><span class="dashicons dashicons-arrow-left-alt2"></span>' . esc_html__( 'Go back', 'cc-woo' ) . '</span></a>',
+				'desc'  => '<a href="' . esc_url( $url ) . '" class="cc-woo-back"><span class="dashicons dashicons-arrow-left-alt2"></span>' . esc_html__( 'Go back', 'constant-contact-woocommerce' ) . '</span></a>',
 			],
 
 			[
@@ -473,12 +473,12 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				'desc'  => $desc
 			],
 			[
-				'title' => esc_html__( 'Import your contacts', 'cc-woo' ),
+				'title' => esc_html__( 'Import your contacts', 'constant-contact-woocommerce' ),
 				'id'    => 'cc_woo_customer_data_settings',
 				'type'  => 'title',
 				'desc'  => wp_kses(
 					sprintf(
-						__( "Start marketing to your customers right away by importing all your contacts now.\n\nDo you want to import your current contacts? By selecting yes below, you agree you have permission to market to your current contacts.", 'cc-woo' ),
+						__( "Start marketing to your customers right away by importing all your contacts now.\n\nDo you want to import your current contacts? By selecting yes below, you agree you have permission to market to your current contacts.", 'constant-contact-woocommerce' ),
 						esc_url( 'https://www.constantcontact.com/legal/anti-spam' )
 					),
 					[
@@ -495,31 +495,31 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				'id'   => 'cc_woo_customer_data_settings',
 			],
 			[
-				'title' => esc_html__( 'Marketing', 'cc-woo' ),
+				'title' => esc_html__( 'Marketing', 'constant-contact-woocommerce' ),
 				'type'  => 'title',
 				'id'    => 'cc_woo_store_marketing_title_settings',
 			],
 			[
 				'title'   => '',
-				'desc'    => esc_html__( 'At checkout, new customers must check a box if they want to receive marketing emails from you. Do you want this box checked by default?', 'cc-woo' ),
+				'desc'    => esc_html__( 'At checkout, new customers must check a box if they want to receive marketing emails from you. Do you want this box checked by default?', 'constant-contact-woocommerce' ),
 				'type'    => 'radio',
 				'id'      => NewsletterPreferenceCheckbox::STORE_NEWSLETTER_DEFAULT_OPTION,
 				'default' => 'false',
 				'options' => [
-					'false' => esc_html__( 'No - do not check this box by default', 'cc-woo' ),
-					'true'  => esc_html__( 'Yes - check this box by default', 'cc-woo' ),
+					'false' => esc_html__( 'No - do not check this box by default', 'constant-contact-woocommerce' ),
+					'true'  => esc_html__( 'Yes - check this box by default', 'constant-contact-woocommerce' ),
 				],
 
 			],
 			[
 				'title'   => '',
-				'desc'    => esc_html__( 'Change filter location where checkbox is rendered.', 'cc-woo' ),
+				'desc'    => esc_html__( 'Change filter location where checkbox is rendered.', 'constant-contact-woocommerce' ),
 				'type'    => 'radio',
 				'id'      => self::CHECKBOX_LOCATION,
 				'default' => 'woocommerce_after_checkout_billing_form',
 				'options' => [
-					'woocommerce_after_checkout_billing_form' => esc_html__( 'After checkout billing form', 'cc-woo' ),
-					'woocommerce_review_order_before_submit'  => esc_html__( 'Before order submit button', 'cc-woo' ),
+					'woocommerce_after_checkout_billing_form' => esc_html__( 'After checkout billing form', 'constant-contact-woocommerce' ),
+					'woocommerce_review_order_before_submit'  => esc_html__( 'Before order submit button', 'constant-contact-woocommerce' ),
 				],
 			],
 			[
@@ -527,12 +527,12 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				'id'   => 'cc_woo_store_marketing_ends',
 			],
 			[
-				'title' => esc_html__( 'Store Information', 'cc-woo' ),
+				'title' => esc_html__( 'Store Information', 'constant-contact-woocommerce' ),
 				'type'  => 'title',
 				'id'    => 'cc_woo_store_information_settings',
 			],
 			[
-				'title'             => esc_html__( 'Enter store information?', 'cc-woo' ),
+				'title'             => esc_html__( 'Enter store information?', 'constant-contact-woocommerce' ),
 				'desc'              => 'Yes',
 				'id'                => self::SAVE_STORE_DETAILS,
 				'type'              => 'checkbox',
@@ -547,7 +547,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				'id'    => 'cc_woo_store_information_settings_data',
 			],
 			[
-				'title'             => esc_html__( 'First Name', 'cc-woo' ),
+				'title'             => esc_html__( 'First Name', 'constant-contact-woocommerce' ),
 				'desc'              => '',
 				'id'                => self::FIRST_NAME_FIELD,
 				'type'              => 'text',
@@ -556,7 +556,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				],
 			],
 			[
-				'title'             => esc_html__( 'Last Name', 'cc-woo' ),
+				'title'             => esc_html__( 'Last Name', 'constant-contact-woocommerce' ),
 				'desc'              => '',
 				'id'                => self::LAST_NAME_FIELD,
 				'type'              => 'text',
@@ -565,7 +565,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				],
 			],
 			[
-				'title'             => esc_html__( 'Phone Number', 'cc-woo' ),
+				'title'             => esc_html__( 'Phone Number', 'constant-contact-woocommerce' ),
 				'id'                => self::PHONE_NUMBER_FIELD,
 				'desc'              => '',
 				'type'              => 'text',
@@ -574,7 +574,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				],
 			],
 			[
-				'title'             => esc_html__( 'Store Name', 'cc-woo' ),
+				'title'             => esc_html__( 'Store Name', 'constant-contact-woocommerce' ),
 				'id'                => self::STORE_NAME_FIELD,
 				'desc'              => '',
 				'type'              => 'text',
@@ -583,7 +583,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				],
 			],
 			[
-				'title'             => esc_html__( 'Contact E-mail Address', 'cc-woo' ),
+				'title'             => esc_html__( 'Contact E-mail Address', 'constant-contact-woocommerce' ),
 				'id'                => self::EMAIL_FIELD,
 				'desc'              => '',
 				'type'              => 'email',
@@ -592,7 +592,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				],
 			],
 			[
-				'title'             => esc_html__( 'Currency', 'cc-woo' ),
+				'title'             => esc_html__( 'Currency', 'constant-contact-woocommerce' ),
 				'id'                => self::CURRENCY_FIELD,
 				'type'              => 'text',
 				'custom_attributes' => [
@@ -601,7 +601,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 				],
 			],
 			[
-				'title'             => esc_html__( 'Country Code', 'cc-woo' ),
+				'title'             => esc_html__( 'Country Code', 'constant-contact-woocommerce' ),
 				'id'                => self::COUNTRY_CODE_FIELD,
 				'type'              => 'text',
 				'custom_attributes' => [
@@ -679,7 +679,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		if( isset( $_GET['cc-connect'] ) && 'connect' === esc_html( $_GET['cc-connect'] ) && ! get_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY ) ) {
 			$url = admin_url( 'admin.php?page=' . esc_attr( $_GET['page'] ) );
 			$url = remove_query_arg( ['cc-connect'], $url );
-			?><a href="<?php echo esc_url( $url ); ?>" class="cc-woo-back"> <span class="dashicons dashicons-arrow-left-alt2"></span><?php esc_html_e( "  Go Back", 'cc-woo' ); ?> </a><?php
+			?><a href="<?php echo esc_url( $url ); ?>" class="cc-woo-back"> <span class="dashicons dashicons-arrow-left-alt2"></span>  <?php esc_html_e( "Go Back", 'constant-contact-woocommerce' ); ?> </a><?php
 
 		}
 	}
@@ -819,7 +819,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 
 		$this->errors[ $field['id'] ] = $is_required ? sprintf(
 			/* Translators: Placeholder is the field's title. */
-			esc_html__( 'The "%s" field is required to connect to Constant Contact.', 'cc-woo' ),
+			esc_html__( 'The "%s" field is required to connect to Constant Contact.', 'constant-contact-woocommerce' ),
 			$field['title'] ): '';
 	}
 
@@ -960,7 +960,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		}
 
 		$connected = get_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY );
-		$text      = $connected ? 'Save' : __( 'Save & Connect account', 'cc-woo' );
+		$text      = $connected ? 'Save' : __( 'Save & Connect account', 'constant-contact-woocommerce' );
 		$value     = $connected ? 'cc-woo-save' : 'cc-woo-connect';
 		wp_nonce_field( $this->nonce_action, $this->nonce_name );
 
@@ -974,7 +974,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 			<p class="submit">
 				<button name="save" class="cc-woo-btn ctct-woo-connect button-primary woocommerce-save-button" type="submit" value="<?php echo $value; ?>" style="background-color:#1856ED"><?php echo esc_html( $text ); ?></button>
 				<?php if( $connected ) { ?>
-					<a href="<?php echo esc_url( $disc ); ?>" class="cc-woo-btn btn-alternate" style="margin-left:20px;"> <?php esc_html_e( "Disconnect", 'cc-woo' ); ?> </a>
+					<a href="<?php echo esc_url( $disc ); ?>" class="cc-woo-btn btn-alternate" style="margin-left:20px;"> <?php esc_html_e( "Disconnect", 'constant-contact-woocommerce' ); ?> </a>
 				<?php } ?>
 			</p>
 		</div>
