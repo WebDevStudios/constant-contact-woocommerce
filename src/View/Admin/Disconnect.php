@@ -1,7 +1,8 @@
-<?php 
+<?php
 // Handles the plugin disconnection.
 
 namespace WebDevStudios\CCForWoo\View\Admin;
+use WebDevStudios\CCForWoo\Utility\DebugLogging;
 use WebDevStudios\OopsWP\Structure\Service;
 use WebDevStudios\CCForWoo\Meta\ConnectionStatus;
 use WebDevStudios\CCForWoo\AbandonedCheckouts\CheckoutsTable;
@@ -12,7 +13,7 @@ use WebDevStudios\CCForWoo\AbandonedCheckouts\CheckoutsTable;
  * @return void
  */
 class Disconnect extends Service {
-    
+
     /**
     * Constructor.
     *
@@ -22,7 +23,7 @@ class Disconnect extends Service {
     public function register_hooks() {
         add_action( 'admin_init', array( $this, 'disconnect' ) );
     }
-    
+
     /**
     * Disconnects the plugin from Constant Contact WOO.
     *
@@ -34,10 +35,17 @@ class Disconnect extends Service {
             return;
         }
 
+	    $ctct_logger = new DebugLogging(
+		    wc_get_logger(),
+		    'CTCT Woo: Plugin disconnected from Constant Contact',
+		    'info'
+	    );
+	    $ctct_logger->log();
+
         $this->disconnect_plugin();
         $this->redirect();
     }
-    
+
     /**
     * Disconnects the plugin from Constant Contact WOO.
     *
@@ -61,7 +69,7 @@ class Disconnect extends Service {
 		delete_option( ConnectionStatus::CC_CONNECTION_USER_ID );
 		delete_option( ConnectionStatus::CC_FIRST_CONNECTION );
 		delete_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY );
-		
+
 
 		// WooCommerce Options
 		delete_option( 'cc_woo_store_information_first_name' );
@@ -75,7 +83,7 @@ class Disconnect extends Service {
 		delete_option( 'constant_contact_for_woo_has_setup' );
 		delete_option( 'cc_woo_customer_data_allow_import' );
     }
-    
+
     /**
     * Redirects to the admin page.
     *
@@ -87,7 +95,7 @@ class Disconnect extends Service {
         $url = add_query_arg([
             'tab'  => 'wc-settings' === $_GET['page'] ? 'cc_woo' : '',
             'cc-connect' => '',
-        ], $url );  
+        ], $url );
         wp_redirect( $url );
         exit;
     }
