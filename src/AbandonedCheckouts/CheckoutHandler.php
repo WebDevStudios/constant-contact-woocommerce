@@ -369,7 +369,7 @@ class CheckoutHandler extends Service {
 	 * Return array of address fields we want.
 	 *
 	 * @author Michael Beckwith <michael@webdevstudios.com>
-	 * @since  NEXT
+	 * @since  2.1.0
 	 */
 	protected function get_the_address_fields() {
 		return [
