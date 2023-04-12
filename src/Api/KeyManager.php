@@ -9,6 +9,7 @@
 namespace WebDevStudios\CCForWoo\Api;
 
 use WebDevStudios\OopsWP\Structure\Service;
+use WebDevStudios\CCForWoo\Utility\DebugLogging;
 
 /**
  * KeyManager class
@@ -55,6 +56,13 @@ class KeyManager extends Service {
 		 * @since 2019-03-21
 		 */
 		do_action( 'cc_woo_key_revoked' );
+
+		$ctct_logger = new DebugLogging(
+			wc_get_logger(),
+			'WooCommerce API Key with Constant Contact revoked',
+			'info'
+		);
+		$ctct_logger->log();
 
 		return $query;
 	}
@@ -144,7 +152,7 @@ SQL;
 	public function disconnect_cc_woo() {
 
 		/* This action is documented in Plugin.php */
-		do_action( 'cc_woo_disconnect', esc_html__( 'REST API Key Revoked.', 'cc-woo' ) );
+		do_action( 'cc_woo_disconnect', esc_html__( 'REST API Key Revoked.', 'constant-contact-woocommerce' ) );
 
 		/* This action is documented in Plugin.php */
 		do_action( 'wc_ctct_disconnect' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Intentional improperly-prefixed hookname, used in webhooks.

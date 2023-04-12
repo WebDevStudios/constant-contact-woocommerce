@@ -31,7 +31,7 @@ class Schema {
 			'type'       => 'object',
 			'properties' => [
 				'current_version' => [
-					'description' => esc_html__( 'The current version of the plugin.', 'cc-woo' ),
+					'description' => esc_html__( 'The current version of the plugin.', 'constant-contact-woocommerce' ),
 					'type'        => 'string',
 					'context'     => [ 'view' ],
 					'readonly'    => true,

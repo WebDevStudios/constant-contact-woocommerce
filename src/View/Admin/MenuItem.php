@@ -37,8 +37,8 @@ class MenuItem extends Service {
 	 */
 	public function add_cc_woo_admin_menu() {
 		add_menu_page(
-			__( 'Constant Contact', 'cc-woo' ),
-			__( 'Constant Contact', 'cc-woo' ),
+			__( 'Constant Contact', 'constant-contact-woocommerce' ),
+			__( 'Constant Contact', 'constant-contact-woocommerce' ),
 			'manage_options',
 			'ctct-woo-settings',
 			[$this, 'cctct_standalone_settings_page_contents'],
@@ -55,7 +55,7 @@ class MenuItem extends Service {
 	 * @since  2022-06-30
 	 */
 	public function cctct_standalone_settings_page_contents() {
-		
+
 		echo '<div class="wrap cc-wrap woocommerce"><form method="post" id="mainform" action="" enctype="multipart/form-data">';
 			\WC_Admin_Settings::get_settings_pages();
 			$woo = new \WebDevStudios\CCForWoo\View\Admin\WooTab();
@@ -93,8 +93,8 @@ class MenuItem extends Service {
 	public function add_cc_woo_admin_submenu() {
 		add_submenu_page(
 			'woocommerce',
-			esc_html__( 'Constant Contact', 'cc-woo' ),
-			esc_html__( 'Constant Contact', 'cc-woo' ),
+			esc_html__( 'Constant Contact', 'constant-contact-woocommerce' ),
+			esc_html__( 'Constant Contact', 'constant-contact-woocommerce' ),
 			'manage_woocommerce',
 			'cc-woo-settings',
 			[ $this, 'redirect_to_cc_woo' ]

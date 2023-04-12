@@ -40,8 +40,8 @@ class ImportHistoricalData {
 			'default'           => 'true',
 			'custom_attributes' => $this->get_custom_attributes(),
 			'options'           => [
-				'false' => esc_html__( 'No', 'cc-woo' ),
-				'true'  => esc_html__( 'Yes', 'cc-woo' ),
+				'false' => esc_html__( 'No', 'constant-contact-woocommerce' ),
+				'true'  => esc_html__( 'Yes', 'constant-contact-woocommerce' ),
 			],
 		];
 	}
@@ -100,6 +100,6 @@ class ImportHistoricalData {
 	 * @return string
 	 */
 	private function get_description() : string {
-		return $this->is_readonly() ? '' : esc_html__( 'Selecting Yes here will enable the ability to import your historical customer information to Constant Contact.', 'cc-woo' );
+		return $this->is_readonly() ? '' : esc_html__( 'Selecting Yes here will enable the ability to import your historical customer information to Constant Contact.', 'constant-contact-woocommerce' );
 	}
 }

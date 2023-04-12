@@ -76,13 +76,13 @@ class CheckoutHandler extends Service {
 		] );
 
 		if ( empty( $data['nonce'] ) || ! wp_verify_nonce( $data['nonce'], 'woocommerce-process_checkout' ) ) {
-			wp_send_json_error( esc_html__( 'Invalid nonce.', 'cc-woo' ) );
+			wp_send_json_error( esc_html__( 'Invalid nonce.', 'constant-contact-woocommerce' ) );
 		}
 
 		$email = filter_var( $data['email'], FILTER_VALIDATE_EMAIL );
 
 		if ( ! $email ) {
-			wp_send_json_error( esc_html__( 'Invalid email.', 'cc-woo' ) );
+			wp_send_json_error( esc_html__( 'Invalid email.', 'constant-contact-woocommerce' ) );
 		}
 
 		WC()->session->set( 'billing_email', $email );
@@ -213,6 +213,24 @@ class CheckoutHandler extends Service {
 		$is_checkout           = $is_checkout ?: is_checkout();
 		$checkout_uuid         = WC()->session->get( 'checkout_uuid' );
 
+		$addresses = [];
+
+		foreach( $this->get_the_address_fields() as $field ) {
+			$value = '';
+
+			$value_session  = WC()->session->get( $field );
+			if ( ! empty( $value_session ) ) {
+				$value = $value_session;
+			} else {
+				$value_checkout = WC()->checkout->get_value( $field );
+				if ( ! empty( $value_checkout ) ) {
+					$value = $value_checkout;
+				}
+			}
+
+			$addresses[ $field ] = $value;
+		}
+
 		if ( empty( $billing_email ) ) {
 			return;
 		}
@@ -271,6 +289,7 @@ class CheckoutHandler extends Service {
 				maybe_serialize( [
 					'products' => array_values( WC()->cart->get_cart() ),
 					'coupons'  => WC()->cart->get_applied_coupons(),
+					'addresses' => $addresses,
 				] ),
 				$current_time,
 				strtotime( $current_time ),
@@ -344,5 +363,36 @@ class CheckoutHandler extends Service {
 				( new DateTime() )->sub( new DateInterval( 'P30D' ) )->format( 'U' )
 			)
 		);
+	}
+
+	/**
+	 * Return array of address fields we want.
+	 *
+	 * @author Michael Beckwith <michael@webdevstudios.com>
+	 * @since  2.1.0
+	 */
+	protected function get_the_address_fields() {
+		return [
+			'address_1',
+			'address_2',
+			'city',
+			'country',
+			'postcode',
+			'state',
+			'shipping_address_1',
+			'shipping_address_2',
+			'shipping_city',
+			'shipping_country',
+			'shipping_postcode',
+			'shipping_state',
+			'billing_address_1',
+			'billing_address_2',
+			'billing_city',
+			'billing_country',
+			'billing_postcode',
+			'billing_state',
+			'billing_phone',
+			'billing_email',
+		];
 	}
 }

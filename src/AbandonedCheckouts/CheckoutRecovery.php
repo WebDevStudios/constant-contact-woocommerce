@@ -142,7 +142,7 @@ class CheckoutRecovery extends Service {
 						'%d item from your previous order is currently unavailable and could not be added to your cart.',
 						'%d items from your previous order are currently unavailable and could not be added to your cart.',
 						( count( $products ) - count( $products_added ) ),
-						'cc-woo'
+						'constant-contact-woocommerce'
 					),
 					( count( $products ) - count( $products_added ) )
 				),
