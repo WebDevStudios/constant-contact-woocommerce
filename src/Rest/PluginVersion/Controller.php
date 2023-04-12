@@ -86,7 +86,7 @@ class Controller extends WP_REST_Controller {
 			);
 			$ctct_logger->log();
 
-			return new WP_Error( 'cc-woo-rest-not-allowed', esc_html__( 'Sorry, you cannot list that resource.', 'cc-woo' ), [ 'status' => rest_authorization_required_code() ] );
+			return new WP_Error( 'cc-woo-rest-not-allowed', esc_html__( 'Sorry, you cannot list that resource.', 'constant-contact-woocommerce' ), [ 'status' => rest_authorization_required_code() ] );
 		}
 
 		return true;

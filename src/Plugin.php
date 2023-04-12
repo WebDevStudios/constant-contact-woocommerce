@@ -108,7 +108,7 @@ final class Plugin extends ServiceRegistrar {
 		$connected = get_option( 'cc_woo_import_connection_established' );
 
 		if ( ! $connected && ( isset( $_SERVER['HTTPS'] ) && 'on' !== $_SERVER['HTTPS'] ) ) {
-			$message = __( 'Your site does not appear to be using a secure connection (SSL). You might face issues when connecting to your account. Please add HTTPS to your site to make sure you have no issues connecting.', 'cc-woo' );
+			$message = __( 'Your site does not appear to be using a secure connection (SSL). You might face issues when connecting to your account. Please add HTTPS to your site to make sure you have no issues connecting.', 'constant-contact-woocommerce' );
 			new Notice(
 				new NoticeMessage( $message, 'error', true )
 			);
@@ -138,7 +138,7 @@ final class Plugin extends ServiceRegistrar {
 		 *
 		 * @param  string $message Deactivation message.
 		 */
-		do_action( 'cc_woo_disconnect', esc_html__( 'Plugin deactivated.', 'cc-woo' ) );
+		do_action( 'cc_woo_disconnect', esc_html__( 'Plugin deactivated.', 'constant-contact-woocommerce' ) );
 
 		$this->do_deactivation_process();
 
@@ -167,13 +167,13 @@ final class Plugin extends ServiceRegistrar {
 			// Ensure requirements.
 			if ( ! $compatibility_checker->is_available() ) {
 				// translators: placeholder is the minimum supported WooCommerce version.
-				$message = sprintf( esc_html__( 'WooCommerce version "%1$s" or greater must be installed and activated to use %2$s.', 'cc-woo' ), PluginCompatibilityCheck::MINIMUM_WOO_VERSION, self::PLUGIN_NAME );
+				$message = sprintf( esc_html__( 'WooCommerce version "%1$s" or greater must be installed and activated to use %2$s.', 'constant-contact-woocommerce' ), PluginCompatibilityCheck::MINIMUM_WOO_VERSION, self::PLUGIN_NAME );
 				throw new Exception( $message );
 			}
 
 			if ( ! $compatibility_checker->is_compatible( \WooCommerce::instance() ) ) {
 				// translators: placeholder is the minimum supported WooCommerce version.
-				$message = sprintf( esc_html__( 'WooCommerce version "%1$s" or greater is required to use %2$s.', 'cc-woo' ), PluginCompatibilityCheck::MINIMUM_WOO_VERSION, self::PLUGIN_NAME );
+				$message = sprintf( esc_html__( 'WooCommerce version "%1$s" or greater is required to use %2$s.', 'constant-contact-woocommerce' ), PluginCompatibilityCheck::MINIMUM_WOO_VERSION, self::PLUGIN_NAME );
 				throw new Exception( $message );
 			}
 		} catch ( Exception $e ) {
@@ -210,6 +210,7 @@ final class Plugin extends ServiceRegistrar {
 		add_action( 'plugins_loaded', [ $this, 'check_for_required_dependencies' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'register_scripts' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ], 99 );
+		add_action( 'init', [ $this, 'load_plugin_textdomain' ] );
 
 		register_activation_hook( $this->plugin_file, [ $this, 'do_activation_process' ] );
 		register_deactivation_hook( $this->plugin_file, [ $this, 'do_deactivation_process' ] );
@@ -327,7 +328,7 @@ final class Plugin extends ServiceRegistrar {
 		delete_option( ConnectionStatus::CC_CONNECTION_USER_ID );
 		delete_option( ConnectionStatus::CC_FIRST_CONNECTION );
 		delete_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY );
-		
+
 
 		// WooCommerce Options
 		delete_option( 'cc_woo_store_information_first_name' );
@@ -365,6 +366,16 @@ final class Plugin extends ServiceRegistrar {
 		wp_enqueue_script( 'cc-woo-admin', trailingslashit( plugin_dir_url( $this->get_plugin_file() ) ) . 'app/admin-bundle.js', [ 'wp-util' ], self::PLUGIN_VERSION, false );
 		wp_enqueue_style( 'cc-woo-admin', trailingslashit( plugin_dir_url( $this->get_plugin_file() ) ) . 'app/admin.css' );
     	wp_enqueue_style( 'cc-woo-google-fonts', 'https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;700&display=swap', false );
+	}
+
+	/**
+	 * Load textdomain.
+	 *
+	 * @author Michael Beckwith <michael@webdevstudios.com>
+	 * @since 2.1.0
+	 */
+	public function load_plugin_textdomain() {
+		load_plugin_textdomain( 'constant-contact-woocommerce' );
 	}
 }
 
