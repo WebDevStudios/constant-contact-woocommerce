@@ -373,12 +373,6 @@ class CheckoutHandler extends Service {
 	 */
 	protected function get_the_address_fields() {
 		return [
-			'address_1',
-			'address_2',
-			'city',
-			'country',
-			'postcode',
-			'state',
 			'shipping_address_1',
 			'shipping_address_2',
 			'shipping_city',
