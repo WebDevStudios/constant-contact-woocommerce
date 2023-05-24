@@ -34,8 +34,9 @@ body.toplevel_page_ctct-woo-settings h2 {
     background-color: #ffff;
 }
 
-.cc-wrap {
-    position: relative; 
+.cc-wrap,
+.cc-woo-wrap {
+    position: relative;
 }
 .cc-woo-welcome-wrap .container {
     width: 80%;
@@ -57,7 +58,7 @@ tbody#cc-optional-fields tr:first-child {
 
 tbody#cc-optional-fields tr:nth-child(2) th,
 tbody#cc-optional-fields tr:nth-child(2) td,
-tbody#cc-optional-fields tr:first-child th, 
+tbody#cc-optional-fields tr:first-child th,
 tbody#cc-optional-fields tr:first-child td {
     display:block;
 }
@@ -135,7 +136,7 @@ body.toplevel_page_ctct-woo-settings label,
     font-weight: 400;
 }
 
-#cc_woo_store_information_currency, 
+#cc_woo_store_information_currency,
 #cc_woo_store_information_country_code {
     width: 25% !important;
 }
