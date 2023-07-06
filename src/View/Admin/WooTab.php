@@ -412,10 +412,10 @@ class WooTab extends WC_Settings_Page implements Hookable {
 
 		return [
 			[
-				'title' => $title,
+				'title' => '',
 				'type'  => 'title',
 				'id'    => 'cc_woo_store_marketing_title_settings',
-				'desc'  => $desc
+				'desc'  => ''
 			],
 			[
 				'title' => esc_html__( 'Import your contacts', 'constant-contact-woocommerce' ),
