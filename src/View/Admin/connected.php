@@ -12,9 +12,9 @@
 <div class="cc-woo-welcome-wrap">
     <div class="container">
         <div class="cc-woo-top-logo">
-            <img class="cc-logo-main" src="<?php echo plugin_dir_url( __FILE__ ) . '../../assets/ctct.png'?>" />
+            <img alt="<?php esc_attr_e( 'Constant Contact logo', 'constant-contact-woocommerce' ); ?>" class="cc-logo-main" src="<?php echo plugin_dir_url( __FILE__ ) . '../../assets/ctct.png'?>" />
         </div>
-        <img class="cc-logo-main" src="<?php echo plugin_dir_url( __FILE__ ) . '../../assets/ctct-connected.png'?>" />
+        <img alt="<?php esc_attr_e( 'Connected status graphic', 'constant-contact-woocommerce' ); ?>" class="cc-logo-main" src="<?php echo plugin_dir_url( __FILE__ ) . '../../assets/ctct-connected.png'?>" />
         <h1> <?php esc_html_e( 'Your store is connected to Constant Contact!', 'constant-contact-woocommerce' ); ?> </h1>
         <p>
             <?php
