@@ -9,7 +9,7 @@
 ?>
 <div class="cc-woo-welcome-wrap">
     <div class="container">
-        <img class="cc-logo-main" src="<?php echo plugin_dir_url( __FILE__ ) . '../../assets/ctct.png'?>" />
+        <img alt="<?php esc_attr_e( 'Constant Contact logo', 'constant-contact-woocommerce' ); ?>" class="cc-logo-main" src="<?php echo plugin_dir_url( __FILE__ ) . '../../assets/ctct.png'?>" />
         <h1>
             <?php esc_html_e( 'Constant Contact for WooCommerce', 'constant-contact-woocommerce' ); ?>
         </h1>
