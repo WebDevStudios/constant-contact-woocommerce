@@ -71,7 +71,7 @@ class CheckoutHandler extends Service {
 	 */
 	public function maybe_capture_guest_checkout() {
 		$data = filter_input_array( INPUT_POST, [
-			'nonce' => FILTER_SANITIZE_STRING,
+			'nonce' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
 			'email' => FILTER_SANITIZE_EMAIL,
 		] );
 

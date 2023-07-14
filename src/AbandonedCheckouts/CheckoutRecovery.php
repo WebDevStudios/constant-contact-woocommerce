@@ -37,7 +37,7 @@ class CheckoutRecovery extends Service {
 	 */
 	public function register_hooks() {
 		// Sanitize checkout UUID.
-		$this->checkout_uuid = filter_input( INPUT_GET, 'recover-checkout', FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES );
+		$this->checkout_uuid = filter_input( INPUT_GET, 'recover-checkout', FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_FLAG_NO_ENCODE_QUOTES );
 
 		if ( empty( $this->checkout_uuid ) ) {
 			return;

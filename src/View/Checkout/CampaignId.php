@@ -71,7 +71,7 @@ class CampaignId implements Hookable {
 	 * @since  2019-08-22
 	 */
 	public function save_campaign_id() {
-		$campaign_id = filter_input( INPUT_GET, 'source', FILTER_SANITIZE_STRING );
+		$campaign_id = filter_input( INPUT_GET, 'source', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 
 		if ( ! empty( $campaign_id ) ) {
 			setcookie( 'ctct_woo_campaign_id', $campaign_id, 0, '/' );
