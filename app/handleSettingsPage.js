@@ -38,7 +38,6 @@ export default class HandleSettingsPage {
     cacheEls() {
         this.els.enableStoreDetails = document.getElementById( 'cc_woo_save_store_details' );
         this.els.optionalFields     = document.getElementById( 'cc-optional-fields' );
-
     }
 
     /**
@@ -48,9 +47,11 @@ export default class HandleSettingsPage {
      * @since 2.0.0
      */
     bindEvents() {
-        this.els.enableStoreDetails.addEventListener( 'change', e => {
-            this.enableStoreDetails();
-        } );
+        if ( null !== this.els.enableStoreDetails ) {
+            this.els.enableStoreDetails.addEventListener('change', e => {
+                this.enableStoreDetails();
+            });
+        }
     }
 
     /**
@@ -60,11 +61,13 @@ export default class HandleSettingsPage {
      * @since 2.0.0
      */
      enableStoreDetails() {
-        if (this.els.enableStoreDetails.checked) {
-            console.log(this.els.optionalFields.parentElement);
-            this.els.optionalFields.parentElement.style.display = 'block';
-          } else {
-            this.els.optionalFields.parentElement.style.display = 'none';
+        if (null !== this.els.enableStoreDetails) {
+            if (this.els.enableStoreDetails.checked) {
+                console.log(this.els.optionalFields.parentElement);
+                this.els.optionalFields.parentElement.style.display = 'block';
+            } else {
+                this.els.optionalFields.parentElement.style.display = 'none';
+            }
         }
     }
 
