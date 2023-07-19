@@ -83,6 +83,12 @@ You've connected your WooCommerce store to Constant Contact, promoted your WooCo
 
 == Changelog ==
 
+= 2.2.0 =
+* Fixed - `enableStoreDetails` javascript console error.
+* Fixed - PHP8 compatibility errors.
+* Fixed - Mismatch in SettingsModel PHP signature.
+* Updated - Build tools versions.
+
 = 2.1.1 =
 * Updates - Remove deprecated customer properties usage.
 
