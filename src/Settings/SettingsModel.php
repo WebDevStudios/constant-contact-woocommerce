@@ -74,6 +74,14 @@ class SettingsModel {
 	private $email_address;
 
 	/**
+	 * Opt in checkbox location.
+	 *
+	 * @var string
+	 * @since 1.4.0
+	 */
+	private $checkbox_location;
+
+	/**
 	 * The store admin has opt-in to import historical data.
 	 *
 	 * @var   bool
@@ -110,15 +118,17 @@ class SettingsModel {
 		string $store_name,
 		string $currency,
 		string $country_code,
-		string $email_address
+		string $email_address,
+		string $checkbox_location
 	) {
-		$this->first_name    = $first_name;
-		$this->last_name     = $last_name;
-		$this->phone_number  = $phone_number;
-		$this->store_name    = $store_name;
-		$this->currency      = $currency;
-		$this->country_code  = $country_code;
-		$this->email_address = $email_address;
+		$this->first_name        = $first_name;
+		$this->last_name         = $last_name;
+		$this->phone_number      = $phone_number;
+		$this->store_name        = $store_name;
+		$this->currency          = $currency;
+		$this->country_code      = $country_code;
+		$this->email_address     = $email_address;
+		$this->checkbox_location = $checkbox_location;
 	}
 
 	/**
@@ -203,5 +213,17 @@ class SettingsModel {
 	 */
 	public function get_email_address(): string {
 		return $this->email_address;
+	}
+
+	/**
+	 * Get the store checkbox location.
+	 *
+	 * @author WebDevStudios <contact@webdevstudios.com>
+	 * @since 1.4.0
+	 *
+	 * @return string
+	 */
+	public function get_checkbox_location(): string {
+		return $this->checkbox_location;
 	}
 }
