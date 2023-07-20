@@ -412,10 +412,10 @@ class WooTab extends WC_Settings_Page implements Hookable {
 
 		return [
 			[
-				'title' => $title,
+				'title' => '',
 				'type'  => 'title',
 				'id'    => 'cc_woo_store_marketing_title_settings',
-				'desc'  => $desc
+				'desc'  => ''
 			],
 			[
 				'title' => esc_html__( 'Import your contacts', 'constant-contact-woocommerce' ),
@@ -718,7 +718,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		// phpcs:disable -- Ignoring $_POST warnings.
 		return (
 			isset( $_POST['save'] )
-			&& 'cc-woo-connect' === filter_var( $_POST['save'], FILTER_SANITIZE_STRING )
+			&& 'cc-woo-connect' === filter_var( $_POST['save'], FILTER_SANITIZE_FULL_SPECIAL_CHARS )
 		);
 		// phpcs:enable
 	}

@@ -41,7 +41,7 @@ trait NonceVerification {
 	 */
 	protected function has_valid_nonce() : bool {
 		return wp_verify_nonce(
-			filter_input( INPUT_POST, $this->nonce_name, FILTER_SANITIZE_STRING ),
+			filter_input( INPUT_POST, $this->nonce_name, FILTER_SANITIZE_FULL_SPECIAL_CHARS ),
 			$this->nonce_action
 		);
 	}

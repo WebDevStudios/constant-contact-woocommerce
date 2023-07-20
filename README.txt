@@ -3,7 +3,7 @@ Contributors: constantcontact, webdevstudios, znowebdev, jmichaelward, ggwicz, r
 Tags: Constant Contact, WooCommerce, eCommerce, email marketing, marketing automation, email, form, forms, marketing, mobile, opt-in, plugin, signup, subscribe, subscription, widget
 Requires at least: 5.2.2
 Tested up to: 6.2.2
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 Requires PHP: 7.2
 License: GPLv3
 
@@ -82,6 +82,12 @@ You've connected your WooCommerce store to Constant Contact, promoted your WooCo
 [Learn more with our step-by-step revenue reporting guide.](https://knowledgebase.constantcontact.com/articles/KnowledgeBase/36892-View-Recovered-Revenue-from-the-WooCommerce-Abandoned-Cart-Reminder-Email?q=woocommerce*&lang=en_US)
 
 == Changelog ==
+
+= 2.1.2 =
+* Fixed - `enableStoreDetails` javascript console error.
+* Fixed - PHP8 compatibility errors.
+* Fixed - Mismatch in SettingsModel PHP signature.
+* Updated - Build tools versions.
 
 = 2.1.1 =
 * Updates - Remove deprecated customer properties usage.
