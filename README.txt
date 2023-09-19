@@ -1,6 +1,6 @@
 === Constant Contact + WooCommerce ===
 Contributors: constantcontact, webdevstudios, znowebdev, jmichaelward, ggwicz, ravedev, newyorkerlaura
-Tags: Constant Contact, WooCommerce, eCommerce, email marketing, marketing automation, email, form, forms, marketing, mobile, opt-in, plugin, signup, subscribe, subscription, widget
+Tags: Constant Contact, WooCommerce, ecommerce, email marketing, marketing automation, marketing, opt in, abandoned cart
 Requires at least: 5.2.2
 Tested up to: 6.2.2
 Stable tag: 2.2.0
