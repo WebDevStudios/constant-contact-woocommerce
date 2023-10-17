@@ -1,9 +1,9 @@
 === Constant Contact + WooCommerce ===
 Contributors: constantcontact, webdevstudios, znowebdev, jmichaelward, ggwicz, ravedev, newyorkerlaura
-Tags: Constant Contact, WooCommerce, eCommerce, email marketing, marketing automation, email, form, forms, marketing, mobile, opt-in, plugin, signup, subscribe, subscription, widget
+Tags: Constant Contact, WooCommerce, ecommerce, email marketing, marketing automation, marketing, opt in, abandoned cart
 Requires at least: 5.2.2
 Tested up to: 6.2.2
-Stable tag: 2.1.2
+Stable tag: 2.2.0
 Requires PHP: 7.2
 License: GPLv3
 
@@ -22,28 +22,16 @@ https://www.youtube.com/watch?v=ZH9G4yhAngk
 **With Constant Contact you can:**
 
 * Easily connect WooCommerce to your Constant Contact account and sync contacts automatically.
-
 * Drag and drop a product(s) from your WooCommerce catalog and insert them into your email in seconds.
-
 * Target the right customer/prospect with the right message with predefined segments based on your customers’ purchasing behavior:
-
-
-* All WooCommerce contacts who opt in to receive email e-marketing
-
-* Recent Customers: Purchased within 30 days
-
-* First-time Customers: Purchased once
-
-* Repeat Customers: Made more than one purchase
-
-* Lapsed Customers: Have not made a purchase in more than 120 days
-
-* Prospects: Have not made a purchase yet
-
+	* All WooCommerce contacts who opt in to receive email marketing
+	* Recent Customers: Purchased within 30 days
+	* First-time Customers: Purchased once
+	* Repeat Customers: Made more than one purchase
+	* Lapsed Customers: Have not made a purchase in more than 120 days
+	* Prospects: Have not made a purchase yet
 * Bring customers back to your online store with automated, targeted emails.
-
 * Find new customers with our social marketing and advertising tools to expand your reach.
-
 * Automatically send a customized branded abandoned cart email to customers who left items in their cart and track resulting revenue.
 
 == Screenshots ==
