@@ -12,6 +12,7 @@ namespace WebDevStudios\CCForWoo\Utility;
 
 use WebDevStudios\CCForWoo\Meta\ConnectionStatus;
 use WebDevStudios\CCForWoo\Plugin;
+use WebDevStudios\CCForWoo\AbandonedCheckouts\CheckoutsTable;
 
 /**
  * Class HealthPanel
@@ -118,8 +119,9 @@ SQL;
 SELECT
     count(*)
 FROM
-    {CheckoutsTable::get_table_name()}
+    %s
 SQL;
-		return (string) $GLOBALS['wpdb']->query( $GLOBALS['wpdb']->prepare( $query ) );
+		$count = (string) $GLOBALS['wpdb']->query( $GLOBALS['wpdb']->prepare( $query, CheckoutsTable::get_table_name() ) );
+		return ( ! empty( $count ) ) ? $count : '0';
 	}
 }
