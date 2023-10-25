@@ -11,6 +11,7 @@ namespace WebDevStudios\CCForWoo;
 
 use Exception;
 
+use WebDevStudios\CCForWoo\Utility\HealthPanel;
 use WebDevStudios\CCForWoo\Utility\PluginCompatibilityCheck;
 use WebDevStudios\OopsWP\Structure\ServiceRegistrar;
 use WebDevStudios\CCForWoo\View\ViewRegistrar;
@@ -47,7 +48,7 @@ final class Plugin extends ServiceRegistrar {
 	 * @since 1.0.0
 	 * @var string
 	 */
-	const PLUGIN_VERSION = '2.0.3';
+	const PLUGIN_VERSION = '2.2.0';
 
 	/**
 	 * Whether the plugin is currently active.
@@ -211,6 +212,7 @@ final class Plugin extends ServiceRegistrar {
 		add_action( 'wp_enqueue_scripts', [ $this, 'register_scripts' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ], 99 );
 		add_action( 'init', [ $this, 'load_plugin_textdomain' ] );
+		add_action( 'init', [ $this, 'load_health_panel' ] );
 
 		register_activation_hook( $this->plugin_file, [ $this, 'do_activation_process' ] );
 		register_deactivation_hook( $this->plugin_file, [ $this, 'do_deactivation_process' ] );
@@ -376,6 +378,10 @@ final class Plugin extends ServiceRegistrar {
 	 */
 	public function load_plugin_textdomain() {
 		load_plugin_textdomain( 'constant-contact-woocommerce' );
+	}
+
+	public function load_health_panel() {
+		new HealthPanel();
 	}
 }
 
