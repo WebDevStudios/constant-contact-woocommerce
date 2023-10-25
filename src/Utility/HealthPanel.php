@@ -115,13 +115,14 @@ SQL;
 	 * @return string
 	 */
 	private function abandoned_checkouts_count() : string {
+		$table = CheckoutsTable::get_table_name();
 		$query = <<<SQL
 SELECT
     count(*)
 FROM
-    %s
+    {$table}
 SQL;
-		$count = (string) $GLOBALS['wpdb']->query( $GLOBALS['wpdb']->prepare( $query, CheckoutsTable::get_table_name() ) );
+		$count = (string) $GLOBALS['wpdb']->get_var( $query );
 		return ( ! empty( $count ) ) ? $count : '0';
 	}
 }
