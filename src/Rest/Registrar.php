@@ -11,6 +11,7 @@ namespace WebDevStudios\CCForWoo\Rest;
 
 use WebDevStudios\CCForWoo\Rest\AbandonedCheckouts\Controller as AbandonedCheckouts;
 use WebDevStudios\CCForWoo\Rest\PluginVersion\Controller as PluginVersion;
+use WebDevStudios\CCForWoo\Rest\ConnectionStatus\Controller as ConnectionStatus;
 
 use WebDevStudios\OopsWP\Structure\Service;
 
@@ -51,6 +52,7 @@ class Registrar extends Service {
 	public function init_rest_endpoints() {
 		( new AbandonedCheckouts() )->register_routes();
 		( new PluginVersion() )->register_routes();
+		( new ConnectionStatus() )->register_routes();
 	}
 }
 
