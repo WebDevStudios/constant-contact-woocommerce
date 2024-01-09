@@ -29,8 +29,8 @@
 	<!-- Minimum WordPress version. -->
 	<config name="minimum_supported_wp_version" value="5.2"/>
 
-	<!-- Use WordPress standards. -->
-	<rule ref="WordPress"/>
+	<!-- Use WDS standards. -->
+	<rule ref="WebDevStudios"/>
 
 	<!-- Configure text domain. -->
 	<rule ref="WordPress.WP.I18n">
