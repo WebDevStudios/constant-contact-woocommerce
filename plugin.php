@@ -8,7 +8,7 @@
  * Plugin Name: Constant Contact + WooCommerce
  * Description: Add products to your emails and sync your contacts.
  * Plugin URI: https://github.com/WebDevStudios/constant-contact-woocommerce
- * Version: 2.2.0
+ * Version: 2.2.1
  * Author: Constant Contact
  * Author URI: https://www.constantcontact.com/
  * Text Domain: constant-contact-woocommerce
@@ -31,3 +31,14 @@ require_once $cc_woo_autoloader;
 
 $cc_woo_plugin = new \WebDevStudios\CCForWoo\Plugin( __FILE__ );
 $cc_woo_plugin->run();
+
+
+// Declare compatibility with custom order tables for WooCommerce.
+add_action(
+	'before_woocommerce_init',
+	function () {
+		if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+		}
+	}
+);
