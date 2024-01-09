@@ -32,6 +32,7 @@ require_once $cc_woo_autoloader;
 $cc_woo_plugin = new \WebDevStudios\CCForWoo\Plugin( __FILE__ );
 $cc_woo_plugin->run();
 
+
 // Declare compatibility with custom order tables for WooCommerce.
 add_action(
 	'before_woocommerce_init',
