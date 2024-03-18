@@ -15,7 +15,7 @@
     "@babel/preset-env": "^7.22.5",
     "babel-loader": "^9.1.2",
     "browserslist": "^4.21.9",
-    "cypress": "^12.14.0",
+    "cypress": "^13.7.0",
     "elliptic": "^6.5.4",
     "ini": "^4.1.1",
     "ssri": "^10.0.4",
