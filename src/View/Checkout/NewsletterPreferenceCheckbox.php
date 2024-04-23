@@ -25,6 +25,8 @@ use WebDevStudios\OopsWP\Utility\Hookable;
 class NewsletterPreferenceCheckbox implements Hookable {
 	use NonceVerification;
 
+	public static $namespace = 'wc/cc-woo';
+
 	/**
 	 * The name of the option for the store's default preference state.
 	 *
@@ -67,6 +69,7 @@ class NewsletterPreferenceCheckbox implements Hookable {
 		add_action( 'woocommerce_checkout_update_user_meta', [ $this, 'save_user_preference' ] );
 		add_action( 'woocommerce_created_customer', [ $this, 'save_user_preference' ] );
 		add_action( 'woocommerce_checkout_create_order', [ $this, 'save_user_preference_to_order' ] );
+		add_action( 'after_setup_theme', [ $this, 'checkbox_in_checkout_block' ] );
 	}
 
 	/**
@@ -184,5 +187,31 @@ class NewsletterPreferenceCheckbox implements Hookable {
 			? 'true'
 			: 'false';
 		// @codingStandardsIgnoreEnd
+	}
+
+	public function checkbox_in_checkout_block() {
+		$checkbox_location = get_option( 'cc_woo_store_information_checkbox_location', 'woocommerce_after_checkout_billing_form' );
+		$location = 'contact';
+		if ( $checkbox_location === 'woocommerce_after_checkout_billing_form' ) {
+			$location = 'address';
+		}
+		if ( function_exists( 'woocommerce_blocks_register_checkout_field' ) ) {
+			woocommerce_blocks_register_checkout_field(
+				[
+					'id'       => self::$namespace . '/newsletter-signup',
+					'label'    => 'Do you want to subscribe to our newsletter?',
+					'location' => $location,
+					'type'     => 'checkbox',
+				]
+			);
+		}
+		__experimental_woocommerce_blocks_register_checkout_field(
+			[
+				'id'       => self::$namespace . '/newsletter-signup',
+				'label'    => esc_html__( 'Sign me up to receive marketing emails', 'constant-contact-woocommerce' ),
+				'location' => $location,
+				'type'     => 'checkbox',
+			]
+		);
 	}
 }
