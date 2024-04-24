@@ -11,6 +11,7 @@ namespace WebDevStudios\CCForWoo;
 
 use Exception;
 
+use WebDevStudios\CCForWoo\Utility\CheckoutBlockNewsletter;
 use WebDevStudios\CCForWoo\Utility\HealthPanel;
 use WebDevStudios\CCForWoo\Utility\PluginCompatibilityCheck;
 use WebDevStudios\OopsWP\Structure\ServiceRegistrar;
@@ -213,6 +214,7 @@ final class Plugin extends ServiceRegistrar {
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ], 99 );
 		add_action( 'init', [ $this, 'load_plugin_textdomain' ] );
 		add_action( 'init', [ $this, 'load_health_panel' ] );
+		add_action( 'after_setup_theme', [ $this, 'load_checkout_block_newsletter' ] );
 
 		register_activation_hook( $this->plugin_file, [ $this, 'do_activation_process' ] );
 		register_deactivation_hook( $this->plugin_file, [ $this, 'do_deactivation_process' ] );
@@ -382,6 +384,11 @@ final class Plugin extends ServiceRegistrar {
 
 	public function load_health_panel() {
 		new HealthPanel();
+	}
+
+	public function load_checkout_block_newsletter() {
+		$checkoutBlockNewsletter = new CheckoutBlockNewsletter();
+		$checkoutBlockNewsletter->add_newsletter_to_checkout_block();
 	}
 }
 
