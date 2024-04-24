@@ -8,6 +8,8 @@
 
 namespace WebDevStudios\CCForWoo\Utility;
 
+use WebDevStudios\CCForWoo\Meta\ConnectionStatus;
+
 /**
  * Tests if WooCommerce is available and compatible.
  * @since 0.0.1
@@ -24,6 +26,11 @@ class CheckoutBlockNewsletter {
 	public static $namespace = 'wc/cc-woo';
 
 	public function add_newsletter_to_checkout_block() {
+
+		$connection = new ConnectionStatus();
+		if ( ! $connection->is_connected() ) {
+			return;
+		}
 
 		$block_args = $this->get_newsletter_checkout_block_args();
 		if ( function_exists( 'woocommerce_blocks_register_checkout_field' ) ) {
