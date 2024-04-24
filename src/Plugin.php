@@ -397,6 +397,7 @@ final class Plugin extends ServiceRegistrar {
 		*/
 		$checkoutBlockNewsletter = new CheckoutBlockNewsletter();
 		$checkoutBlockNewsletter->add_newsletter_to_checkout_block();
+		$checkoutBlockNewsletter->register_hooks();
 	}
 }
 
