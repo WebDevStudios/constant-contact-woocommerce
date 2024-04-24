@@ -386,6 +386,7 @@ final class Plugin extends ServiceRegistrar {
 		new HealthPanel();
 	}
 
+	// We are running this here because adding into `NewsletterPreferenceCheckbox` class is running too late. That class has things run on `init` hook and we need to run earlier on `after_setup_theme`.
 	public function load_checkout_block_newsletter() {
 		$checkoutBlockNewsletter = new CheckoutBlockNewsletter();
 		$checkoutBlockNewsletter->add_newsletter_to_checkout_block();
