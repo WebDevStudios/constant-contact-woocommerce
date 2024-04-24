@@ -16,13 +16,6 @@ use WebDevStudios\CCForWoo\Meta\ConnectionStatus;
  */
 class CheckoutBlockNewsletter {
 
-	/**
-	 * The classname we'll be using for compatibility testing.
-	 * @since 0.0.1
-	 * @var string
-	 */
-	private $classname = '';
-
 	public static $namespace = 'wc/cc-woo';
 
 	public function add_newsletter_to_checkout_block() {
