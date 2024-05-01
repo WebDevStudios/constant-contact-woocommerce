@@ -36,8 +36,8 @@ class CheckoutBlockNewsletter {
 		}
 
 		$block_args = $this->get_newsletter_checkout_block_args();
-		if ( function_exists( 'woocommerce_blocks_register_checkout_field' ) ) {
-			woocommerce_blocks_register_checkout_field(
+		if ( function_exists( 'woocommerce_register_additional_checkout_field' ) ) {
+			woocommerce_register_additional_checkout_field(
 				$block_args
 			);
 		}
