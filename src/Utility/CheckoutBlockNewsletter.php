@@ -45,7 +45,7 @@ class CheckoutBlockNewsletter {
 
 	private function get_newsletter_checkout_block_args() {
 		$checkbox_location = get_option( 'cc_woo_store_information_checkbox_location', 'woocommerce_after_checkout_billing_form' );
-		$location          = 'contact';
+		$location          = 'order';
 		if ( $checkbox_location === 'woocommerce_after_checkout_billing_form' ) {
 			$location = 'address';
 		}
