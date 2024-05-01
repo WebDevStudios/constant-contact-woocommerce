@@ -57,4 +57,47 @@ class CheckoutBlockNewsletter {
 			'type'     => 'checkbox',
 		];
 	}
+
+	public function sanitize_agreement_value( $value, $key ) {
+		if ( self::$namespace . '/newsletter-signup' !== $key ) {
+			return $value;
+		}
+
+		return (bool) $value;
+	}
+
+	public function set_agreement_value_on_object( $key, $value, $group, $wc_object ) {
+		if ( self::$namespace . '/newsletter-signup' !== $key ) {
+			return;
+		}
+
+		if ( $group !== 'billing' ) {
+			return;
+		}
+
+		$wc_object->update_meta_data( self::CUSTOMER_PREFERENCE_META_FIELD, $value, true );
+
+		// This filter is from WooCommerce Core.
+		$customer_id = apply_filters( 'woocommerce_checkout_customer_id', get_current_user_id() );
+		if ( ! $customer_id ) {
+			return;
+		}
+
+		// No user created from customer. Nothing to save.
+		update_user_meta( $customer_id, self::CUSTOMER_PREFERENCE_META_FIELD, $value );
+	}
+
+	private function get_store_default_checked_state(): bool {
+		return 'true' === get_option( self::STORE_NEWSLETTER_DEFAULT_OPTION );
+	}
+
+	public function set_default_value( $value, $group, $wc_object ) {
+		return $this->get_user_default_checked_state();
+	}
+
+	private function get_user_default_checked_state(): bool {
+		$user_preference = get_user_meta( get_current_user_id(), self::CUSTOMER_PREFERENCE_META_FIELD, true );
+
+		return ! empty( $user_preference ) ? 'true' === $user_preference : $this->get_store_default_checked_state();
+	}
 }
