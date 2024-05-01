@@ -30,10 +30,6 @@ class CheckoutBlockNewsletter {
 			woocommerce_blocks_register_checkout_field(
 				$block_args
 			);
-		} elseif ( function_exists( '__experimental_woocommerce_blocks_register_checkout_field' ) ) {
-			__experimental_woocommerce_blocks_register_checkout_field(
-				$block_args
-			);
 		}
 	}
 
