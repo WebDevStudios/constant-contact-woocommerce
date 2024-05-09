@@ -25,7 +25,7 @@ class CheckoutBlockNewsletter {
 	public function register_hooks() {
 		add_action( 'woocommerce_set_additional_field_value', [ $this, 'set_agreement_value_on_object' ], 10, 4 );
 		add_action( 'woocommerce_sanitize_additional_field', [ $this, 'sanitize_agreement_value' ], 10, 2 );
-		add_filter( 'woocommerce_blocks_get_default_value_for_' . self::$namespace . '/newsletter-signup', [ $this, 'set_default_value' ], 10, 3 );
+		add_filter( 'woocommerce_get_default_value_for_' . self::$namespace . '/newsletter-signup', [ $this, 'set_default_value' ], 10, 3 );
 	}
 
 	public function add_newsletter_to_checkout_block() {
