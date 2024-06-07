@@ -32,13 +32,15 @@ class AdminNotifications {
 		wp_admin_notice(
 			sprintf(
 				/* Translators: Placeholders here are for `<strong>` HTML and link tags. */
-				esc_html__( 'You have been successfully using %1$sConstant Contact Woocommerce%2$s to capture valuable site visitor information! Please consider leaving us a %3$snice review%4$s. Reviews help fellow WordPress admins find our plugin and lets you provide us useful feedback. %5$sI have already reviewed%6$s', 'constant-contact-forms' ),
+				esc_html__( 'You have been successfully using %1$sConstant Contact Woocommerce%2$s to capture valuable site visitor information! Please consider leaving us a %3$snice review%4$s. Reviews help fellow WordPress admins find our plugin and lets you provide us useful feedback. %5$sDismiss%6$s - %7$sI have already reviewed%8$s', 'constant-contact-forms' ),
 				'<strong>',
 				'</strong>',
 				sprintf(
 					'<a href="%s">',
 					esc_url( 'https://wordpress.org/support/plugin/constant-contact-woocommerce/reviews/#new-post' )
 				),
+				'</a>',
+				'<a id="cc-woo-review-dismiss" href="#">',
 				'</a>',
 				'<a id="already-reviewed" href="#">',
 				'</a>'
