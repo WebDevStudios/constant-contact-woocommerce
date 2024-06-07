@@ -1,1 +1,106 @@
-(()=>{"use strict";function e(t){return e="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e(t)}function t(e,t){for(var i=0;i<t.length;i++){var o=t[i];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,n(o.key),o)}}function n(t){var n=function(t,n){if("object"!=e(t)||!t)return t;var i=t[Symbol.toPrimitive];if(void 0!==i){var o=i.call(t,"string");if("object"!=e(o))return o;throw new TypeError("@@toPrimitive must return a primitive value.")}return String(t)}(t);return"symbol"==e(n)?n:String(n)}var i=function(){function e(){!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,e),this.els={}}var n,i;return n=e,(i=[{key:"init",value:function(){this.cacheEls(),this.bindEvents(),this.enableStoreDetails()}},{key:"cacheEls",value:function(){this.els.enableStoreDetails=document.getElementById("cc_woo_save_store_details"),this.els.optionalFields=document.getElementById("cc-optional-fields")}},{key:"bindEvents",value:function(){var e=this;null!==this.els.enableStoreDetails&&this.els.enableStoreDetails.addEventListener("change",(function(t){e.enableStoreDetails()}))}},{key:"enableStoreDetails",value:function(){null!==this.els.enableStoreDetails&&(this.els.enableStoreDetails.checked?(console.log(this.els.optionalFields.parentElement),this.els.optionalFields.parentElement.style.display="block"):this.els.optionalFields.parentElement.style.display="none")}}])&&t(n.prototype,i),Object.defineProperty(n,"prototype",{writable:!1}),e}();function o(e){return o="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},o(e)}function r(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,s(i.key),i)}}function s(e){var t=function(e,t){if("object"!=o(e)||!e)return e;var n=e[Symbol.toPrimitive];if(void 0!==n){var i=n.call(e,"string");if("object"!=o(i))return i;throw new TypeError("@@toPrimitive must return a primitive value.")}return String(e)}(e);return"symbol"==o(t)?t:String(t)}var l=function(){function e(){!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,e),this.els={}}var t,n;return t=e,(n=[{key:"init",value:function(){this.cacheEls(),this.bindEvents()}},{key:"cacheEls",value:function(){this.els.dismissNotification=document.querySelector("#cc-woo-review-dismiss")}},{key:"bindEvents",value:function(){var e=this;if(null!==this.els.dismissNotification){var t=this.els.dismissNotification.dataset.nonce,n=this.els.dismissNotification.querySelector(".notice-dismiss");n&&n.addEventListener("click",(function(n){e.handleDismiss(t),n.preventDefault(),e.els.dismissNotification.style.display="none"}));var i=this.els.dismissNotification.querySelector("#already-reviewed");i&&i.addEventListener("click",(function(n){e.handleAlreadyReviewed(t),n.preventDefault(),e.els.dismissNotification.style.display="none"}))}}},{key:"handleDismiss",value:function(e){var t=cc_woo_ajax.ajax_url,n=new URLSearchParams({action:"increment_dismissed_count",cc_woo_nonce:e}).toString(),i=new XMLHttpRequest;i.open("POST",t,!0),i.setRequestHeader("Content-Type","application/x-www-form-urlencoded;"),i.onload=function(){this.status>=200&&this.status,console.log(this.response)},i.onerror=function(){console.log("update failed")},i.send(n)}},{key:"handleAlreadyReviewed",value:function(e){var t=cc_woo_ajax.ajax_url,n=new URLSearchParams({action:"set-already-reviewed",cc_woo_nonce:e}).toString(),i=new XMLHttpRequest;i.open("POST",t,!0),i.setRequestHeader("Content-Type","application/x-www-form-urlencoded;"),i.onload=function(){this.status>=200&&this.status,console.log(this.response)},i.onerror=function(){console.log("update failed")},i.send(n)}}])&&r(t.prototype,n),Object.defineProperty(t,"prototype",{writable:!1}),e}(),a=new i,c=new l;window.onload=function(e){a.init(),c.init()}})();
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./app/admin.js":
+/*!**********************!*\
+  !*** ./app/admin.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _handleSettingsPage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./handleSettingsPage */ \"./app/handleSettingsPage.js\");\n/* harmony import */ var _handleAdminNotifDismiss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./handleAdminNotifDismiss */ \"./app/handleAdminNotifDismiss.js\");\n\n\n\n// Handles store details.\nvar enableStoreDetails = new _handleSettingsPage__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\nvar enableAdminNotifDismiss = new _handleAdminNotifDismiss__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\nwindow.onload = function (e) {\n  enableStoreDetails.init();\n  enableAdminNotifDismiss.init();\n};\n\n//# sourceURL=webpack://constant-contact-woocommerce/./app/admin.js?");
+
+/***/ }),
+
+/***/ "./app/handleAdminNotifDismiss.js":
+/*!****************************************!*\
+  !*** ./app/handleAdminNotifDismiss.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ HandleAdminNotifDismiss)\n/* harmony export */ });\nfunction _typeof(o) { \"@babel/helpers - typeof\"; return _typeof = \"function\" == typeof Symbol && \"symbol\" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && \"function\" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? \"symbol\" : typeof o; }, _typeof(o); }\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \"prototype\", { writable: false }); return Constructor; }\nfunction _toPropertyKey(t) { var i = _toPrimitive(t, \"string\"); return \"symbol\" == _typeof(i) ? i : String(i); }\nfunction _toPrimitive(t, r) { if (\"object\" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || \"default\"); if (\"object\" != _typeof(i)) return i; throw new TypeError(\"@@toPrimitive must return a primitive value.\"); } return (\"string\" === r ? String : Number)(t); }\n/**\n * GuestCheckoutCapture.\n *\n * @package WebDevStudios\\CCForWoo\n * @since   1.2.0\n */\nvar HandleAdminNotifDismiss = /*#__PURE__*/function () {\n  /**\n   * @constructor\n   *\n   * @author Biplav Subedi <biplav.subedi@webdevstudios.com>\n   * @since 2.0.0\n   */\n  function HandleAdminNotifDismiss() {\n    _classCallCheck(this, HandleAdminNotifDismiss);\n    this.els = {};\n  }\n\n  /**\n   * Init ccWoo admin JS.\n   *\n   * @author Biplav Subedi <biplav.subedi@webdevstudios.com>\n   * @since 2.0.0\n   */\n  _createClass(HandleAdminNotifDismiss, [{\n    key: \"init\",\n    value: function init() {\n      this.cacheEls();\n      this.bindEvents();\n    }\n\n    /**\n     * Cache some DOM elements.\n     *\n     * @author Biplav Subedi <biplav.subedi@webdevstudios.com>\n     * @since 2.0.0\n     */\n  }, {\n    key: \"cacheEls\",\n    value: function cacheEls() {\n      this.els.dismissNotification = document.querySelector('#cc-woo-review-dismiss');\n    }\n\n    /**\n     * Bind callbacks to events.\n     *\n     * @author Biplav Subedi <biplav.subedi@webdevstudios.com>\n     * @since 2.0.0\n     */\n  }, {\n    key: \"bindEvents\",\n    value: function bindEvents() {\n      var _this = this;\n      if (null !== this.els.dismissNotification) {\n        var nonce = this.els.dismissNotification.dataset.nonce;\n        var dismissbtn = this.els.dismissNotification.querySelector('#cc-woo-review-dismiss');\n        if (dismissbtn) {\n          dismissbtn.addEventListener('click', function (e) {\n            _this.handleDismiss(nonce);\n            e.preventDefault();\n            //this.els.dismissNotification.style.display = 'none';\n          });\n        }\n        var alreadyReviewed = this.els.dismissNotification.querySelector('#already-reviewed');\n        if (alreadyReviewed) {\n          alreadyReviewed.addEventListener('click', function (e) {\n            _this.handleAlreadyReviewed(nonce);\n            e.preventDefault();\n            _this.els.dismissNotification.style.display = 'none';\n          });\n        }\n      }\n    }\n  }, {\n    key: \"handleDismiss\",\n    value: function handleDismiss(nonce) {\n      var url = cc_woo_ajax.ajax_url;\n      var cc_woo_args = new URLSearchParams({\n        action: 'cc_woo_increment_dismissed_count',\n        cc_woo_nonce: nonce\n      }).toString();\n      var request = new XMLHttpRequest();\n      request.open('POST', url, true);\n      request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;');\n      request.onload = function () {\n        if (this.status >= 200 && this.status < 400) {\n          console.log(this.response);\n        } else {\n          console.log(this.response);\n        }\n      };\n      request.onerror = function () {\n        console.log('update failed');\n      };\n      request.send(cc_woo_args);\n    }\n  }, {\n    key: \"handleAlreadyReviewed\",\n    value: function handleAlreadyReviewed(nonce) {\n      var url = cc_woo_ajax.ajax_url;\n      var cc_woo_args = new URLSearchParams({\n        action: 'cc_woo_set_already_reviewed',\n        cc_woo_nonce: nonce\n      }).toString();\n      var request = new XMLHttpRequest();\n      request.open('POST', url, true);\n      request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;');\n      request.onload = function () {\n        if (this.status >= 200 && this.status < 400) {\n          console.log(this.response);\n        } else {\n          console.log(this.response);\n        }\n      };\n      request.onerror = function () {\n        console.log('update failed');\n      };\n      request.send(cc_woo_args);\n    }\n  }]);\n  return HandleAdminNotifDismiss;\n}();\n\n\n//# sourceURL=webpack://constant-contact-woocommerce/./app/handleAdminNotifDismiss.js?");
+
+/***/ }),
+
+/***/ "./app/handleSettingsPage.js":
+/*!***********************************!*\
+  !*** ./app/handleSettingsPage.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ HandleSettingsPage)\n/* harmony export */ });\nfunction _typeof(o) { \"@babel/helpers - typeof\"; return _typeof = \"function\" == typeof Symbol && \"symbol\" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && \"function\" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? \"symbol\" : typeof o; }, _typeof(o); }\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \"prototype\", { writable: false }); return Constructor; }\nfunction _toPropertyKey(t) { var i = _toPrimitive(t, \"string\"); return \"symbol\" == _typeof(i) ? i : String(i); }\nfunction _toPrimitive(t, r) { if (\"object\" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || \"default\"); if (\"object\" != _typeof(i)) return i; throw new TypeError(\"@@toPrimitive must return a primitive value.\"); } return (\"string\" === r ? String : Number)(t); }\n/**\n * GuestCheckoutCapture.\n *\n * @package WebDevStudios\\CCForWoo\n * @since   1.2.0\n */\nvar HandleSettingsPage = /*#__PURE__*/function () {\n  /**\n   * @constructor\n   *\n   * @author Biplav Subedi <biplav.subedi@webdevstudios.com>\n   * @since 2.0.0\n   */\n  function HandleSettingsPage() {\n    _classCallCheck(this, HandleSettingsPage);\n    this.els = {};\n  }\n\n  /**\n   * Init ccWoo admin JS.\n   *\n   * @author Biplav Subedi <biplav.subedi@webdevstudios.com>\n   * @since 2.0.0\n   */\n  _createClass(HandleSettingsPage, [{\n    key: \"init\",\n    value: function init() {\n      this.cacheEls();\n      this.bindEvents();\n      this.enableStoreDetails();\n    }\n\n    /**\n     * Cache some DOM elements.\n     *\n     * @author Biplav Subedi <biplav.subedi@webdevstudios.com>\n     * @since 2.0.0\n     */\n  }, {\n    key: \"cacheEls\",\n    value: function cacheEls() {\n      this.els.enableStoreDetails = document.getElementById('cc_woo_save_store_details');\n      this.els.optionalFields = document.getElementById('cc-optional-fields');\n    }\n\n    /**\n     * Bind callbacks to events.\n     *\n     * @author Biplav Subedi <biplav.subedi@webdevstudios.com>\n     * @since 2.0.0\n     */\n  }, {\n    key: \"bindEvents\",\n    value: function bindEvents() {\n      var _this = this;\n      if (null !== this.els.enableStoreDetails) {\n        this.els.enableStoreDetails.addEventListener('change', function (e) {\n          _this.enableStoreDetails();\n        });\n      }\n    }\n\n    /**\n     * Captures guest checkout if billing email is valid.\n     *\n     * @author Biplav Subedi <biplav.subedi@webdevstudios.com>\n     * @since 2.0.0\n     */\n  }, {\n    key: \"enableStoreDetails\",\n    value: function enableStoreDetails() {\n      if (null !== this.els.enableStoreDetails) {\n        if (this.els.enableStoreDetails.checked) {\n          console.log(this.els.optionalFields.parentElement);\n          this.els.optionalFields.parentElement.style.display = 'block';\n        } else {\n          this.els.optionalFields.parentElement.style.display = 'none';\n        }\n      }\n    }\n  }]);\n  return HandleSettingsPage;\n}();\n\n\n//# sourceURL=webpack://constant-contact-woocommerce/./app/handleSettingsPage.js?");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__("./app/admin.js");
+/******/ 	
+/******/ })()
+;

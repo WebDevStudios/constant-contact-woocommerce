@@ -46,12 +46,13 @@ export default class HandleAdminNotifDismiss {
 	bindEvents() {
 		if (null !== this.els.dismissNotification) {
 			const nonce = this.els.dismissNotification.dataset.nonce;
-			const dismissbtn = this.els.dismissNotification.querySelector('.notice-dismiss');
+			const dismissbtn = this.els.dismissNotification.querySelector('#cc-woo-review-dismiss');
+
 			if (dismissbtn) {
 				dismissbtn.addEventListener('click', e => {
 					this.handleDismiss(nonce);
 					e.preventDefault();
-					this.els.dismissNotification.style.display = 'none';
+					//this.els.dismissNotification.style.display = 'none';
 				});
 			}
 
