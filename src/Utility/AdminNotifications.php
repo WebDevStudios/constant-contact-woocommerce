@@ -130,12 +130,12 @@ class AdminNotifications {
 
 		if ( empty( $dismissed_count['count'] ) ) {
 			$dismissed_count['count'] = '1';
+		} elseif ( isset( $dismissed_count['count'] ) && '1' === $dismissed_count['count'] ) {
+			$dismissed_count['count'] = '2';
 		} elseif ( isset( $dismissed_count['count'] ) && '2' === $dismissed_count['count'] ) {
 			$dismissed_count['count'] = '3';
-		} elseif ( isset( $dismissed_count['count'] ) && '3' === $dismissed_count['count'] ) {
+		} elseif ( isset( $dismissed_count['count'] ) && '4' === $dismissed_count['count'] ) {
 			$dismissed_count['count'] = '4';
-		} else {
-			$dismissed_count['count'] = '1';
 		}
 		update_option( $this->cc_woo_review_dismissed_count, $dismissed_count );
 
