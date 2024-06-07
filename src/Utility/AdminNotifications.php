@@ -5,7 +5,7 @@ namespace WebDevStudios\CCForWoo\Utility;
 use WebDevStudios\CCForWoo\Meta\ConnectionStatus;
 
 /**
- * Class DebugLogging
+ * Class AdminNotifications
  */
 class AdminNotifications {
 
