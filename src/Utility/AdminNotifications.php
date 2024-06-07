@@ -141,7 +141,7 @@ class AdminNotifications {
 
 		$msg = '';
 		if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
-			$msg = esc_html__( "Dismissed count incremented to {$dismissed_count['count']}", 'constant-contact-woocommerce' );
+			$msg = esc_html__( "Dismissed count incremented by {$dismissed_count['count']}", 'constant-contact-woocommerce' );
 		}
 		wp_send_json_success( $msg );
 	}
