@@ -1,8 +1,8 @@
 /**
- * GuestCheckoutCapture.
+ * HandleAdminNotifDismiss.
  *
  * @package WebDevStudios\CCForWoo
- * @since   1.2.0
+ * @since   NEXT
  */
 export default class HandleAdminNotifDismiss {
 
@@ -10,7 +10,7 @@ export default class HandleAdminNotifDismiss {
 	 * @constructor
 	 *
 	 * @author Biplav Subedi <biplav.subedi@webdevstudios.com>
-	 * @since 2.0.0
+	 * @since NEXT
 	 */
 	constructor() {
 		this.els = {};
@@ -20,7 +20,7 @@ export default class HandleAdminNotifDismiss {
 	 * Init ccWoo admin JS.
 	 *
 	 * @author Biplav Subedi <biplav.subedi@webdevstudios.com>
-	 * @since 2.0.0
+	 * @since NEXT
 	 */
 	init() {
 		this.cacheEls();
@@ -31,7 +31,7 @@ export default class HandleAdminNotifDismiss {
 	 * Cache some DOM elements.
 	 *
 	 * @author Biplav Subedi <biplav.subedi@webdevstudios.com>
-	 * @since 2.0.0
+	 * @since NEXT
 	 */
 	cacheEls() {
 		this.els.dismissNotification = document.querySelector('#cc-woo-review-dismiss');
@@ -41,7 +41,7 @@ export default class HandleAdminNotifDismiss {
 	 * Bind callbacks to events.
 	 *
 	 * @author Biplav Subedi <biplav.subedi@webdevstudios.com>
-	 * @since 2.0.0
+	 * @since NEXT
 	 */
 	bindEvents() {
 		if (null !== this.els.dismissNotification) {
@@ -67,6 +67,11 @@ export default class HandleAdminNotifDismiss {
 		}
 	}
 
+	/**
+	 * Handle admin notice dismissal
+	 * @param nonce
+	 * @since NEXT
+	 */
 	handleDismiss( nonce ) {
 		const url = cc_woo_ajax.ajax_url;
 		const cc_woo_args = new URLSearchParams({
@@ -91,6 +96,11 @@ export default class HandleAdminNotifDismiss {
 		request.send(cc_woo_args);
 	}
 
+	/**
+	 * Handle admin notice already reviewed dismissal
+	 * @param nonce
+	 * @since NEXT
+	 */
 	handleAlreadyReviewed( nonce ) {
 		const url = cc_woo_ajax.ajax_url;
 		const cc_woo_args = new URLSearchParams({
