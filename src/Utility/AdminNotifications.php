@@ -117,7 +117,7 @@ class AdminNotifications {
 	}
 
 	public function increment_dismissed_count() {
-		if ( ! isset( $_REQUEST['action'] ) || 'increment_dismissed_count' !== sanitize_text_field( $_REQUEST['action' ] ) ) {
+		if ( ! isset( $_REQUEST['action'] ) || 'cc_woo_increment_dismissed_count' !== sanitize_text_field( $_REQUEST['action' ] ) ) {
 			return;
 		}
 
