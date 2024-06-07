@@ -147,7 +147,7 @@ class AdminNotifications {
 	}
 
 	public function set_reviewed_status() {
-		if ( ! isset( $_REQUEST['action'] ) || 'increment_dismissed_count' !== sanitize_text_field( $_REQUEST['action'] ) ) {
+		if ( ! isset( $_REQUEST['action'] ) || 'cc_woo_set_already_reviewed' !== sanitize_text_field( $_REQUEST['action'] ) ) {
 			return;
 		}
 
