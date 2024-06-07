@@ -52,7 +52,7 @@ export default class HandleAdminNotifDismiss {
 				dismissbtn.addEventListener('click', e => {
 					this.handleDismiss(nonce);
 					e.preventDefault();
-					//this.els.dismissNotification.style.display = 'none';
+					this.els.dismissNotification.style.display = 'none';
 				});
 			}
 
