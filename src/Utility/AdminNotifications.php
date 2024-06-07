@@ -78,7 +78,7 @@ class AdminNotifications {
 			}
 		}
 
-		$dismissed_count = get_option( $this->cc_woo_review_dismissed_count, [] );
+		$dismissed = get_option( $this->cc_woo_review_dismissed_count, [] );
 		if ( isset( $dismissed['count'] ) && '1' === $dismissed['count'] ) {
 			$fourteen_days = strtotime( '-14 days' );
 
@@ -109,7 +109,7 @@ class AdminNotifications {
 			return false;
 		}
 
-		if ( '4' === $dismissed_count['count'] ) {
+		if ( '4' === $dismissed['count'] ) {
 			return false;
 		}
 
