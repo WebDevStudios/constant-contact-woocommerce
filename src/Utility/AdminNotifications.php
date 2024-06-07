@@ -70,7 +70,7 @@ class AdminNotifications {
 			return false;
 		}
 
-		$activated_time = get_option( 'FILL ME IN', '' );
+		$activated_time = get_option( ConnectionStatus::CC_CONNECTED_TIME, '' );
 		// we may not have an activation time. Make this one optional.
 		if ( $activated_time ) {
 			if ( time() < strtotime( '+14 days', $activated_time ) ) {
