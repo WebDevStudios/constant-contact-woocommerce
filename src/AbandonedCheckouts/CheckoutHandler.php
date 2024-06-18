@@ -119,7 +119,7 @@ class CheckoutHandler extends Service {
 	 * @since  1.2.0
 	 */
 	public function update_checkout_data() {
-		if ( is_checkout() ) {
+		if ( is_cart() || is_checkout() ) {
 			$this->save_checkout_data();
 		}
 	}
