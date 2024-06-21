@@ -385,10 +385,22 @@ final class Plugin extends ServiceRegistrar {
 		load_plugin_textdomain( 'constant-contact-woocommerce' );
 	}
 
+	/**
+	 * Load health panel.
+	 *
+	 * @author Michael Beckwith <michael@webdevstudios.com>
+	 * @since 2.2.0
+	 */
 	public function load_health_panel() {
 		new HealthPanel();
 	}
 
+	/**
+	 * Load admin notifications.
+	 *
+	 * @author Michael Beckwith <michael@webdevstudios.com>
+	 * @since 2.3.0
+	 */
 	public function load_admin_notifications() {
 		$notifications = new AdminNotifications();
 		$notifications->register_hooks();
