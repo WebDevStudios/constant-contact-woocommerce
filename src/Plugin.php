@@ -13,6 +13,7 @@ use Exception;
 
 use WebDevStudios\CCForWoo\Utility\HealthPanel;
 use WebDevStudios\CCForWoo\Utility\PluginCompatibilityCheck;
+use WebDevStudios\CCForWoo\Utility\AdminNotifications;
 use WebDevStudios\OopsWP\Structure\ServiceRegistrar;
 use WebDevStudios\CCForWoo\View\ViewRegistrar;
 use WebDevStudios\CCForWoo\View\Admin\Notice;
@@ -213,6 +214,7 @@ final class Plugin extends ServiceRegistrar {
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ], 99 );
 		add_action( 'init', [ $this, 'load_plugin_textdomain' ] );
 		add_action( 'init', [ $this, 'load_health_panel' ] );
+		add_action( 'init', [ $this, 'load_admin_notifications' ] );
 
 		register_activation_hook( $this->plugin_file, [ $this, 'do_activation_process' ] );
 		register_deactivation_hook( $this->plugin_file, [ $this, 'do_deactivation_process' ] );
@@ -343,6 +345,8 @@ final class Plugin extends ServiceRegistrar {
 		delete_option( 'cc_woo_store_information_alt_login_url' );
 		delete_option( 'constant_contact_for_woo_has_setup' );
 		delete_option( 'cc_woo_customer_data_allow_import' );
+		delete_option( 'cc-woo-is-reviewed' );
+		delete_option( 'cc-woo-review-dismissed-count' );
 
 	}
 
@@ -368,6 +372,7 @@ final class Plugin extends ServiceRegistrar {
 		wp_enqueue_script( 'cc-woo-admin', trailingslashit( plugin_dir_url( $this->get_plugin_file() ) ) . 'app/admin-bundle.js', [ 'wp-util' ], self::PLUGIN_VERSION, false );
 		wp_enqueue_style( 'cc-woo-admin', trailingslashit( plugin_dir_url( $this->get_plugin_file() ) ) . 'app/admin.css' );
     	wp_enqueue_style( 'cc-woo-google-fonts', 'https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;700&display=swap', false );
+		wp_localize_script( 'cc-woo-admin', 'cc_woo_ajax', [ 'ajax_url' => admin_url( 'admin-ajax.php' ) ] );
 	}
 
 	/**
@@ -380,8 +385,25 @@ final class Plugin extends ServiceRegistrar {
 		load_plugin_textdomain( 'constant-contact-woocommerce' );
 	}
 
+	/**
+	 * Load health panel.
+	 *
+	 * @author Michael Beckwith <michael@webdevstudios.com>
+	 * @since 2.2.0
+	 */
 	public function load_health_panel() {
 		new HealthPanel();
+	}
+
+	/**
+	 * Load admin notifications.
+	 *
+	 * @author Michael Beckwith <michael@webdevstudios.com>
+	 * @since 2.3.0
+	 */
+	public function load_admin_notifications() {
+		$notifications = new AdminNotifications();
+		$notifications->register_hooks();
 	}
 }
 
