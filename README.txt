@@ -1,9 +1,9 @@
 === Constant Contact + WooCommerce ===
 Contributors: constantcontact, webdevstudios, znowebdev, jmichaelward, ggwicz, ravedev, newyorkerlaura
-Tags: Constant Contact, WooCommerce, ecommerce, email marketing, marketing automation, marketing, opt in, abandoned cart
+Tags: Constant Contact, WooCommerce, email marketing, marketing automation, abandoned cart
 Requires at least: 5.2.2
 Tested up to: 6.5.0
-Stable tag: 2.2.2
+Stable tag: 2.3.0
 Requires PHP: 7.2
 License: GPLv3
 

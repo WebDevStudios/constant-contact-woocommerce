@@ -8,12 +8,12 @@
  * Plugin Name: Constant Contact + WooCommerce
  * Description: Add products to your emails and sync your contacts.
  * Plugin URI: https://github.com/WebDevStudios/constant-contact-woocommerce
- * Version: 2.2.2
+ * Version: 2.3.0
  * Author: Constant Contact
  * Author URI: https://www.constantcontact.com/
  * Text Domain: constant-contact-woocommerce
  * WC requires at least: 3.6.0
- * WC tested up to: 8.6.1
+ * WC tested up to: 8.9.2
  * Requires PHP: 7.2
  * License: GPL-3.0+
  * License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
