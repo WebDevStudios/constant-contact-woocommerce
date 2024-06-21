@@ -11,6 +11,7 @@ namespace WebDevStudios\CCForWoo;
 
 use Exception;
 
+use WebDevStudios\CCForWoo\Utility\CheckoutBlockNewsletter;
 use WebDevStudios\CCForWoo\Utility\HealthPanel;
 use WebDevStudios\CCForWoo\Utility\PluginCompatibilityCheck;
 use WebDevStudios\CCForWoo\Utility\AdminNotifications;
@@ -214,6 +215,7 @@ final class Plugin extends ServiceRegistrar {
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ], 99 );
 		add_action( 'init', [ $this, 'load_plugin_textdomain' ] );
 		add_action( 'init', [ $this, 'load_health_panel' ] );
+		add_action( 'after_setup_theme', [ $this, 'load_checkout_block_newsletter' ] );
 		add_action( 'init', [ $this, 'load_admin_notifications' ] );
 
 		register_activation_hook( $this->plugin_file, [ $this, 'do_activation_process' ] );
@@ -396,6 +398,20 @@ final class Plugin extends ServiceRegistrar {
 	}
 
 	/**
+	 * Register our block newsletter checkbox.
+	 *
+	 * @since 2.3.0
+	 * @author Michael Beckwith <michael@webdevstudios.com>
+	 */
+	public function load_checkout_block_newsletter() {
+		/* We are running this here because adding into `NewsletterPreferenceCheckbox` class is running too late. That class has things run on `init` hook and we need to run earlier on `after_setup_theme`.
+		*/
+		$checkoutBlockNewsletter = new CheckoutBlockNewsletter();
+		$checkoutBlockNewsletter->add_newsletter_to_checkout_block();
+		$checkoutBlockNewsletter->register_hooks();
+  }
+
+  /**
 	 * Load admin notifications.
 	 *
 	 * @author Michael Beckwith <michael@webdevstudios.com>
