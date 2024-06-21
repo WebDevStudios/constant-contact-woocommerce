@@ -389,7 +389,7 @@ final class Plugin extends ServiceRegistrar {
 	/**
 	 * Register our block newsletter checkbox.
 	 *
-	 * @since NEXT
+	 * @since 2.3.0
 	 * @author Michael Beckwith <michael@webdevstudios.com>
 	 */
 	public function load_checkout_block_newsletter() {
