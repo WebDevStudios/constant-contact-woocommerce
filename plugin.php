@@ -13,7 +13,7 @@
  * Author URI: https://www.constantcontact.com/
  * Text Domain: constant-contact-woocommerce
  * WC requires at least: 3.6.0
- * WC tested up to: 8.9.2
+ * WC tested up to: 9.0.1
  * Requires PHP: 7.2
  * License: GPL-3.0+
  * License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
