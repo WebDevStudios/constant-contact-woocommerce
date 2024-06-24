@@ -71,6 +71,10 @@ You've connected your WooCommerce store to Constant Contact, promoted your WooCo
 
 == Changelog ==
 
+= 2.3.0 =
+* Added: Support for WooCommerce Checkout block and opt in checkbox
+* Fixed: Conflicts with other Woo Plugins and asset loading.
+
 = 2.2.2 =
 * Updated: Confirmed compatibility with 6.5.0
 
