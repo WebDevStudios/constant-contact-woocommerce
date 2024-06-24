@@ -43,6 +43,8 @@ class ConnectionStatus {
 	 */
 	const CC_FIRST_CONNECTION = 'cc_woo_first_connection';
 
+	const CC_CONNECTED_TIME = 'cc_woo_connected_time';
+
 	/**
 	 * Value to check whether the store has attempted a connection with CC.
 	 *
@@ -103,6 +105,7 @@ class ConnectionStatus {
 
 		update_option( self::CC_CONNECTION_ESTABLISHED_KEY, $connected );
 		update_option( self::CC_CONNECTION_USER_ID, $user_id );
+		update_option( self::CC_CONNECTED_TIME, time() );
 
 		if ( $this->connected ) {
 			update_option( self::CC_FIRST_CONNECTION, true );

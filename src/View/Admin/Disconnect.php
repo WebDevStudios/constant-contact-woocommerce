@@ -69,6 +69,7 @@ class Disconnect extends Service {
 		delete_option( ConnectionStatus::CC_CONNECTION_USER_ID );
 		delete_option( ConnectionStatus::CC_FIRST_CONNECTION );
 		delete_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY );
+		delete_option( ConnectionStatus::CC_CONNECTED_TIME );
 
 
 		// WooCommerce Options
