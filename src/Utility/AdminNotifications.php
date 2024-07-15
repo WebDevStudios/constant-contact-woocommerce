@@ -3,6 +3,7 @@
 namespace WebDevStudios\CCForWoo\Utility;
 
 use WebDevStudios\CCForWoo\Meta\ConnectionStatus;
+use WebDevStudios\CCForWoo\Plugin;
 
 /**
  * Class AdminNotifications
@@ -19,6 +20,7 @@ class AdminNotifications {
 
 	public function register_hooks() {
 		add_action( 'admin_notices', [ $this, 'notification' ] );
+		add_action( 'admin_notices', [ $this, 'update_available_notice' ] );
 		add_action( 'wp_ajax_cc_woo_increment_dismissed_count', [ $this, 'increment_dismissed_count' ] );
 		add_action( 'wp_ajax_cc_woo_set_already_reviewed', [ $this, 'set_reviewed_status' ] );
 	}
@@ -159,5 +161,53 @@ class AdminNotifications {
 			$msg = esc_html__( 'Plugin marked as reviewed', 'constant-contact-woocommerce' );
 		}
 		wp_send_json_success( $msg );
+	}
+
+	public function update_available_notice() {
+		if ( ! $this->maybe_show_update_available_notification() ) {
+			return;
+		}
+
+		$url = is_multisite() ? 'network/update-core.php' : 'update-core.php';
+
+		wp_admin_notice(
+			sprintf(
+			/* Translators: placeholders will be html `<a>` links. */
+				esc_html__( 'We wanted to inform you that there is a pending update available for the Constant Contact + WooCommerce plugin. To ensure optimal performance and security, please visit the %1$sWordPress updates%2$s area and update the plugin at your earliest convenience.', 'constant-contact-woocommerce' ),
+				sprintf( '<a href="%s">', esc_url( admin_url( $url ) ) ),
+				'</a>',
+			),
+			[
+				'type'        => 'notice',
+			]
+		);
+	}
+
+	function maybe_show_update_available_notification() { return true;
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return false;
+		}
+
+		$connection = new ConnectionStatus();
+		if ( ! $connection->is_connected() ) {
+			return false;
+		}
+
+		$version = '';
+		$resp    = wp_remote_get( 'https://api.wordpress.org/plugins/info/1.2/?action=plugin_information&slug=constant-contact-woocommerce' );
+		if ( is_wp_error( $resp ) ) {
+			return false;
+		}
+
+		$data            = json_decode( wp_remote_retrieve_body( $resp ) );
+		$version         = $data->version;
+		$current_version = Plugin::PLUGIN_VERSION;
+
+		if ( $version && version_compare( $current_version, $version, '<' ) ) {
+			return true;
+		}
+
+		// If we got this far, we just failed to get the current available version.
+		return false;
 	}
 }
