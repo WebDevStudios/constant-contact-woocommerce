@@ -2,7 +2,7 @@
 /**
  * Constant Contact + WooCommerce
  *
- * @since 0.0.1
+ * @since 1.0.0
  * @author WebDevStudios <https://www.webdevstudios.com/>
  * @package cc-woo
  */
@@ -32,14 +32,14 @@ use WebDevStudios\CCForWoo\Rest\Registrar as RestRegistrar;
 /**
  * "Core" plugin class.
  *
- * @since 0.0.1
+ * @since 1.0.0
  */
 final class Plugin extends ServiceRegistrar {
 
 	/**
 	 * The plugin name.
 	 *
-	 * @since 0.0.1
+	 * @since 1.0.0
 	 * @var string
 	 */
 	const PLUGIN_NAME = 'Constant Contact + WooCommerce';
@@ -50,12 +50,12 @@ final class Plugin extends ServiceRegistrar {
 	 * @since 1.0.0
 	 * @var string
 	 */
-	const PLUGIN_VERSION = '2.3.0';
+	const PLUGIN_VERSION = '2.3.1';
 
 	/**
 	 * Whether the plugin is currently active.
 	 *
-	 * @since 0.0.1
+	 * @since 1.0.0
 	 * @var bool
 	 */
 	private $is_active = false;
@@ -63,7 +63,7 @@ final class Plugin extends ServiceRegistrar {
 	/**
 	 * The plugin file path, should be __FILE__ of the main entry point script.
 	 *
-	 * @since 0.0.1
+	 * @since 1.0.0
 	 * @var string
 	 */
 	private $plugin_file;
@@ -71,7 +71,7 @@ final class Plugin extends ServiceRegistrar {
 	/**
 	 * Services to register.
 	 *
-	 * @since 0.0.1
+	 * @since 1.0.0
 	 * @var array
 	 */
 	protected $services = [
@@ -91,7 +91,7 @@ final class Plugin extends ServiceRegistrar {
 	 *
 	 * Prepare some things for later.
 	 *
-	 * @since 0.0.1
+	 * @since 1.0.0
 	 * @author Zach Owen <zach@webdevstudios.com>
 	 * @param string $plugin_file The plugin file path of the entry script.
 	 * @package cc-woo
@@ -121,7 +121,7 @@ final class Plugin extends ServiceRegistrar {
 	/**
 	 * Deactivate this plugin.
 	 *
-	 * @since 0.0.1
+	 * @since 1.0.0
 	 * @author Zach Owen <zach@webdevstudios.com>
 	 * @param string $reason The reason for deactivating.
 	 * @throws Exception If the plugin isn't active, throw an Exception.
@@ -159,7 +159,7 @@ final class Plugin extends ServiceRegistrar {
 	/**
 	 * Maybe deactivate the plugin if certain conditions aren't met.
 	 *
-	 * @since 0.0.1
+	 * @since 1.0.0
 	 * @author Zach Owen <zach@webdevstudios.com>
 	 * @throws Exception When WooCommerce is not found or compatible.
 	 */
@@ -189,7 +189,7 @@ final class Plugin extends ServiceRegistrar {
 	/**
 	 * Run things once the plugin instance is ready.
 	 *
-	 * @since 0.0.1
+	 * @since 1.0.0
 	 * @author Zach Owen <zach@webdevstudios>
 	 */
 	public function run() {
@@ -207,7 +207,7 @@ final class Plugin extends ServiceRegistrar {
 	 * Register the plugin's hooks with WordPress.
 	 *
 	 * @author Jeremy Ward <jeremy.ward@webdevstudios.com>
-	 * @since  0.0.1
+	 * @since  1.0.0
 	 */
 	public function register_hooks() {
 		add_action( 'plugins_loaded', [ $this, 'check_for_required_dependencies' ] );
@@ -225,7 +225,7 @@ final class Plugin extends ServiceRegistrar {
 	/**
 	 * Returns whether the plugin is active.
 	 *
-	 * @since 0.0.1
+	 * @since 1.0.0
 	 * @author Zach Owen Zach Owen <zach@webdevstudios>
 	 * @return bool
 	 */
@@ -236,7 +236,7 @@ final class Plugin extends ServiceRegistrar {
 	/**
 	 * Get the plugin file path.
 	 *
-	 * @since 0.0.1
+	 * @since 1.0.0
 	 * @author Zach Owen Zach Owen <zach@webdevstudios>
 	 * @return string
 	 */
