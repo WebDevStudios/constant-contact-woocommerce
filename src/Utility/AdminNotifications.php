@@ -183,7 +183,7 @@ class AdminNotifications {
 		);
 	}
 
-	function maybe_show_update_available_notification() { return true;
+	function maybe_show_update_available_notification() {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return false;
 		}
