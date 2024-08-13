@@ -125,7 +125,7 @@ class CheckoutBlockNewsletter {
 			return;
 		}
 
-		if ( $group !== 'billing' ) {
+		if ( ! in_array( $group, [ 'billing', 'shipping', 'other' ] ) ) {
 			return;
 		}
 
