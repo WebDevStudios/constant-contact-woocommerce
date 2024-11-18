@@ -80,7 +80,7 @@ class KeyManager extends Service {
 			return false;
 		}
 
-		if ( ! $this->is_woo_commerce_api_key_query( $query ) ) {
+		if ( ! $this->is_woocommerce_api_key_query( $query ) ) {
 			return false;
 		}
 
@@ -139,7 +139,7 @@ SQL;
 	 * @param string $query The query to test.
 	 * @return bool
 	 */
-	private function is_woo_commerce_api_key_query( $query ) {
+	private function is_woocommerce_api_key_query( $query ) {
 		return false !== stripos( $query, 'woocommerce_api_keys' );
 	}
 
