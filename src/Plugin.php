@@ -15,6 +15,7 @@ use WebDevStudios\CCForWoo\Utility\CheckoutBlockNewsletter;
 use WebDevStudios\CCForWoo\Utility\HealthPanel;
 use WebDevStudios\CCForWoo\Utility\PluginCompatibilityCheck;
 use WebDevStudios\CCForWoo\Utility\AdminNotifications;
+use WebDevStudios\CCForWoo\Utility\WebhookAPICleanup;
 use WebDevStudios\OopsWP\Structure\ServiceRegistrar;
 use WebDevStudios\CCForWoo\View\ViewRegistrar;
 use WebDevStudios\CCForWoo\View\Admin\Notice;
@@ -335,6 +336,10 @@ final class Plugin extends ServiceRegistrar {
 		delete_option( ConnectionStatus::CC_FIRST_CONNECTION );
 		delete_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY );
 
+		global $wpdb;
+		$cleanup = new WebhookAPICleanup( $wpdb );
+		$cleanup->clear_webhooks();
+		$cleanup->clear_api_connections();
 
 		// WooCommerce Options
 		delete_option( 'cc_woo_store_information_first_name' );
