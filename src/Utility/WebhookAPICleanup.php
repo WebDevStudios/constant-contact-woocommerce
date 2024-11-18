@@ -23,7 +23,5 @@ class WebhookAPICleanup {
 		$result = $this->wpdb->query(
 			$query
 		);
-
-		$g = '';
 	}
 }
