@@ -111,7 +111,7 @@ class KeyManagerTest extends TestCase {
 	 */
 	private function check_if_woo_api_query( $query ) {
 		$object = new KeyManager();
-		$method = new \ReflectionMethod( $object, 'is_woo_commerce_api_key_query' );
+		$method = new \ReflectionMethod( $object, 'is_woocommerce_api_key_query' );
 
 		$method->setAccessible( true );
 

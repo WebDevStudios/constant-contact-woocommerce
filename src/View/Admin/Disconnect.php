@@ -6,6 +6,8 @@ use WebDevStudios\CCForWoo\Utility\DebugLogging;
 use WebDevStudios\OopsWP\Structure\Service;
 use WebDevStudios\CCForWoo\Meta\ConnectionStatus;
 use WebDevStudios\CCForWoo\AbandonedCheckouts\CheckoutsTable;
+use WebDevStudios\CCForWoo\Utility\WebhookAPICleanup;
+
 /**
  * Disconnects the plugin from Constant Contact WOO.
  *
@@ -64,13 +66,16 @@ class Disconnect extends Service {
 
         wp_clear_scheduled_hook( 'cc_woo_check_expired_checkouts' );
 
+		global $wpdb;
+		$cleanup = new WebhookAPICleanup( $wpdb );
+		$cleanup->clear_webhooks();
+		$cleanup->clear_api_connections();
 
 		delete_option( CheckoutsTable::DB_VERSION_OPTION_NAME );
 		delete_option( ConnectionStatus::CC_CONNECTION_USER_ID );
 		delete_option( ConnectionStatus::CC_FIRST_CONNECTION );
 		delete_option( ConnectionStatus::CC_CONNECTION_ESTABLISHED_KEY );
 		delete_option( ConnectionStatus::CC_CONNECTED_TIME );
-
 
 		// WooCommerce Options
 		delete_option( 'cc_woo_store_information_first_name' );
