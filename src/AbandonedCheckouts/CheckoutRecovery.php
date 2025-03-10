@@ -64,7 +64,7 @@ class CheckoutRecovery extends Service {
 		// Get saved checkout contents.
 		$checkout_contents = CheckoutHandler::get_checkout_contents( $this->checkout_uuid );
 
-		if ( null === $checkout_contents ) {
+		if ( empty( $checkout_contents['products'] ) ) {
 			return;
 		}
 
