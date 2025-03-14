@@ -71,6 +71,9 @@ You've connected your WooCommerce store to Constant Contact, promoted your WooCo
 
 == Changelog ==
 
+= 2.3.2 =
+* Fixed: Uncaught fatal error from Abandoned cart checkout recovery.
+
 = 2.3.1 =
 * Fixed: Issue around marketing opt-in with WooCommerce checkout block and order/user meta.
 * Added: Notice encouraging to apply any available update to the plugin.
