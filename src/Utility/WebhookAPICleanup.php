@@ -2,7 +2,7 @@
 /**
  * WooCommerce Webhook and API cleanup.
  *
- * @since   NEXT
+ * @since   2.4.0
  * @author  WebDevStudios.
  * @package cc-woo
  */
@@ -12,7 +12,7 @@ namespace WebDevStudios\CCForWoo\Utility;
 /**
  * Webhook and API cleanup class.
  *
- * @since NEXT
+ * @since 2.4.0
  */
 class WebhookAPICleanup {
 
@@ -35,7 +35,7 @@ class WebhookAPICleanup {
 	/**
 	 * Clear out all of our webhooks by name.
 	 *
-	 * @since NEXT
+	 * @since 2.4.0
 	 */
 	public function clear_webhooks() {
 		$query = "DELETE FROM {$this->wpdb->prefix}wc_webhooks WHERE topic = '%s'";
@@ -50,7 +50,7 @@ class WebhookAPICleanup {
 	/**
 	 * Clear out all of our API connections.
 	 *
-	 * @since NEXT
+	 * @since 2.4.0
 	 */
 	public function clear_api_connections() {
 		$query  = "DELETE FROM {$this->wpdb->prefix}woocommerce_api_keys WHERE description LIKE 'Constant Contact - API%'";
