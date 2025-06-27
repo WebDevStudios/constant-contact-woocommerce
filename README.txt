@@ -2,14 +2,14 @@
 Contributors: constantcontact, webdevstudios, znowebdev, jmichaelward, ggwicz, ravedev, newyorkerlaura
 Tags: Constant Contact, WooCommerce, email marketing, marketing automation, abandoned cart
 Requires at least: 5.2.2
-Tested up to: 6.7.2
-Stable tag: 2.3.2
+Tested up to: 6.8.1
+Stable tag: 2.4.0
 Requires PHP: 7.2
 License: GPLv3
 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Add products to your emails and sync your contacts.
+Add products to your list emails and sync your contacts.
 
 == Description ==
 
@@ -70,6 +70,9 @@ You've connected your WooCommerce store to Constant Contact, promoted your WooCo
 [Learn more with our step-by-step revenue reporting guide.](https://knowledgebase.constantcontact.com/articles/KnowledgeBase/36892-View-Recovered-Revenue-from-the-WooCommerce-Abandoned-Cart-Reminder-Email?q=woocommerce*&lang=en_US)
 
 == Changelog ==
+
+= 2.4.0 =
+* Added: clear webhooks and API connections on disconnection processes.
 
 = 2.3.2 =
 * Fixed: Uncaught fatal error from Abandoned cart checkout recovery.
