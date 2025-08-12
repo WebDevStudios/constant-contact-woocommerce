@@ -21,14 +21,14 @@ class WebhookAPICleanup {
 	 *
 	 * @var \WPDB $wpdb
 	 */
-	protected \WPDB $wpdb;
+	protected $wpdb;
 
 	/**
 	 * Constructor.
 	 *
 	 * @param \WPDB $wpdb
 	 */
-	public function __construct( \WPDB $wpdb) {
+	public function __construct( \WPDB $wpdb ) {
 		$this->wpdb = $wpdb;
 	}
 

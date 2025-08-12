@@ -178,7 +178,7 @@ class AdminNotifications {
 			/* Translators: placeholders will be html `<a>` links. */
 				esc_html__( 'We wanted to inform you that there is a pending update available for the Constant Contact + WooCommerce plugin. To ensure optimal performance and security, please visit the %1$sWordPress updates%2$s area and update the plugin at your earliest convenience.', 'constant-contact-woocommerce' ),
 				sprintf( '<a href="%s">', esc_url( admin_url( $url ) ) ),
-				'</a>',
+				'</a>'
 			),
 			[
 				'type'        => 'notice',
