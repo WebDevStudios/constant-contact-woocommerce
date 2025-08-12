@@ -214,7 +214,6 @@ final class Plugin extends ServiceRegistrar {
 		add_action( 'plugins_loaded', [ $this, 'check_for_required_dependencies' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'register_scripts' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ], 99 );
-		add_action( 'init', [ $this, 'load_plugin_textdomain' ] );
 		add_action( 'init', [ $this, 'load_health_panel' ] );
 		add_action( 'woocommerce_init', [ $this, 'load_checkout_block_newsletter' ] );
 		add_action( 'init', [ $this, 'load_admin_notifications' ] );
@@ -380,16 +379,6 @@ final class Plugin extends ServiceRegistrar {
 		wp_enqueue_style( 'cc-woo-admin', trailingslashit( plugin_dir_url( $this->get_plugin_file() ) ) . 'app/admin.css' );
     	wp_enqueue_style( 'cc-woo-google-fonts', 'https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;700&display=swap', false );
 		wp_localize_script( 'cc-woo-admin', 'cc_woo_ajax', [ 'ajax_url' => admin_url( 'admin-ajax.php' ) ] );
-	}
-
-	/**
-	 * Load textdomain.
-	 *
-	 * @author Michael Beckwith <michael@webdevstudios.com>
-	 * @since 2.1.0
-	 */
-	public function load_plugin_textdomain() {
-		load_plugin_textdomain( 'constant-contact-woocommerce' );
 	}
 
 	/**
