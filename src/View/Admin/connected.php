@@ -4,7 +4,7 @@
         'cc-connect' => 'connect',
         'tab'        => 'wc-settings' === $_GET['page'] ? 'cc_woo' : '',
     ), $url );
-    $dash_url = 'https://login.constantcontact.com/login/?goto=https%3A%2F%2Fapp.constantcontact.com%2Fpages%2Fecomm-dash%2Fdashboard%2F%23%2Fwoocommerce';
+    $dash_url = 'https://login.constantcontact.com/login/?goto=https%3A%2F%2Fapp.constantcontact.com%2Fpages%2Fintegrations%2Fdashboard%2Fwoocommerce';
 
 
 ?>

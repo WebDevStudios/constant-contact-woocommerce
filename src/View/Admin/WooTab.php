@@ -396,7 +396,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * @since 2.0.0
 	 */
 	public function render_cta_button() {
-		$url = 'https://login.constantcontact.com/login/?goto=https%3A%2F%2Fapp.constantcontact.com%2Fpages%2Fecomm-dash%2Fdashboard%2F%23%2Fwoocommerce';
+		$url = 'https://login.constantcontact.com/login/?goto=https%3A%2F%2Fapp.constantcontact.com%2Fpages%2Fintegrations%2Fdashboard%2Fwoocommerce';
 		?>
 		<a
 			class="button button-primary"
@@ -698,7 +698,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 
 		add_filter( 'allowed_redirect_hosts', [ $this, 'allow_redirect_to_cc' ] );
 
-		wp_safe_redirect( 'https://shoppingcart.constantcontact.com/auth/woocommerce/WhoDis?storeDomain="' . get_home_url() . '"' );
+		wp_safe_redirect( 'https://app.constantcontact.com/upgs/integrations/whodis/woocommerce?storeDomain="' . get_home_url() . '"' );
 		exit;
 	}
 
@@ -731,7 +731,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * @return array
 	 */
 	public function allow_redirect_to_cc() {
-		$hosts[] = 'shoppingcart.constantcontact.com';
+		$hosts[] = 'app.constantcontact.com';
 
 		return $hosts;
 	}
