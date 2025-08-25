@@ -34,7 +34,7 @@ class AdminNotifications {
 		wp_admin_notice(
 			sprintf(
 				/* Translators: Placeholders here are for `<strong>` HTML and link tags. */
-				esc_html__( 'You have been successfully using %1$sConstant Contact Woocommerce%2$s to capture valuable site visitor information! Please consider leaving us a %3$snice review%4$s. Reviews help fellow WordPress admins find our plugin and lets you provide us useful feedback. %5$sDismiss%6$s - %7$sI have already reviewed%8$s', 'constant-contact-forms' ),
+				esc_html__( 'You have been successfully using %1$sConstant Contact Woocommerce%2$s to capture valuable site visitor information! Please consider leaving us a %3$snice review%4$s. Reviews help fellow WordPress admins find our plugin and lets you provide us useful feedback. %5$sDismiss%6$s - %7$sI have already reviewed%8$s', 'constant-contact-woocommerce' ),
 				'<strong>',
 				'</strong>',
 				'<a href="https://wordpress.org/support/plugin/constant-contact-woocommerce/reviews/#new-post">',
@@ -140,7 +140,10 @@ class AdminNotifications {
 
 		$msg = '';
 		if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
-			$msg = esc_html__( "Dismissed count incremented by {$dismissed_count['count']}", 'constant-contact-woocommerce' );
+			$msg = sprintf(
+				esc_html__( 'Dismissed count incremented by %s', 'constant-contact-woocommerce' ),
+				esc_html( $dismissed_count['count'] )
+			);
 		}
 		wp_send_json_success( $msg );
 	}
@@ -175,7 +178,7 @@ class AdminNotifications {
 			/* Translators: placeholders will be html `<a>` links. */
 				esc_html__( 'We wanted to inform you that there is a pending update available for the Constant Contact + WooCommerce plugin. To ensure optimal performance and security, please visit the %1$sWordPress updates%2$s area and update the plugin at your earliest convenience.', 'constant-contact-woocommerce' ),
 				sprintf( '<a href="%s">', esc_url( admin_url( $url ) ) ),
-				'</a>',
+				'</a>'
 			),
 			[
 				'type'        => 'notice',
