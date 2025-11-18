@@ -3,7 +3,7 @@ Contributors: constantcontact, webdevstudios, znowebdev, jmichaelward, ggwicz, r
 Tags: Constant Contact, WooCommerce, email marketing, marketing automation, abandoned cart
 Requires at least: 5.2.2
 Tested up to: 6.8
-Stable tag: 2.4.1
+Stable tag: 2.4.2
 Requires PHP: 7.2
 License: GPLv3
 
