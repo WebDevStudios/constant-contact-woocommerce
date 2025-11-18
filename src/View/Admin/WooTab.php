@@ -965,10 +965,11 @@ class WooTab extends WC_Settings_Page implements Hookable {
 		wp_nonce_field( $this->nonce_action, $this->nonce_name );
 
 		$disc = admin_url( 'admin.php?page=' . esc_attr( $_GET['page'] ) );
-		$disc = add_query_arg( array(
-			'cc-connect' => 'disconnect',
-			'tab'        => 'wc-settings' === $_GET['page'] ? 'cc_woo' : '',
-		), $disc );
+		$disc = add_query_arg( [
+			'cc-connect'          => 'disconnect',
+			'tab'                 => 'wc-settings' === $_GET['page'] ? 'cc_woo' : '',
+			'cc-disconnect-nonce' => wp_create_nonce( 'cc-disconnect-nonce' ),
+		], $disc );
 
 		?><div style="padding: 1rem 0;">
 			<p class="submit">
