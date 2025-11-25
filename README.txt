@@ -71,6 +71,9 @@ You've connected your WooCommerce store to Constant Contact, promoted your WooCo
 
 == Changelog ==
 
+= 2.4.2 =
+* Fixed: Security issues with disconnect process.
+
 = 2.4.1 =
 * Fixed: PHP Compatibility details.
 * Fixed: Details around textdomains
