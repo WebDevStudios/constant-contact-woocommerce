@@ -33,9 +33,17 @@ class Disconnect extends Service {
     * @return void
     */
     public function disconnect() {
-        if ( ! isset( $_GET['cc-connect'] ) || 'disconnect' !== $_GET['cc-connect'] ) {
-            return;
-        }
+	    if ( ! isset( $_GET['cc-connect'] ) || 'disconnect' !== $_GET['cc-connect'] ) {
+		    return;
+	    }
+
+	    if ( ! current_user_can( 'manage_options' ) ) {
+		    return;
+	    }
+
+	    if ( ! isset( $_GET['cc-disconnect-nonce'] ) || ! wp_verify_nonce( $_GET['cc-disconnect-nonce'], 'cc-disconnect-nonce' ) ) {
+		    return;
+	    }
 
 	    $ctct_logger = new DebugLogging(
 		    wc_get_logger(),
@@ -44,8 +52,8 @@ class Disconnect extends Service {
 	    );
 	    $ctct_logger->log();
 
-        $this->disconnect_plugin();
-        $this->redirect();
+	    $this->disconnect_plugin();
+	    $this->redirect();
     }
 
     /**
