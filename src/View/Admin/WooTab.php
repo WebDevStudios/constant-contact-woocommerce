@@ -513,7 +513,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 			],
 			[
 				'title'   => '',
-				'desc'    => esc_html__( 'Change filter location where checkbox is rendered.', 'constant-contact-woocommerce' ),
+				'desc'    => esc_html__( 'Location where marketing checkbox is rendered.', 'constant-contact-woocommerce' ),
 				'type'    => 'radio',
 				'id'      => self::CHECKBOX_LOCATION,
 				'default' => 'woocommerce_after_checkout_billing_form',
