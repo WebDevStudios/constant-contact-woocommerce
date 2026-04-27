@@ -396,7 +396,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 	 * @since 2.0.0
 	 */
 	public function render_cta_button() {
-		$url = 'https://login.constantcontact.com/login/?goto=https%3A%2F%2Fapp.constantcontact.com%2Fpages%2Fecomm-dash%2Fdashboard%2F%23%2Fwoocommerce';
+		$url = 'https://login.constantcontact.com/login/?goto=https%3A%2F%2Fapp.constantcontact.com%2Fpages%2Fintegrations%2Fdashboard%2Fwoocommerce';
 		?>
 		<a
 			class="button button-primary"
@@ -513,7 +513,7 @@ class WooTab extends WC_Settings_Page implements Hookable {
 			],
 			[
 				'title'   => '',
-				'desc'    => esc_html__( 'Change filter location where checkbox is rendered.', 'constant-contact-woocommerce' ),
+				'desc'    => esc_html__( 'Location where marketing checkbox is rendered.', 'constant-contact-woocommerce' ),
 				'type'    => 'radio',
 				'id'      => self::CHECKBOX_LOCATION,
 				'default' => 'woocommerce_after_checkout_billing_form',
