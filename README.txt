@@ -71,6 +71,10 @@ You've connected your WooCommerce store to Constant Contact, promoted your WooCo
 
 == Changelog ==
 
+= NEXT =
+* Fixed: Marketing opt-in from the WooCommerce Checkout block is now saved in the same format as the classic checkout, so returning customers' preferences are remembered correctly.
+* Added: One-time migration that converts previously saved Checkout block opt-in values on users and orders (including HPOS) to the standard format.
+
 = 2.4.3 =
 * Updated: URLs for links that send users to Constant Contact dashboard.
 

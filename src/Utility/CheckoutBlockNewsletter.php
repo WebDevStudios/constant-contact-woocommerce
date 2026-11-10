@@ -129,7 +129,9 @@ class CheckoutBlockNewsletter {
 			return;
 		}
 
-		$wc_object->update_meta_data( self::CUSTOMER_PREFERENCE_META_FIELD, $value, true );
+		$preference = self::to_preference_string( $value );
+
+		$wc_object->update_meta_data( self::CUSTOMER_PREFERENCE_META_FIELD, $preference );
 
 		// This filter is from WooCommerce Core.
 		$customer_id = apply_filters( 'woocommerce_checkout_customer_id', get_current_user_id() );
@@ -138,7 +140,24 @@ class CheckoutBlockNewsletter {
 		}
 
 		// No user created from customer. Nothing to save.
-		update_user_meta( $customer_id, self::CUSTOMER_PREFERENCE_META_FIELD, $value );
+		update_user_meta( $customer_id, self::CUSTOMER_PREFERENCE_META_FIELD, $preference );
+	}
+
+	/**
+	 * Normalize a submitted checkbox value to the 'true' / 'false' strings used by the
+	 * classic checkout (see NewsletterPreferenceCheckbox::get_submitted_customer_preference()).
+	 *
+	 * The block checkout hands us a bool from sanitize_agreement_value(); WordPress would
+	 * otherwise persist that as '1' / '', which the readers below don't recognise.
+	 *
+	 * @since NEXT
+	 *
+	 * @param mixed $value Raw or sanitized checkbox value.
+	 *
+	 * @return string 'true' or 'false'.
+	 */
+	public static function to_preference_string( $value ): string {
+		return wc_string_to_bool( $value ) ? 'true' : 'false';
 	}
 
 	/**
