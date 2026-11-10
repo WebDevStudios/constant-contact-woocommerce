@@ -21,6 +21,7 @@ use WebDevStudios\CCForWoo\View\ViewRegistrar;
 use WebDevStudios\CCForWoo\View\Admin\Notice;
 use WebDevStudios\CCForWoo\View\Admin\NoticeMessage;
 use WebDevStudios\CCForWoo\Meta\ConnectionStatus;
+use WebDevStudios\CCForWoo\Meta\OptInMetaMigration;
 use WebDevStudios\CCForWoo\Api\KeyManager;
 use WebDevStudios\CCForWoo\WebHook\Disconnect;
 use WebDevStudios\CCForWoo\View\Admin\MenuItem;
@@ -85,6 +86,7 @@ final class Plugin extends ServiceRegistrar {
 		CheckoutRecovery::class,
 		RestRegistrar::class,
 		DisconnectSettings::class,
+		OptInMetaMigration::class,
 	];
 
 	/**
